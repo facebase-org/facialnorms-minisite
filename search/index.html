@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>3D Facial Norms Database | FaceBase</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FaceBase | A resource for craniofacial researchers">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../css/custom.css">
+	  <script src="../js/jquery-latest.min.js"></script>
+	  <script src="../js/bootstrap.min.js"></script>
+    <!-- need the following for the Tour button when it's clicked outside of the 'Data' area -->
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<noscript>
+ <p class="bg-warning">For full functionality of this site it is necessary to enable JavaScript.
+ Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+ instructions how to enable JavaScript in your web browser</a>.</p>
+</noscript>
+</head>	
+<body>
+	<div id="wrap">
+		<nav id="navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		    	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#fb-navbar-main-collapse">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="glyphicon glyphicon-arrow-down"></span>
+                  	MENU
+			    </button>
+		      	<a class="navbar-brand" href="/">FaceBase</a>
+		    </div> <!-- end navbar-header -->
+
+			<div class="navbar-collapse collapse" id="fb-navbar-main-collapse">
+			<ul class="nav navbar-nav">
+			  	
+			  	
+			  	<li class="dropdown toplevel">
+					<a href="/data/" class="dropdown-toggle" data-toggle="dropdown">Data<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+					
+					
+       				<li><a href="/data/" target="">Data Browser</a></li>
+       					
+  					
+					
+       				<li><a href="https://genome.ucsc.edu/cgi-bin/hgGateway?hubUrl=http%3A%2F%2Ftrackhub.facebase.org%2Fhub.txt&db=mm9&hgHubConnect.remakeTrackHub=on" target="_blank">Genome Browser</a></li>
+       					
+  					
+					
+       				<li><a href="http://facebasetest.usc.edu/expression/expressionDataSets.jsp" target="_blank">Gene Expression Omnibus</a></li>
+       					
+  					
+					
+       				<li><a href="https://legacy.facebase.org/facial_norms" target="_blank">3D Facial Norms Database</a></li>
+       					
+  					
+  					</ul>
+  					
+            		</li>
+  					
+			  	
+			  	<li class="dropdown toplevel">
+					<a href="/methods/data-standards/" class="dropdown-toggle" data-toggle="dropdown">Methods<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+					
+					
+       				<li><a href="/methods/data-standards/" target="">Data Model and Standards</a></li>
+       					
+  					
+					
+       				<li><a href="/methods/metadata/" target="">Metadata Annotation</a></li>
+       					
+  					
+					
+       				<li><a href="/methods/policies/" target="">Data Access Policies</a></li>
+       					
+  					
+  					</ul>
+  					
+            		</li>
+  					
+			  	
+			  	<li class="dropdown toplevel">
+					<a href="/about/" class="dropdown-toggle" data-toggle="dropdown">About<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+					
+					
+       				<li><a href="/about/" target="">About FaceBase</a></li>
+       					
+  					
+					
+       				<li><a href="/about/citing/" target="">How to Cite Us</a></li>
+       					
+  					
+					
+       				<li><a href="/about/publications/" target="">Publications</a></li>
+       					
+  					
+					
+       				<li><a href="/about/presentations/" target="">Presentations</a></li>
+       					
+  					
+					
+       				<li><a href="/about/news-events/" target="">News &amp; Events</a></li>
+       					
+  					
+  					</ul>
+  					
+            		</li>
+  					
+			  	
+			  	<li class="dropdown toplevel">
+					<a href="/projects/" class="dropdown-toggle" data-toggle="dropdown">Projects<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+					
+					
+       				<li><a href="/projects/" target="">All FaceBase Projects</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/facebase2-cc/" target="">FaceBase 2 Coordinating Center</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/anatomical-atlas-transgenic-toolkit-zebrafish/" target="">Anatomical Atlas and Transgenic Toolkit for Late Skull Formation in Zebrafish</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/3d-craniofacial-morph-transform-dysmorphology/" target="">Developing 3D Craniofacial Morphometry Data and Tools to Transform Dysmorphology</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/epigenetic-landscapes-divergence-human-craniofacial-traits/" target="">Epigenetic Landscapes and Regulatory Divergence of Human Craniofacial Traits</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/craniofacial-enhancer-studies/" target="">Genomic and Transgenic Resources for Craniofacial Enhancer Studies</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/human-genomics-analysis-interface/" target="">Human Genomics Analysis Interface for FaceBase 2</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/functional-genomics-craniofacial-morphogenesis/" target="">Integrated Research of Functional Genomics and Craniofacial Morphogenesis</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/ontology-integration-visualization-exploration/" target="">Ontology-based Integration, Visualization and Exploration of Craniofacial Data</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/rapid-id-validation-human-craniofacial-dev-genes/" target="">Rapid Identification and Validation of Human Craniofacial Development Genes</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/rna-dynamics-in-developing-mouse-face/" target="">RNA Dynamics in the Developing Mouse Face</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/transcriptome-atlases-craniofacial-sutures/" target="">Transcriptome Atlases of the Craniofacial Sutures</a></li>
+       					
+  					
+					
+  						<li class="dropdown-divider">The following are completed FaceBase projects:</li>
+						
+  					
+					
+       				<li><a href="/projects/3d-facial-norms-database/" target="">3D Facial Norms Database</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/algum" target="">Algum</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/functional-analysis-neural-crest-and-palate" target="">Functional Analysis of Neural Crest and Palate: Imaging Craniofacial Development</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/genetic-determinants-orofacial-shape-and-relationship-cleft-lippalate/" target="">Genetic Determinants of Orofacial Shape and Relationship to Cleft Lip/Palate</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/genetic-tools-and-resources-orofacial-clefting-research/" target="">Genetic Tools and Resources for Orofacial Clefting Research</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/genome-wide-atlas-craniofacial-transcriptional-enhancers/" target="">Genome-Wide Atlas of Craniofacial Transcriptional Enhancers</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/global-gene-expression-atlas-craniofacial-development/" target="">Global Gene Expression Atlas of Craniofacial Development</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/identification-mirnas-involved-midfacial-development-and-clefting/" target="">Identification of miRNAs Involved in Midfacial Development and Clefting</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/oral-clefts-moving-genome-wide-studies-toward-functional-genomics/" target="">Oral Clefts: Moving from Genome-Wide Studies Toward Functional Genomics</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/research-functional-genomics-image-analysis-and-rescue-cleft-palate/" target="">Research on Functional Genomics, Image Analysis and Rescue of Cleft Palate</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/shape-based-retrieval-3d-craniofacial-data/" target="">Shape-Based Retrieval of 3D Craniofacial Data</a></li>
+       					
+  					
+  					</ul>
+  					
+            		</li>
+  					
+			  	
+			  	<li class="dropdown toplevel">
+					<a href="/help/" class="dropdown-toggle" data-toggle="dropdown">Help<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+					
+					
+       				<li><a href="/help/" target="">Getting Help</a></li>
+       					
+  					
+					
+       				<li><a href="/help/faqs/" target="">FAQs</a></li>
+       					
+  					
+					
+       				<li><a href="/help/using-the-data-browser/" target="">Using the Data Browser</a></li>
+       					
+  					
+					
+       				<li><a href="/help/using-3D-viewers/" target="">Using the 3D Viewers</a></li>
+       					
+  					
+					
+       				<li><a href="/help/viewing-nifti/" target="">Viewing NiFTI Files</a></li>
+       					
+  					
+  					</ul>
+  					
+            		</li>
+  					
+			  	            		
+            		<li class="toplevel">
+            		<a href="/contact/">Contact</a>
+            		
+            		</li>
+  					
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right"> 
+				<li class="login"><a id="fblogin_link" href="javascript:void(0)" onclick="loginURL();">Log in</a></li>
+				<li class="signup"><a id="fbsignup_link" href="https://accounts.facebase.org/SignIn#step=signup">Sign up</a></li>
+				<li class="user"><a id="fblogin_user" href="https://accounts.facebase.org"></a></li>
+                <li class="logout"><a id="fblogout_user" href="javascript:void(0)" onclick="logoutURL();">Logout</a></li>
+		    </ul>
+		    <!-- Disabled for now
+ 			<form class="navbar-form navbar-right" role="search" method="get" action="/search/" data-search-form>
+        		<div class="form-group has-feedback">
+        			<label class="control-label sr-only" for="q">Search FaceBase</label>
+          			<input type="text" name="headerSearch" id="headerSearch" class="form-control" placeholder="Search" data-search-input disabled />
+          			<span class="glyphicon glyphicon-search form-control-feedback"></span>
+        		</div>
+      		</form>
+      		-->
+			</div> <!-- end #fb-navbar-main-collapse -->
+		  </div> <!-- end .container-fluid -->
+		</nav> 		
+	<div id="content" class="container-fluid">
+
+
+<div class="col-md-12">
+	<h2>3D Facial Norms Database</h2>
+	
+		<ol class="mininav">
+		  <li><a href="../index.html">Overview</a></li>
+		  <li class="active">Database Search</li>
+		  <li><a href="../summary/index.html">Summary Statistics</a></li>
+		  <li><a href="../tools/index.html">Tools</a></li>
+		  <li><a href="../notes/index.html">Technical Notes</a></li>
+		  <li><a href="https://www.facebase.org/projects/3d-facial-norms-database/">Abstract</a></li>
+		</ol>
+
+<div id="facial_norms">
+	<!--<div class="row">-->
+		<!--<div class="col-md-8">-->
+			<!--<div class="panel panel-default">-->
+			  <!--<div class="panel-heading">-->
+			    <!--<h3 class="panel-title">What groups are you interested in?</h3>-->
+			  <!--</div>-->
+			  <!--<div class="panel-body">-->
+			  	<!--<p>(Each choice reveals expanded lists of checkboxes for ages.)</p>-->
+			    <!--<div class="checkbox">-->
+			    	<!--<label>-->
+			      		<!--<input type="checkbox"> Males-->
+			    	<!--</label>-->
+			  	<!--</div>-->
+			  	<!--<div class="checkbox">-->
+			    	<!--<label>-->
+			      		<!--<input type="checkbox"> Females-->
+			    	<!--</label>-->
+			  	<!--</div>-->
+			  <!--</div>-->
+			<!--</div>-->
+			<!--<div class="panel panel-default">-->
+			  <!--<div class="panel-heading">-->
+			    <!--<h3 class="panel-title">What data are you interested in?</h3>-->
+			  <!--</div>-->
+			  <!--<div class="panel-body">-->
+			  	<!--<p>(Each choice reveals expanded lists of checkboxes for more options.)</p>-->
+			    <!--<div class="checkbox">-->
+			    	<!--<label>-->
+			      		<!--<input type="checkbox"> Phenotypic Measurements -->
+			    	<!--</label>-->
+			  	<!--</div>-->
+			  	<!--<div class="checkbox">-->
+			    	<!--<label>-->
+			      		<!--<input type="checkbox"> 3D Meshes-->
+			    	<!--</label>-->
+			  	<!--</div>-->
+			  	<!--<div class="checkbox">-->
+			    	<!--<label>-->
+			      		<!--<input type="checkbox"> Genotype SNP Markers -->
+			    	<!--</label>-->
+			  	<!--</div>-->
+			  <!--</div>-->
+			<!--</div>-->
+
+			<!--<button class="btn btn-lg">Search</button>-->
+		<!--</div>-->
+		<!--<div class="col-md-4">-->
+			<!--<div class="panel panel-default">-->
+			  <!--<div class="panel-heading">-->
+			    <!--<h3 class="panel-title">Definitions</h3>-->
+			  <!--</div>-->
+			  <!--<div class="panel-body">-->
+			  	<!---->
+				<!--<p><strong>Caliper Measurements</strong><br/>-->
+				<!--Standard anthropometric measurements obtained with a spreading caliper.</p>-->
+				<!---->
+				<!--<p><strong>3D Measures</strong><br/>-->
+				<!--Inter-landmark distance calculated from 3D stereophotogrammetry.</p>-->
+				<!---->
+				<!--<p><strong>3D Landmarks</strong><br/>-->
+				<!--Three dimensional coordinate values (x, y, z) of soft tissue landmarks obtained from 3D stereophotogrammetry.</p>-->
+
+			  <!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
+
+    <div class="panel-heading">
+        <h3 class="panel-title"><strong>This is restricted-access human data.</strong></h3>
+    </div>
+    <div class="panel-body">
+        <p>The FaceBase data access policies have recently changed. To gain access to this data, you must first go through the process outlined <a href="https://www.facebase.org/odocs/data-guidelines/">here.</a> You can then request access to the “3D Facial Norms” dataset.</p>
+    </div>
+</div>
+
+
+
+	
+</div>
+
+	</div>
+</div>
+<div class="push"></div>
+<div id="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<img class="pull-left img-responsive" src="images/logo.png">
+			</div>
+			<div class="col-md-4">
+				<p><a href="/contact/">Contact</a> | <a href="http://policy.usc.edu/info-privacy/">Privacy</a></p>
+				<p>&copy; University of Southern California</p>
+			</div>
+			<div class="col-md-4">
+			
+			</div>
+		</div>
+	</div>
+</div>
+	<!-- javascript -->
+
+	<script>
+	$(document).ready(function(){ 
+
+  			$('ul.nav li.toplevel a[href^="/' + location.pathname.split("/")[1] + '"]').parent(".toplevel").addClass('active');
+  			getSession();
+		});
+	</script>
+</body>
+</html>

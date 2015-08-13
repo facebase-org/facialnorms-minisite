@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>3D Facial Norms Database | FaceBase</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FaceBase | A resource for craniofacial researchers">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../css/custom.css">
+	  <script src="../js/jquery-latest.min.js"></script>
+	  <script src="../js/bootstrap.min.js"></script>
+	  <script src="../js/jquery.flot.js" type="text/javascript" language="javascript"></script>		
+		<!-- javascript -->
+		<script>
+		$(document).ready(function(){ 
+			var options_ancestry = ["European Caucasian"]
+			var options_sex = ["Male", "Female"]
+                        var options_age = [];
+ 			var options_age_ceiling = [];
+			var tdfn_summary = [];
+			var facial_measures = [];
+			var sex_map = {"Male" : 1, "Female" : 2};
+			var caliper_measurements = ["maxcranwidth","minfrntwidth","maxfacewidth","mandwidth","maxcranlength","cranbasewidth"];
+			var field_map = {"maxcranwidth":"Maximum Cranial Width","minfrntwidth":"Minimum Frontal Width","maxfacewidth":"Maximum Facial Width","mandwidth":"Mandibular Width", "maxcranlength":"Maximum Cranial Length","cranbasewidth":"Cranial Base Width","upfacedepth_r":"Upper Facial Depth Right","upfacedepth_l":"Upper Facial Depth Left", "midfacedepth_r":"Middle Facial Depth Right", "midfacedepth_l":"Middle Facial Depth Left", "lowfacedepth_r":"Lower Facial Depth Right", "lowfacedepth_l":"Lower Facial Depth Left", "morphfaceheight":"Morphological Facial Height", "upfaceheight":"Upper Facial Height", "lowfaceheight":"Lower Facial Height", "incanthwidth":"Intercanthal Width", "outcanthwidth":"Outercanthal Width", "palpfislength_r":"Palpebral Fissure Length Right", "palpfislength_l":"Palpebral Fissure Length Left", "nasalwidth":"Nasal Width", "subnasalwidth":"Subnasal Width", "nasalpro":"Nasal Protrusion", "nasalalalength_r":"Nasal Ala Length Right", "nasalalalength_l":"Nasal Ala Length Left", "nasalheight":"Nasal Height", "nasalbdglength":"Nasal Bridge Length", "labfiswidth":"Labial Fissure Width", "philwidth":"Philtrum Width", "phillength":"Philtrum Length", "uplipheight":"Upper Lip Height", "lowlipheight":"Lower Lip Height", "upvermheight":"Upper Vermilion Height", "lowvermheight":"Lower Vermilion Height","cutlowlipheight":"Cutaneous Lower Lip Height"};
+			var nd_points = [[-5, 0],[-4.95, 0],[-4.9, 0],[-4.85, 0],[-4.8, 0],[-4.75, 0],[-4.7, 0],[-4.65, 0],[-4.6, 0],[-4.55, 0],[-4.5, 0],[-4.45, 0],[-4.4, 0],[-4.35, 0],[-4.3, 0],[-4.25, 0],[-4.2, 0.0001],[-4.15, 0.0001],[-4.1, 0.0001],[-4.05, 0.0001],[-4, 0.0001],[-3.95, 0.0002],[-3.9, 0.0002],[-3.85, 0.0002],[-3.8, 0.0003],[-3.75, 0.0004],[-3.7, 0.0004],[-3.65, 0.0005],[-3.6, 0.0006],[-3.55, 0.0007],[-3.5, 0.0009],[-3.45, 0.001],[-3.4, 0.0012],[-3.35, 0.0015],[-3.3, 0.0017],[-3.25, 0.002],[-3.2, 0.0024],[-3.15, 0.0028],[-3.1, 0.0033],[-3.05, 0.0038],[-3, 0.0044],[-2.95, 0.0051],[-2.9, 0.006],[-2.85, 0.0069],[-2.8, 0.0079],[-2.75, 0.0091],[-2.7, 0.0104],[-2.65, 0.0119],[-2.6, 0.0136],[-2.55, 0.0154],[-2.5, 0.0175],[-2.45, 0.0198],[-2.4, 0.0224],[-2.35, 0.0252],[-2.3, 0.0283],[-2.25, 0.0317],[-2.2, 0.0355],[-2.15, 0.0396],[-2.1, 0.044],[-2.05, 0.0488],[-2, 0.054],[-1.95, 0.0596],[-1.9, 0.0656],[-1.85, 0.0721],[-1.8, 0.079],[-1.75, 0.0863],[-1.7, 0.094],[-1.65, 0.1023],[-1.6, 0.1109],[-1.55, 0.12],[-1.5, 0.1295],[-1.45, 0.1394],[-1.4, 0.1497],[-1.35, 0.1604],[-1.3, 0.1714],[-1.25, 0.1826],[-1.2, 0.1942],[-1.15, 0.2059],[-1.1, 0.2179],[-1.05, 0.2299],[-1, 0.242],[-0.95, 0.2541],[-0.9, 0.2661],[-0.85, 0.278],[-0.8, 0.2897],[-0.75, 0.3011],[-0.7, 0.3123],[-0.65, 0.323],[-0.6, 0.3332],[-0.55, 0.3429],[-0.5, 0.3521],[-0.45, 0.3605],[-0.4, 0.3683],[-0.35, 0.3752],[-0.3, 0.3814],[-0.25, 0.3867],[-0.2, 0.391],[-0.15, 0.3945],[-0.1, 0.397],[-0.05, 0.3984],[0, 0.3989],[0.05, 0.3984],[0.1, 0.397],[0.15, 0.3945],[0.2, 0.391],[0.25, 0.3867],[0.3, 0.3814],[0.35, 0.3752],[0.4, 0.3683],[0.45, 0.3605],[0.5, 0.3521],[0.55, 0.3429],[0.6, 0.3332],[0.65, 0.323],[0.7, 0.3123],[0.75, 0.3011],[0.8, 0.2897],[0.85, 0.278],[0.9, 0.2661],[0.95, 0.2541],[1, 0.242],[1.05, 0.2299],[1.1, 0.2179],[1.15, 0.2059],[1.2, 0.1942],[1.25, 0.1826],[1.3, 0.1714],[1.35, 0.1604],[1.4, 0.1497],[1.45, 0.1394],[1.5, 0.1295],[1.55, 0.12],[1.6, 0.1109],[1.65, 0.1023],[1.7, 0.094],[1.75, 0.0863],[1.8, 0.079],[1.85, 0.0721],[1.9, 0.0656],[1.95, 0.0596],[2, 0.054],[2.05, 0.0488],[2.1, 0.044],[2.15, 0.0396],[2.2, 0.0355],[2.25, 0.0317],[2.3, 0.0283],[2.35, 0.0252],[2.4, 0.0224],[2.45, 0.0198],[2.5, 0.0175],[2.55, 0.0154],[2.6, 0.0136],[2.65, 0.0119],[2.7, 0.0104],[2.75, 0.0091],[2.8, 0.0079],[2.85, 0.0069],[2.9, 0.006],[2.95, 0.0051],[3, 0.0044],[3.05, 0.0038],[3.1, 0.0033],[3.15, 0.0028],[3.2, 0.0024],[3.25, 0.002],[3.3, 0.0017],[3.35, 0.0015],[3.4, 0.0012],[3.45, 0.001],[3.5, 0.0009],[3.55, 0.0007],[3.6, 0.0006],[3.65, 0.0005],[3.7, 0.0004],[3.75, 0.0004],[3.8, 0.0003],[3.85, 0.0002],[3.9, 0.0002],[3.95, 0.0002],[4, 0.0001],[4.05, 0.0001],[4.1, 0.0001],[4.15, 0.0001],[4.2, 0.0001],[4.25, 0],[4.3, 0],[4.35, 0],[4.4, 0],[4.45, 0],[4.5, 0],[4.55, 0],[4.6, 0],[4.65, 0],[4.7, 0],[4.75, 0],[4.8, 0],[4.85, 0],[4.9, 0],[4.95, 0],[5, 0]];
+
+			$('ul.nav li.toplevel a[href^="/' + location.pathname.split("/")[1] + '"]').parent(".toplevel").addClass('active');
+  			//getSession();
+			request = $.ajax({
+				type: "GET",
+				url: "../data/tdfnsummary.csv"
+			});
+			request.done(function(data) {
+				var lines = data.split(/\r\n|\n/);
+				var headers = lines[0].split(',');
+				for (var i = 1; i < lines.length; i++) {
+					var cols = lines[i].split(',');
+					if (cols.length == headers.length) {
+					    	var tarr = {};
+						for (var j = 0; j < headers.length; j++) {
+				            		tarr[headers[j]] = cols[j];
+							if (headers[j] == "field" && $.inArray(cols[j], facial_measures) == -1){ 
+								facial_measures.push(cols[j]);
+							}
+
+							if (headers[j] == "age_floor" && $.inArray(cols[j], options_age) == -1){ 
+								options_age.push(cols[j]);
+								options_age_ceiling.push(cols[j+1]);
+							}
+							
+						}
+				        	tdfn_summary.push(tarr);
+    					}
+				}
+				populate_search();
+				create_facial_measures();
+			});
+
+			function populate_search(){
+				$.each(options_sex, function(i, val){
+					$("#edit-sex").append($("<option>", {value: val, text: val}));	
+				}); 
+				$.each(options_age, function(i,val){
+                                        $("#edit-age").append($("<option>", {value: val, text: val + "-" + options_age_ceiling[i]}));        
+                                });
+				 $.each(options_ancestry, function(i,val){
+                                        $("#edit-ancestry").append($("<option>", {value: val, text: val}));        
+                                });
+
+	                }
+
+			function create_facial_measures(){
+	                        $.each(facial_measures, function(i, val){
+					var row =  $("<tr>", {class:"odd facial_measurement_row"}).append($("<input>", {type : "hidden", class: "facial_field", value: val}));
+					var name = $("<td>").append($("<a>", {href: "../summary/index.html#" + val, text: field_map[val]}));
+					var input = $("<td>").append($("<input>", {type: "text",  class:"form-text facial_measurement_input", maxlength:"128",  size:"60", style:"width: 100px"})).append($("<span>", {class:"field-suffix", text: "mm"}));
+					var score = $("<td>").append($("<input>", {type: "text",  class:"form-text zscore_input", maxlength:"128",  size:"60", style:"width: 100px", readonly: "readonly"})).append($("<span>", {class:"field-suffix", text: "σ"}));
+					var graph = $("<td>").append($("<div>", {style:"width: 200px; height: 60px;", class: "tdfn-gui-graph"}));
+					row.append(name).append(input).append(score).append(graph);
+					if ($.inArray(val, caliper_measurements) > -1){
+						$("#caliper_measurements").append(row);
+					} else {
+                                                $("#digital_measurements").append(row);
+					}
+				});
+			}
+			
+			function set_error(text){
+				var error_message = $("<div>", {class:"alert alert-warning"}).append($("<a>", {href:"#", class:"close", "data-dismiss":"alert", text:"x"})).append($("<span>", {text: text}));
+				$("#error-div").append(error_message);
+			}
+	
+ 			function set_zscore(field, sex, age, val, row){
+				var matched=null;
+				$.each(tdfn_summary, function(i, value){
+					if (value["field"] == field && value["sex"] == sex_map[sex] && value["age_floor"] == age){
+						matched = value;
+						return false;
+					}
+				});	
+				
+		
+				if (matched != null){
+					var sd = Number(matched["sd"]);
+					var mean = Number(matched["mean"]);
+					if (val < (mean-sd*20) || val > (mean+sd*20)){ 
+						set_error("Invalid value for '" + field_map[field] +"' (Greater than 20 standard deviations from mean). " )
+						return false;
+					}
+					var score = (val - mean)/sd;
+					row.find(".zscore_input").val(Math.round(score *100)/100);
+					show_graph(score, row);
+				} else {
+					set_error("No data for " + field + " " + sex + " " + age);
+				}
+			}
+
+			function get_graph_y_value(score){
+				var yvalue= 0;
+				$.each(nd_points,function(i,v){
+					if (score < v[0]) { return false; } 
+					yvalue = v[1];
+				});
+				return yvalue;
+			}
+
+			function show_graph(score, row){
+				var options = {
+                                        grid: { show: true, borderWidth: 0, borderColor: '#777', },
+                                        xaxis: { min: -5, max: 5, ticks: 7, tickDecimals: 0, tickColor: '#ccc', tickFormatter: function (v) { return v; } },
+                                        yaxis: { show: false }
+                                };
+                                var point = [
+                                       { data: nd_points, lines: { show: true, lineWidth: 1, fill: true, }, color: '#999', shadowSize: 0},
+                                       { data: [[score, get_graph_y_value(score)]], points: { show: true, radius: 4, lineWidth: 0, fill: true, fillColor: '#00a' }, color: '#00a'}
+                                ];
+                                $.plot(row.find('.tdfn-gui-graph'), point, options);
+			}
+
+			function update_zscores(){
+				selected_sex = $("#edit-sex").val();
+				selected_age = $("#edit-age").val();
+				selected_ancestry = $("#edit-ancetry").val();
+				$(".facial_measurement_input").each(function(index){
+					if ($(this).val() != ""){
+						var row = $(this).parent().parent();
+						set_zscore(row.find(".facial_field").val(), selected_sex, selected_age, $(this).val(), row);
+					}
+				});
+			}
+			$("#edit-age").change(function(){ update_zscores();});
+                        $("#edit-sex").change(function(){ update_zscores();});
+                        $("#edit-ancestry").change(function(){ update_zscores();});
+			$("#edit-c-measurements").on("change", ".facial_measurement_input", function(){
+				update_zscores();	
+			});
+			
+			$(".measurement-form-reset").click(function(){
+				$(".facial_measurement_row").each(function(){
+					$(this).find(".tdfn-gui-graph").text("");
+	                                $(this).find(".facial_measurement_input").val("");
+                                        $(this).find(".zscore_input").val("");
+
+				});
+			});
+			
+			$(".measurement_form_download").click(function() {
+        			var download_text = "FaceBase.org\n3D Facial Norms Database Z-Score Results\n"
+				download_text += "\nVersion: Data uploaded June 19, 2014 (13:14). Version: 0.01"
+				download_text += "\nSex: " + $("#edit-sex").val();
+                                download_text += "\nAge: " + $("#edit-age").val();
+                                download_text += "\nAncestry: " + $("#edit-ancestry").val();
+				download_text += "\nDate: " +  new Date().toString();
+
+				download_text += "\nFacial Measurement:\t\tValue:\t\tZ-Score:\n";
+				$(".facial_measurement_row").each(function(){
+	                                var field = $(this).find(".facial_field").val();
+                                        var measure = $(this).find(".facial_measurement_input").val();
+                                        var zscore = $(this).find(".zscore_input").val();
+					if (measure != ""){
+		                                download_text += field + "\t\t" + measure + "\t\t" + zscore + "\n";
+					}
+                                });
+
+				//alert("download");
+				window.open("data:text/plain;charset=UTF-8,"+ encodeURIComponent(download_text));
+			});
+		});
+		</script>
+		
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<noscript>
+ <p class="bg-warning">For full functionality of this site it is necessary to enable JavaScript.
+ Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+ instructions how to enable JavaScript in your web browser</a>.</p>
+</noscript>
+</head>
+<body>
+	<div id="wrap">
+		<nav id="navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		    	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#fb-navbar-main-collapse">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="glyphicon glyphicon-arrow-down"></span>
+                  	MENU
+			    </button>
+		      	<a class="navbar-brand" href="/">FaceBase</a>
+		    </div> <!-- end navbar-header -->
+
+			<div class="navbar-collapse collapse" id="fb-navbar-main-collapse">
+			<ul class="nav navbar-nav">
+			  	
+			  	
+			  	<li class="dropdown toplevel">
+					<a href="/data/" class="dropdown-toggle" data-toggle="dropdown">Data<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+					
+					
+       				<li><a href="/data/" target="">Data Browser</a></li>
+       					
+  					
+					
+       				<li><a href="https://genome.ucsc.edu/cgi-bin/hgGateway?hubUrl=http%3A%2F%2Ftrackhub.facebase.org%2Fhub.txt&db=mm9&hgHubConnect.remakeTrackHub=on" target="_blank">Genome Browser</a></li>
+       					
+  					
+					
+       				<li><a href="http://facebasetest.usc.edu/expression/expressionDataSets.jsp" target="_blank">Gene Expression Omnibus</a></li>
+       					
+  					
+					
+       				<li><a href="https://legacy.facebase.org/facial_norms" target="_blank">3D Facial Norms Database</a></li>
+       					
+  					
+  					</ul>
+  					
+            		</li>
+  					
+			  	
+			  	<li class="dropdown toplevel">
+					<a href="/methods/data-standards/" class="dropdown-toggle" data-toggle="dropdown">Methods<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+					
+					
+       				<li><a href="/methods/data-standards/" target="">Data Model and Standards</a></li>
+       					
+  					
+					
+       				<li><a href="/methods/metadata/" target="">Metadata Annotation</a></li>
+       					
+  					
+					
+       				<li><a href="/methods/policies/" target="">Data Access Policies</a></li>
+       					
+  					
+  					</ul>
+  					
+            		</li>
+  					
+			  	
+			  	<li class="dropdown toplevel">
+					<a href="/about/" class="dropdown-toggle" data-toggle="dropdown">About<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+					
+					
+       				<li><a href="/about/" target="">About FaceBase</a></li>
+       					
+  					
+					
+       				<li><a href="/about/citing/" target="">How to Cite Us</a></li>
+       					
+  					
+					
+       				<li><a href="/about/publications/" target="">Publications</a></li>
+       					
+  					
+					
+       				<li><a href="/about/presentations/" target="">Presentations</a></li>
+       					
+  					
+					
+       				<li><a href="/about/news-events/" target="">News &amp; Events</a></li>
+       					
+  					
+  					</ul>
+  					
+            		</li>
+  					
+			  	
+			  	<li class="dropdown toplevel">
+					<a href="/projects/" class="dropdown-toggle" data-toggle="dropdown">Projects<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+					
+					
+       				<li><a href="/projects/" target="">All FaceBase Projects</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/facebase2-cc/" target="">FaceBase 2 Coordinating Center</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/anatomical-atlas-transgenic-toolkit-zebrafish/" target="">Anatomical Atlas and Transgenic Toolkit for Late Skull Formation in Zebrafish</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/3d-craniofacial-morph-transform-dysmorphology/" target="">Developing 3D Craniofacial Morphometry Data and Tools to Transform Dysmorphology</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/epigenetic-landscapes-divergence-human-craniofacial-traits/" target="">Epigenetic Landscapes and Regulatory Divergence of Human Craniofacial Traits</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/craniofacial-enhancer-studies/" target="">Genomic and Transgenic Resources for Craniofacial Enhancer Studies</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/human-genomics-analysis-interface/" target="">Human Genomics Analysis Interface for FaceBase 2</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/functional-genomics-craniofacial-morphogenesis/" target="">Integrated Research of Functional Genomics and Craniofacial Morphogenesis</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/ontology-integration-visualization-exploration/" target="">Ontology-based Integration, Visualization and Exploration of Craniofacial Data</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/rapid-id-validation-human-craniofacial-dev-genes/" target="">Rapid Identification and Validation of Human Craniofacial Development Genes</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/rna-dynamics-in-developing-mouse-face/" target="">RNA Dynamics in the Developing Mouse Face</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/transcriptome-atlases-craniofacial-sutures/" target="">Transcriptome Atlases of the Craniofacial Sutures</a></li>
+       					
+  					
+					
+  						<li class="dropdown-divider">The following are completed FaceBase projects:</li>
+						
+  					
+					
+       				<li><a href="/projects/3d-facial-norms-database/" target="">3D Facial Norms Database</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/algum" target="">Algum</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/functional-analysis-neural-crest-and-palate" target="">Functional Analysis of Neural Crest and Palate: Imaging Craniofacial Development</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/genetic-determinants-orofacial-shape-and-relationship-cleft-lippalate/" target="">Genetic Determinants of Orofacial Shape and Relationship to Cleft Lip/Palate</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/genetic-tools-and-resources-orofacial-clefting-research/" target="">Genetic Tools and Resources for Orofacial Clefting Research</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/genome-wide-atlas-craniofacial-transcriptional-enhancers/" target="">Genome-Wide Atlas of Craniofacial Transcriptional Enhancers</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/global-gene-expression-atlas-craniofacial-development/" target="">Global Gene Expression Atlas of Craniofacial Development</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/identification-mirnas-involved-midfacial-development-and-clefting/" target="">Identification of miRNAs Involved in Midfacial Development and Clefting</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/oral-clefts-moving-genome-wide-studies-toward-functional-genomics/" target="">Oral Clefts: Moving from Genome-Wide Studies Toward Functional Genomics</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/research-functional-genomics-image-analysis-and-rescue-cleft-palate/" target="">Research on Functional Genomics, Image Analysis and Rescue of Cleft Palate</a></li>
+       					
+  					
+					
+       				<li><a href="/projects/shape-based-retrieval-3d-craniofacial-data/" target="">Shape-Based Retrieval of 3D Craniofacial Data</a></li>
+       					
+  					
+  					</ul>
+  					
+            		</li>
+  					
+			  	
+			  	<li class="dropdown toplevel">
+					<a href="/help/" class="dropdown-toggle" data-toggle="dropdown">Help<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+					
+					
+       				<li><a href="/help/" target="">Getting Help</a></li>
+       					
+  					
+					
+       				<li><a href="/help/faqs/" target="">FAQs</a></li>
+       					
+  					
+					
+       				<li><a href="/help/using-the-data-browser/" target="">Using the Data Browser</a></li>
+       					
+  					
+					
+       				<li><a href="/help/using-3D-viewers/" target="">Using the 3D Viewers</a></li>
+       					
+  					
+					
+       				<li><a href="/help/viewing-nifti/" target="">Viewing NiFTI Files</a></li>
+       					
+  					
+  					</ul>
+  					
+            		</li>
+  					
+			  	            		
+            		<li class="toplevel">
+            		<a href="/contact/">Contact</a>
+            		
+            		</li>
+  					
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right"> 
+				<li class="login"><a id="fblogin_link" href="javascript:void(0)" onclick="loginURL();">Log in</a></li>
+				<li class="signup"><a id="fbsignup_link" href="https://accounts.facebase.org/SignIn#step=signup">Sign up</a></li>
+				<li class="user"><a id="fblogin_user" href="https://accounts.facebase.org"></a></li>
+                <li class="logout"><a id="fblogout_user" href="javascript:void(0)" onclick="logoutURL();">Logout</a></li>
+		    </ul>
+		    <!-- Disabled for now
+ 			<form class="navbar-form navbar-right" role="search" method="get" action="/search/" data-search-form>
+        		<div class="form-group has-feedback">
+        			<label class="control-label sr-only" for="q">Search FaceBase</label>
+          			<input type="text" name="headerSearch" id="headerSearch" class="form-control" placeholder="Search" data-search-input disabled />
+          			<span class="glyphicon glyphicon-search form-control-feedback"></span>
+        		</div>
+      		</form>
+      		-->
+			</div> <!-- end #fb-navbar-main-collapse -->
+		  </div> <!-- end .container-fluid -->
+		</nav> 		
+	<div id="content" class="container-fluid">
+
+
+<div class="col-md-12">
+	<h2>3D Facial Norms Database</h2>
+	
+		<ol class="mininav">
+  <li><a href="../index.html">Overview</a></li>
+  <li><a href="../search/index.html">Database Search</a></li>
+  <li><a href="../summary/index.html">Summary Statistics</a></li>
+  <li class="active">Tools</li>
+  <li><a href="../notes/index.html">Technical Notes</a></li>
+  <li><a href="https://www.facebase.org/projects/3d-facial-norms-database/">Abstract</a></li>
+</ol>
+
+<form accept-charset="UTF-8" id="tdfn-gui-calculator-form" method="post" action="../tools">
+	<div>
+	<div id="error-div"> 	</div>
+		<h3 class="heading">Z-Score Calculator</h3>
+			<div class="row" id="edit-c">
+				<div id="edit-c-demographics" class="col-md-3">
+					<div class="pad">
+						<h5 class="heading underline">Individual Demographics</h5>
+						<div class="form-group required form-item form-type-select form-item-sex">
+  							<label for="edit-sex">Sex</label>
+ 							<select class="form-control form-select required" name="sex" id="edit-sex" required><!--<option selected="selected" value="">- Select -</option><option value="1">Male</option><option value="2">Female</option>--></select>
+						</div>
+						<div class="form-group required form-item form-type-select form-item-age">
+  							<label for="edit-age">Age</label>
+ 							<select class="form-control form-select required" name="age" id="edit-age">
+<!--<option selected="selected" value="">- Select -</option><option value="3|3.5">3</option><option value="3.5|4">3.5</option><option value="4|4.5">4.0</option><option value="4.5|5">4.5</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31|33">31 - 32</option><option value="33|35">33 - 34</option><option value="35|37">35 - 36</option><option value="37|39">37 - 38</option><option value="39|41">39 - 40</option>-->
+							</select> 
+						</div>
+						<div class="form-group required form-item form-type-select form-item-ancestry">
+  							<label for="edit-ancestry">Ancestry</label>
+ 							<select class="form-control form-select required" name="ancestry" id="edit-ancestry">
+							<!--<option selected="selected" value="">- Select -</option><option value="1">European Caucasian</option> -->
+							</select>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div id="edit-c-measurements" class="col-md-8 col-md-offset-1">
+			<div class="pad">
+				<h5 class="heading underline">Caliper Facial Measurements</h5>
+				<table class="sticky-header" style="position: fixed; top: 65px; left: 401.9px; visibility: hidden;">
+					<thead style="display: block;">
+						<tr>
+							<th style="width: 150px">Measurement</th>
+							<th>Value</th>
+							<th>Z-Score</th>
+							<th></th> 
+						</tr>
+					</thead>
+				</table>
+				<table class="table table-striped table-condensed">
+ 				<thead>
+ 					<tr>
+ 						<th>Measurement</th>
+ 						<th>Value</th>
+ 						<th>Z-Score</th>
+ 						<th></th> 
+ 					</tr>
+ 				</thead>
+					<tbody id="caliper_measurements">
+					</tbody>
+				</table>
+		<!--<input type="submit" class="btn btn-primary form-submit" value="Calculate" name="op" id="edit-submit-1"> -->
+		<!--<a href ="" download="3dfn_data.txt" class="btn btn-primary form-submit measurement_form_download"  id="edit-download-1">Download</a>-->
+		<input type="button" class="btn btn-primary form-submit measurement_form_download"  id="edit-download-1" value="Download">
+		<input type="button" id="edit-reset-1" class="btn btn-default pull-right measurement-form-reset" value="Reset">
+		<hr>
+		<h5 class="heading underline">3D Facial Measurements</h5>
+		<table class="sticky-header" style="position: fixed; top: 65px; left: 401.9px; visibility: hidden;">
+			<thead style="display: block;"><tr><th style="width: 150px">Measurement</th><th>Value</th><th>Z-Score</th><th></th> </tr></thead></table>
+
+		<table class="table table-striped table-condensed">
+		 <thead><tr><th>Measurement</th><th>Value</th><th>Z-Score</th><th></th> </tr></thead>
+		<tbody id="digital_measurements">
+		</tbody>
+		</table>
+			<!--<input type="submit" class="btn btn-primary form-submit" value="Calculate" name="op" id="edit-submit-2">-->
+			<input type="button" class="btn btn-primary form-submit measurement_form_download" value="Download" name="op" id="edit-download-2">
+			<input type="button" id="edit-reset-2" class="btn btn-default pull-right measurement-form-reset" value="Reset">
+		</div>
+	</div>
+</div>
+<input type="hidden" value="form-WQhQhaejTJyFeN6k9Lpw95S-KJxxF7DNfNWJLIvnAR0" name="form_build_id">
+<input type="hidden" value="OBui456R2YTmPpuemtFGvx77VKLxKljkq0r_U--zWUs" name="form_token">
+<input type="hidden" value="tdfn_gui_calculator_form" name="form_id">
+</div>
+</form>
+	
+</div>
+
+	</div>
+</div>
+<div class="push"></div>
+<div id="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<img class="pull-left img-responsive" src="../images/logo.png">
+			</div>
+			<div class="col-md-4">
+				<p><a href="/contact/">Contact</a> | <a href="http://policy.usc.edu/info-privacy/">Privacy</a></p>
+				<p>&copy; University of Southern California</p>
+			</div>
+			<div class="col-md-4">
+			
+			</div>
+		</div>
+	</div>
+</div>
+	
+</body>
+</html>

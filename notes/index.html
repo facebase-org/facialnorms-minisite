@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>3D Facial Norms Technical | FaceBase</title>
+    <meta id="viewport" content="width=device-width, initial-scale=1.0">
+    <meta id="description" content="FaceBase | A resource for craniofacial researchers">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../css/custom.css">
+    <script src="../js/jquery-latest.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <style>
+
+        /* hide sidebar sub menus by default */
+        #sidebar-wrapper .nav .nav {
+            display: none;
+            font-size:12px;
+        }
+
+        /* show sub menu when parent is active */
+        #sidebar-wrapper .nav .active ul {
+            display: block;
+        }
+        
+        #sidebar-wrapper .nav ul li{
+            line-height: 1;
+            left: 20px;
+        }
+
+        .sidebar-title{
+            line-height: 1;
+            font-size: 10pt;
+        }
+        .sidebar-title:visited{
+            color: #3272ba;
+        }
+        .sidebar-title:link{
+            color: #3272ba;
+        }
+
+
+        .affix-top{
+            position: relative;
+            top: 30px;
+            left: 20px;
+        }
+
+        .affix{
+            left: 20px;
+        }
+
+        .affix-bottom {
+            position: relative;
+            left: 0px;
+        }
+
+        #terribly-ugly-placeholder{
+            height: 10px;
+        }
+
+    </style>
+    <script>
+        // The function actually applying the offset
+        function offsetAnchor() {
+            if (location.hash.length !== 0) {
+                window.scrollTo(window.scrollX, window.scrollY - 50);
+            }
+        }
+
+        // This will capture hash changes while on the page
+        $(window).on("hashchange", function () {
+            offsetAnchor();
+        });
+
+        // This is here so that when you enter the page with a hash,
+        // it can provide the offset in that case too. Having a timeout
+        // seems necessary to allow the browser to jump to the anchor first.
+        window.setTimeout(function () {
+            offsetAnchor();
+        }, 1);
+
+    </script>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <noscript>
+        <p class="bg-warning">For full functionality of this site it is necessary to enable JavaScript.
+            Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+                instructions how to enable JavaScript in your web browser</a>.</p>
+    </noscript>
+</head>
+<body data-spy="scroll" data-target="#affix-nav" data-offset="60">
+<div id="wrap">
+    <nav id="navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#fb-navbar-main-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="glyphicon glyphicon-arrow-down"></span>
+                    MENU
+                </button>
+                <a class="navbar-brand" href="/">FaceBase</a>
+            </div>
+            <!-- end navbar-header -->
+
+            <div class="navbar-collapse collapse" id="fb-navbar-main-collapse">
+                <ul class="nav navbar-nav">
+
+
+                    <li class="dropdown toplevel">
+                        <a href="/data/" class="dropdown-toggle" data-toggle="dropdown">Data<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+
+
+                            <li><a href="/data/" target="">Data Browser</a></li>
+
+
+                            <li>
+                                <a href="https://genome.ucsc.edu/cgi-bin/hgGateway?hubUrl=http%3A%2F%2Ftrackhub.facebase.org%2Fhub.txt&db=mm9&hgHubConnect.remakeTrackHub=on"
+                                   target="_blank">Genome Browser</a></li>
+
+
+                            <li><a href="http://facebasetest.usc.edu/expression/expressionDataSets.jsp" target="_blank">Gene
+                                Expression Omnibus</a></li>
+
+
+                            <li><a href="https://legacy.facebase.org/facial_norms" target="_blank">3D Facial Norms
+                                Database</a></li>
+
+
+                        </ul>
+
+                    </li>
+
+
+                    <li class="dropdown toplevel">
+                        <a href="/methods/data-standards/" class="dropdown-toggle" data-toggle="dropdown">Methods<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+
+
+                            <li><a href="/methods/data-standards/" target="">Data Model and Standards</a></li>
+
+
+                            <li><a href="/methods/metadata/" target="">Metadata Annotation</a></li>
+
+
+                            <li><a href="/methods/policies/" target="">Data Access Policies</a></li>
+
+
+                        </ul>
+
+                    </li>
+
+
+                    <li class="dropdown toplevel">
+                        <a href="/about/" class="dropdown-toggle" data-toggle="dropdown">About<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+
+
+                            <li><a href="/about/" target="">About FaceBase</a></li>
+
+
+                            <li><a href="/about/citing/" target="">How to Cite Us</a></li>
+
+
+                            <li><a href="/about/publications/" target="">Publications</a></li>
+
+
+                            <li><a href="/about/presentations/" target="">Presentations</a></li>
+
+
+                            <li><a href="/about/news-events/" target="">News &amp; Events</a></li>
+
+
+                        </ul>
+
+                    </li>
+
+
+                    <li class="dropdown toplevel">
+                        <a href="/projects/" class="dropdown-toggle" data-toggle="dropdown">Projects<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+
+
+                            <li><a href="/projects/" target="">All FaceBase Projects</a></li>
+
+
+                            <li><a href="/projects/facebase2-cc/" target="">FaceBase 2 Coordinating Center</a></li>
+
+
+                            <li><a href="/projects/anatomical-atlas-transgenic-toolkit-zebrafish/" target="">Anatomical
+                                Atlas and Transgenic Toolkit for Late Skull Formation in Zebrafish</a></li>
+
+
+                            <li><a href="/projects/3d-craniofacial-morph-transform-dysmorphology/" target="">Developing
+                                3D Craniofacial Morphometry Data and Tools to Transform Dysmorphology</a></li>
+
+
+                            <li><a href="/projects/epigenetic-landscapes-divergence-human-craniofacial-traits/"
+                                   target="">Epigenetic Landscapes and Regulatory Divergence of Human Craniofacial
+                                Traits</a></li>
+
+
+                            <li><a href="/projects/craniofacial-enhancer-studies/" target="">Genomic and Transgenic
+                                Resources for Craniofacial Enhancer Studies</a></li>
+
+
+                            <li><a href="/projects/human-genomics-analysis-interface/" target="">Human Genomics Analysis
+                                Interface for FaceBase 2</a></li>
+
+
+                            <li><a href="/projects/functional-genomics-craniofacial-morphogenesis/" target="">Integrated
+                                Research of Functional Genomics and Craniofacial Morphogenesis</a></li>
+
+
+                            <li><a href="/projects/ontology-integration-visualization-exploration/" target="">Ontology-based
+                                Integration, Visualization and Exploration of Craniofacial Data</a></li>
+
+
+                            <li><a href="/projects/rapid-id-validation-human-craniofacial-dev-genes/" target="">Rapid
+                                Identification and Validation of Human Craniofacial Development Genes</a></li>
+
+
+                            <li><a href="/projects/rna-dynamics-in-developing-mouse-face/" target="">RNA Dynamics in the
+                                Developing Mouse Face</a></li>
+
+
+                            <li><a href="/projects/transcriptome-atlases-craniofacial-sutures/" target="">Transcriptome
+                                Atlases of the Craniofacial Sutures</a></li>
+
+
+                            <li class="dropdown-divider">The following are completed FaceBase projects:</li>
+
+
+                            <li><a href="/projects/3d-facial-norms-database/" target="">3D Facial Norms Database</a>
+                            </li>
+
+
+                            <li><a href="/projects/algum" target="">Algum</a></li>
+
+
+                            <li><a href="/projects/functional-analysis-neural-crest-and-palate" target="">Functional
+                                Analysis of Neural Crest and Palate: Imaging Craniofacial Development</a></li>
+
+
+                            <li>
+                                <a href="/projects/genetic-determinants-orofacial-shape-and-relationship-cleft-lippalate/"
+                                   target="">Genetic Determinants of Orofacial Shape and Relationship to Cleft
+                                    Lip/Palate</a></li>
+
+
+                            <li><a href="/projects/genetic-tools-and-resources-orofacial-clefting-research/" target="">Genetic
+                                Tools and Resources for Orofacial Clefting Research</a></li>
+
+
+                            <li><a href="/projects/genome-wide-atlas-craniofacial-transcriptional-enhancers/" target="">Genome-Wide
+                                Atlas of Craniofacial Transcriptional Enhancers</a></li>
+
+
+                            <li><a href="/projects/global-gene-expression-atlas-craniofacial-development/" target="">Global
+                                Gene Expression Atlas of Craniofacial Development</a></li>
+
+
+                            <li><a href="/projects/identification-mirnas-involved-midfacial-development-and-clefting/"
+                                   target="">Identification of miRNAs Involved in Midfacial Development and Clefting</a>
+                            </li>
+
+
+                            <li><a href="/projects/oral-clefts-moving-genome-wide-studies-toward-functional-genomics/"
+                                   target="">Oral Clefts: Moving from Genome-Wide Studies Toward Functional Genomics</a>
+                            </li>
+
+
+                            <li><a href="/projects/research-functional-genomics-image-analysis-and-rescue-cleft-palate/"
+                                   target="">Research on Functional Genomics, Image Analysis and Rescue of Cleft
+                                Palate</a></li>
+
+
+                            <li><a href="/projects/shape-based-retrieval-3d-craniofacial-data/" target="">Shape-Based
+                                Retrieval of 3D Craniofacial Data</a></li>
+
+
+                        </ul>
+
+                    </li>
+
+
+                    <li class="dropdown toplevel">
+                        <a href="/help/" class="dropdown-toggle" data-toggle="dropdown">Help<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+
+
+                            <li><a href="/help/" target="">Getting Help</a></li>
+
+
+                            <li><a href="/help/faqs/" target="">FAQs</a></li>
+
+
+                            <li><a href="/help/using-the-data-browser/" target="">Using the Data Browser</a></li>
+
+
+                            <li><a href="/help/using-3D-viewers/" target="">Using the 3D Viewers</a></li>
+
+
+                            <li><a href="/help/viewing-nifti/" target="">Viewing NiFTI Files</a></li>
+
+
+                        </ul>
+
+                    </li>
+
+
+                    <li class="toplevel">
+                        <a href="/contact/">Contact</a>
+
+                    </li>
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="login"><a id="fblogin_link" href="javascript:void(0)" onclick="loginURL();">Log in</a>
+                    </li>
+                    <li class="signup"><a id="fbsignup_link" href="https://accounts.facebase.org/SignIn#step=signup">Sign
+                        up</a></li>
+                    <li class="user"><a id="fblogin_user" href="https://accounts.facebase.org"></a></li>
+                    <li class="logout"><a id="fblogout_user" href="javascript:void(0)" onclick="logoutURL();">Logout</a>
+                    </li>
+                </ul>
+                <!-- Disabled for now
+                 <form class="navbar-form navbar-right" role="search" method="get" action="/search/" data-search-form>
+                    <div class="form-group has-feedback">
+                        <label class="control-label sr-only" for="q">Search FaceBase</label>
+                          <input type="text" id="headerSearch" id="headerSearch" class="form-control" placeholder="Search" data-search-input disabled />
+                          <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                    </div>
+                  </form>
+                  -->
+            </div>
+            <!-- end #fb-navbar-main-collapse -->
+        </div>
+        <!-- end .container-fluid -->
+    </nav>
+    <div id="content" class="container-fluid">
+
+        <div id="terribly-ugly-placeholder"></div>
+        <div class="col-md-12">
+
+
+
+
+            <div class="col-md-3 nav sidebar-navbar">
+                <div id="sidebar-wrapper">
+                    <nav id="affix-nav" class="sidebar col-md-4 col-sm-4 hidden-xs sidebar-nav">
+                        <ul class="nav sidenav" data-spy="affix" data-offset-bottom="60">
+                            <li><h3>Technical Notes</h3></li>
+                            <li class="active"><p class="sidebar-nav"><a href="#overview" class="sidebar-title">Overview</a></p></li>
+
+                            <li><a class="sidebar-nav sidebar-title" href="#kinds_of_data">Data Types and Usage</a></li>
+                            <li>
+                                <ul class="sidebar-nav nav">
+                                    <li><a href="#kinds_of_data">Kinds of Data Available</a></li>
+                                    <li><a href="#potential_uses">Potential Uses for the Data</a></li>
+                                    <li><a href="#process_for_accessing">Process for Accessing Data </a></li>
+                                    <li><a href="#data_use_restrictions">Data Use Restrictions</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="sidebar-nav sidebar-title" href="#subject_recruitment">Recruitment, Screening, and Study Flow</a></li>
+                            <li>
+                                <ul class="sidebar-nav nav">
+                                    <li><a href="#subject_recruitment">Subject Recruitment and Demographics</a></li>
+                                    <li><a href="#screening_procedure">Screening Procedure</a></li>
+                                    <li><a href="#informed_consent">The Informed Consent Process</a></li>
+                                    <li class="last"><a href="#study_workflow">The Study Workflow</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a class="sidebar-nav sidebar-title" href="#imaging_technology">Imaging Technology and Protocols</a></li>
+                            <li>
+                                <ul class="sidebar-nav nav">
+                                    <li><a href="#imaging_technology">3D Facial Imaging Technology</a></li>
+                                    <li><a href="#validation_studies">Technical Validation Studies</a></li>
+                                    <li><a href="#imaging_protocol">3D Facial Imaging Protocol</a></li>
+                                    <li class="last"><a href="#image_processing">Post-Capture Image Processing</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a class="sidebar-nav sidebar-title" href="#landmarking_surfaces">Facial Landmarks and Measurements</a></li>
+                            <li>
+                                <ul class="sidebar-nav nav">
+                                    <li><a href="#landmarking_surfaces">Landmarking of 3D Facial Surfaces</a></li>
+                                    <li><a href="#landmark_distances">Inter-Landmark Distances Derived from 3D Facial
+                                        Surfaces</a>
+                                    </li>
+                                    <li><a href="#availability_of_surfaces">Availability of 3D Facial Surfaces</a></li>
+                                    <li><a href="#averaged_facial_surfaces">Averaged Facial Surfaces</a></li>
+                                    <li><a href="#anthropometric_measurements">Additional Anthropometric Measurements</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li><a class="sidebar-nav sidebar-title" href="#dna_collection_protocol">DNA Collection and Genotyping</a></li>
+                            <li>
+                                <ul class="sidebar-nav nav">
+                                    <li class="first"><a href="#dna_collection_protocol">DNA Collection Protocol</a></li>
+                                    <li class="last"><a href="#genotyping">Genotyping</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a class="sidebar-nav sidebar-title" href="#data_cleaning">Data Management</a></li>
+                            <li>
+                                <ul class="sidebar-nav nav">
+                                    <li><a href="#data_cleaning">Data Cleaning Procedures</a></li>
+                                    <li><a href="#naming_conventions">Variable Naming Conventions and Coding</a></li>
+                                    <li><a href="#file_structure">Structure of Data Output Files</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="sidebar-nav sidebar-title" href="#using_zscore_tool">Miscellaneous</a></li>
+                            <li>
+                                <ul class="sidebar-nav nav">
+                                    <li><a href="#using_zscore_tool">Using the Z-Score Tool</a></li>
+                                    <li><a href="#citation">Citing the 3D Facial Norms Database in Reports and
+                                        Presentations</a>
+                                    </li>
+                                    <li><a href="#future_plans">Future Plans for Repository Expansion</a></li>
+                                    <li><a href="#contribution">Contributing to the Database</a></li>
+                                    <li><a href="#acknowledgments">Acknowledgments</a></li>
+                                    <li><a href="#funding">Funding</a></li>
+                                    <li><a href="#disclaimer">Disclaimer</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+
+
+
+            <div class="col-md-8 col-md-offset-1" id="tdfn-notes-content">
+
+                <h2>3D Facial Norms Technical</h2>
+
+                <ol class="mininav">
+                    <li><a href="../index.html">Overview</a></li>
+                    <li><a href="../search/index.html">Database Search</a></li>
+                    <li><a href="../summary/index.html">Summary Statistics</a></li>
+                    <li><a href="../tools/index.html">Tools</a></li>
+                    <li class="active">Technical Notes</li>
+                    <li><a href="https://www.facebase.org/projects/3d-facial-norms-database/">Abstract</a></li>
+                </ol>
+
+                <h3><a id="overview">Overview</a></h3>
+
+                <p><img src="images/logo.jpg" width="700" height="270" alt="logo"/></p>
+
+                <p>The 3D Facial Norms Database is a web-based resource designed to provide the research and clinical
+                    community with access to high-quality craniofacial anthropometric normative data. Unlike traditional
+                    craniofacial normative datasets that are limited to measures obtained with handheld calipers and
+                    tape
+                    measurers, the anthropometric data provided here are based on digital stereophotogrammetry, a method
+                    of 3D surface imaging ideally suited for capturing human facial surface morphology. Also unlike more
+                    traditional normative craniofacial resources, the 3D Facial Norms Database allows users to interact
+                    with data via an intuitive graphical interface and - given proper credentials - gain access to
+                    individual-level
+                    data, allowing users to perform their own analyses.</p>
+
+                <p>The content below is designed to give the user detailed background information on the 3D Facial Norms
+                    Database. It is critical that users understand the methods used to collect the data, to ensure
+                    proper
+                    interpretation and use.</p>
+
+                <p>If you require additional information, please contact the Principal Investigator, Seth M. Weinberg
+                    , PhD.</p>
+
+                <hr/>
+                <h3><a id="kinds_of_data">Kinds of Data Available</a></h3>
+                <ul>
+                    <li>3D coordinates (x,y,z) for a variety of standard facial surface landmarks</li>
+                    <li>Selected linear distances calculated from 3D facial surface landmarks</li>
+                    <li>3D facial surfaces in Object Wavefront (.obj) format</li>
+                    <li>Selected face and head measurements using traditional anthropometric methods (i.e., calipers)</li>
+                    <li>Basic demographic descriptors, such as age and sex</li>
+                    <li>Genotypic markers (coming soon)</li>
+                </ul>
+                <h5>Summary-Level vs. Individual-Level Data</h5>
+
+                <p>3D Facial Norms data are available at both the summary level and individual level. This distinction
+                    has important implications for how users gain access to data.</p>
+
+                <p>Summary-level data include things like sex- and age-specific means and standard deviations for
+                    selected
+                    anthropometric measurements (e.g., the average intercanthal distance for five year old males). As
+                    such
+                    , all summary-level phenotypic data are non-restricted and available to all users directly on the
+                    www
+                    .facebase.org site. </p>
+
+                <p>Individual-level data refer to the unique data elements that comprise the summary-level data, and
+                    include things like the measurements, landmark coordinates and 3D facial surface files for each
+                    individual
+                    in the database. One major advantage with individual-level data is that the user can carry out their
+                    own statistical analyses on original raw data as if they collected the data themselves. </p>
+
+                <p>Access to all individual-level phenotypic data is restricted to users with the proper permissions
+                    (see <a href=""></a>).</p>
+
+                <p>In accordance with NIH policy, access to both individual-level and summary-level genotypic data is
+                    also currently restricted.</p>
+                <hr/>
+                <h3><a id="potential_uses">Potential Uses for the Data</a></h3>
+                <h5>Normative Control Data for Craniofacial Comparisons</h5>
+
+                <p>Collecting craniofacial control data for comparison purposes is essential for many research questions
+                    about facial morphology. This can be a time consuming and expensive effort, and very often the
+                    resulting
+                    control samples are too small to fully capture the range of human facial variation. As a source of
+                    normative
+                    control data, the 3D Facial Norms Database is designed to facilitate the comparison of facial
+                    morphology
+                    at both the group level (e.g., comparing a new set of cases against 3D Norms controls) and the
+                    individual
+                    level (e.g., comparing a single patient or subject against a set of matched controls). Because the
+                    user can specify variables such as age, sex and ancestry, comparisons that require strict matching
+                    are
+                    possible. Further, morphological comparisons can be based on traditional linear distances, 3D
+                    landmark
+                    coordinates and/or entire 3D facial surfaces, allowing users to employ a wide variety of
+                    morphometric
+                    analysis methods.</p>
+                <h5>Analyses of Human Craniofacial Variation and Growth Patterns</h5>
+
+                <p>The large 3D Facial Norms Database is an excellent resource for exploring questions relating to
+                    patterns
+                    of human facial variation and growth; e.g., how does the face change over different life stages, how
+                    are sex differences manifested in facial structure, how are different facial structures integrated
+                    during
+                    growth, and what are the major facial differences among different ethnic/ancestral groups? These
+                    questions
+                    are of particular interest to those working within the fields of physical anthropology, orthodontics
+                    and forensics. In this context, 3D Facial Norms data can also serve as an out-group for comparison
+                    , be used to supplement or expand existing datasets, or serve as a replication dataset to validate
+                    prior
+                    results.</p>
+                <h5>Genomic Studies of Quantitative and Qualitative Craniofacial Traits</h5>
+
+                <p>One of the principal goals of the 3D Facial Norms Database is to provide researchers with the raw
+                    materials to explore the genetic basis of normal human facial variation. To this end, we expect in
+                    the near future to be able to make genome-wide SNP markers available along side our phenotypic data
+                    . Importantly, these data can also serve as an extension and/or replication arm for existing or
+                    planned
+                    GWA analyses of human facial traits.</p>
+                <h5>Test-Bed for Developing Novel Image Analysis Methods</h5>
+
+                <p>The thousands of 3D facial surfaces available through the 3D Facial Norms Database provide a unique
+                    resource for computer science and computer vision experts to develop novel surface-based methods for
+                    representing and analyzing human faces.</p>
+
+                <hr/>
+                <h3><a id="process_for_accessing">Process for Accessing Data </a></h3>
+
+                <p>All summary-level phenotypic data are immediately available to all users through the main 3D Facial
+                    Norms project interface on the www.facebase.org site.</p>
+
+                <p>All individual-level phenotypic data and all genomic data are currently restricted-access. The
+                    process
+                    for obtaining permission to access restricted human data on FaceBase projects can be found <a href="https
+				://www.facebase.org/node/1627">here</a>.</p>
+
+                <p>In brief, the process involves:</p>
+                <ul>
+                    <li>The user obtaining appropriate ethics (IRB) approval at their institution.</li>
+                    <li>The user submitting a Data Access Request form and associated documentation to the FaceBase Data
+                        Access Committee for review.
+                    </li>
+                    <li>Upon approval, the FaceBase Hub granting the user permission to access and download the
+                        requested
+                        data through the FaceBase.org site.
+                    </li>
+                </ul>
+
+                <hr/>
+                <h3><a id="data_use_restrictions">Data Use Restrictions</a></h3>
+
+                <p> All users are encouraged to familiarize themselves with the FaceBase Data Use Certification (DUC)
+                    document, which covers all aspects of appropriate use for human data residing on the FaceBase site
+                    and the consequences for violating these policies. </p>
+
+                <hr/>
+                <h3><a id="subject_recruitment">Subject Recruitment and Demographics</a></h3>
+
+                <p>In the current phase of recruitment, the 3D Facial Norms Database is targeting 3500 unrelated male
+                    and female individuals of European-Caucasian ancestry between the ages of 3-40 years, with (ideally
+                    ) a roughly equal number of persons in each age and sex category. The age categories breakdown as
+                    follows
+                    :</p>
+                <table>
+                    <tr>
+                        <th>Age Category</th>
+                        <th>Ages (years, months)</th>
+                        <th>Age Category</th>
+                        <th>Ages (years, months)<
+                            /th>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>3y,0m - 3y,5m</td>
+                        <td>19</td>
+                        <td>19y,0m - 19y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>3.5</td>
+                        <td>3y,6m - 3y,11m</td>
+                        <td>20</td>
+                        <td>20y,0m - 20y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>4y,0m - 4y,5m</td>
+                        <td>21</td>
+                        <td>21y,0m - 21y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>4.5</td>
+                        <td>3y,6m - 3y,11m</td>
+                        <td>22</td>
+                        <td>22y,0m - 22y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>5y,0m - 5y,11m</td>
+                        <td>23</td>
+                        <td>23y,0m - 23y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>6y,0m - 6y,11m</td>
+                        <td>24</td>
+                        <td>24y,0m - 24y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>7y,0m - 7y,11m</td>
+                        <td>25</td>
+                        <td>25y,0m - 25y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>8y,0m - 8y,11m</td>
+                        <td>26</td>
+                        <td>26y,0m - 26y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>9y,0m - 9y,11m</td>
+                        <td>27</td>
+                        <td>27y,0m - 27y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>10y,0m - 10y,11m</td>
+                        <td>28</td>
+                        <td>28y,0m - 28y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>11y,0m - 11y,11m</td>
+                        <td>29</td>
+                        <td>29y,0m - 29y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>12y,0m - 12y,11m</td>
+                        <td>30</td>
+                        <td>30y,0m - 30y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>13y,0m - 13y,11m</td>
+                        <td>31-32</td>
+                        <td>31y,0m - 32y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>14y,0m - 14y,11m</td>
+                        <td>33-34</td>
+                        <td>33y,0m - 34y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>15y,0m - 15y,11m</td>
+                        <td>35-36</td>
+                        <td>55y,0m - 36y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>16y,0m - 16y,11m</td>
+                        <td>37-38</td>
+                        <td>37y,0m - 38y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>17y,0m - 17y,11m</td>
+                        <td>39-40</td>
+                        <td>39y,0m - 40y,11m</td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>18y,0m - 18y,11m</td>
+                    </tr>
+
+                </table>
+                <p>Because there are 35 age categories, this works out to 100 individuals per age group (50 males and
+                    50 females) under an ideal recruitment scenario. The final recruitment numbers may ultimately vary
+                    from this ideal picture, but we are striving for no less than 30 individuals in any age/sex group.<
+                    /p>
+
+                <p>The 3D Facial Norms Database is cross-sectional in design, so each individual is represented only
+                    once in the database.</p>
+
+                <p>The participants comprising the 3D Facial Norms Database were recruited at three main sites within
+                    the US: </p>
+                <ul>
+                    <li>University of Pittsburgh, Pittsburgh, PA (under the direction of Drs. Seth M. Weinberg and Mary
+                        L
+                        . Marazita)
+                    </li>
+                    <li>Seattle Children's Hospital, Seattle, WA (under the direction of Drs. Carrie L. Heike and
+                        Michael
+                        L. Cunningham)
+                    </li>
+                    <li>University of Texas Health Science Center at Houston, Houston, TX (under the direction of Dr.
+                        Jacqueline
+                        T. Hecht)
+                    </li>
+                </ul>
+                <p>Recruitment strategies vary from site to site but include the use of public print advertisements,
+                    word-of-mouth, direct mailing, university and hospital-based research registries, kiosks in public
+                    venues
+                    , and collaborations with general dental and medical clinics.</p>
+                <hr/>
+                <h3><a id="screening_procedure">Screening Procedure</a></h3>
+
+                <p>All participants are screened via interview to determine whether they meet our inclusion criteria
+                    :</p>
+                <ul>
+                    <li>European Caucasian ancestry*</li>
+                    <li>Age between 3-40 years</li>
+                </ul>
+                <p>*In addition to self-reported ancestry, subjects are asked to report the national origin of their
+                    maternal and paternal grandparents. All four grandparents must be of European origin.</p>
+
+                <p>All subjects are also screened on the following exclusion criteria:</p>
+                <ul>
+                    <li>The presence of conspicuous facial hair</li>
+                    <li>The presence of any facial piercings other than small studs?</li>
+                    <li>A personal history of facial trauma or disfigurement?</li>
+                    <li>A personal history of facial reconstructive or plastic surgery?</li>
+                    <li>A personal history of orthognathic/jaw surgery or jaw advancement?</li>
+                    <li>A personal history of any facial prosthetics or implants?</li>
+                    <li>A personal history of any palsy, stroke or neurological condition affecting the face?</li>
+                    <li>A personal or family history of any facial anomaly or birth defect?</li>
+                    <li>A personal or family history of any syndrome or congenital condition with a facial manifestation
+                        ?
+                    </li>
+                </ul>
+                <p>An affirmative response to one or more of the above items would disqualify an individual from
+                    participation
+                    in the study.</p>
+                <hr/>
+                <h3><a id="informed_consent">The Informed Consent Process</a></h3>
+
+                <p>At each recruitment site, informed consent is obtained from all subjects by trained study
+                    coordinators
+                    prior to any data or sample collection. For minors under the age of 18, a parent or court-appointed
+                    legal guardian must be present and sign the consent document. Children who are old enough also
+                    co-sign
+                    an assent form. During the informed consent procedure, all subjects are told how their data will be
+                    shared and are given the opportunity to ask questions about aspects of the study.</p>
+                <hr/>
+                <h3><a id="study_workflow">The Study Workflow</a></h3>
+
+                <p>Following informed consent, all subjects undergo a brief demographic interview. Subjects are then
+                    asked to provide a saliva sample using Oragene collection kits. A handful of measurements (described
+                    in detail elsewhere) are then obtained directly on the subject's head with the aid of spreading
+                    calipers
+                    . The subject's facial surface is then captured via 3D stereophotogrammetry.</p>
+
+                <p>The entire study protocol takes an average of 20 minutes.</p>
+
+                <hr/>
+                <h3><a id="imaging_technology">3D Facial Imaging Technology</a></h3>
+
+                <p>3dMD digital stereophotogrammetry imaging systems (Atlanta, GA; <a href="http://www.3dmd.com">www
+                    .3dmd.com</a>) were used capture the facial surfaces of all subjects in the 3D Facial Norms Database
+                    . These systems are outfitted with multiple machine vision CCD cameras mounted at fixed angles and
+                    distances
+                    , to capture overlapping views of the face and head (the degree of coverage depends on the number of
+                    cameras). The entire capture process occurs in less than 2 milliseconds and results in the creation
+                    of a dense 3D point-cloud that conforms to the geometry of the face. For visualization purposes, the
+                    point-cloud can be connected to produce a 3D mesh and color/texture information can be mapped onto
+                    the
+                    underlying geometry allowing for photorealistic rendering. For those interested in a more technical
+                    description, please see <a href="http://www.ncbi.nlm.nih.gov/pubmed?term=18405826">Lane and Harrell
+                        (2008)</a>.</p>
+
+                <p><img src=" images/imaging-system.jpg" width="700" height="400" alt
+                        ="3dMD Camera"/></p>
+
+                <p><img src=" images/mesh-preview.jpg" width="700" height="400" alt
+                        ="Mesh Preview"/></p>
+                <hr/>
+                <h3><a id="validation_studies">Technical Validation Studies</a></h3>
+
+                <p>A number of independent investigators have assessed 3dMD systems in terms of measurement accuracy
+                    and precision. In a recent study at the University of Pittsburgh (<a href="http://etd.library.pitt
+				.edu/ETD/available/etd-06202011-095206/">Gornick, 2011</a>), a sample of 18 distinct life-like mannequin
+                    heads were imaged with both the 3dMD system as well as a competing stereophotogrammetry system. A
+                    standard
+                    set of facial surface landmarks were then collected from each 3D image. Facial surface landmarks
+                    were
+                    also capture on each head using an engineering-grade mechanical arm 3D digitizer. A series of 378
+                    linear
+                    distance measurements were then compared across all three methods using several different error
+                    magnitude
+                    statistics. Sub-millimeter error levels were observed for all 378 measurements when the 3dMD system
+                    was compared to either of the other two methods, suggesting very high levels of accuracy. Those
+                    interested
+                    in learning more about the technical validation of the 3dMD system, should see the following
+                    articles
+                    : <a href="http://www.ncbi.nlm.nih.gov/pubmed/16158436">Aldridge et al. 2005</a>; <a href="http://www
+				.ncbi.nlm.nih.gov/pubmed/15838205">Losken et al. 2005</a>; <a href="http://www.ncbi.nlm.nih.gov/pubmed
+				/16770184">Weinberg et al. 2006</a>; <a href="http://www.ncbi.nlm.nih.gov/pubmed/18452351">Wong et al
+                        . 2008</a>; <a href="http://www.ncbi.nlm.nih.gov/pubmed/19935311">Heike et al. 2009</a>.</p>
+                <hr/>
+                <h3><a id="imaging_protocol">3D Facial Imaging Protocol</a></h3>
+
+                <p>Prior to 3D image capture, care was taken to clear away any scalp hair obscuring the subject's face
+                    . This was accomplished through a variety of means including the application of hairnets, hair bands
+                    and various types of pins and clips. In addition, each subject had a handful of facial landmarks
+                    (pronasale
+                    , gnathion, left/right tragion) marked directly on the skin with a liquid eyeliner pencil, in order
+                    to
+                    facilitate the subsequent identification of the these points on the resulting 3D facial model.</p>
+
+                <p>The subject was seated directly in front of the camera system and positioned so that their head was
+                    centered between the imaging pods. The subject's head was positioned slightly upward (about
+                    15-degrees
+                    off Frankfort horizontal) in order to ensure adequate coverage of the subnasal region. The subject
+                    was then instructed by the camera operator to keep their face still, with a relaxed and neutral
+                    facial
+                    expression, keeping their eyes open and pupils directed slightly upward (to emphasize the white of
+                    the
+                    eye and make the commissures more conspicuous). For young children is was sometimes necessary to
+                    have
+                    them sit on a parents lap during the image capture process.</p>
+
+                <p>Once the image was taken, the 3D model was processed (approximately 30 seconds) and visualized to
+                    evaluate quality. The camera operators were trained to inspect the 3D models for motion artifacts,
+                    mesh defects, camera calibration errors, missing surface data, and non-neutral facial expressions.
+                    Additional 3D captures were taken until one of sufficient quality was obtained.</p>
+                <hr/>
+                <h3><a id="image_processing">Post-Capture Image Processing</a></h3>
+
+                <p>Each 3D model (in .tsb format) was loaded into the 3dMDpatient software program. Extraneous data
+                    were then removed from each surface model, including most of the subject's neck and shoulders. The
+                    cleaned 3D model was then oriented to achieve clear frontal view of the face and re-saved,
+                    preserving
+                    the new orientation. No hold-filling, mesh-repair or smoothing routines were applied to any of the
+                    surfaces.</p>
+
+                <p><img src=" images/mesh-cleaning-process.jpg" width="700" height
+                        ="300" alt="Mesh Cleaning Process"/></p>
+
+                <p>Finally, each cleaned 3D surface was exported as an Object Wavefront (.obj) file.</p>
+
+                <hr/>
+                <h3><a id="landmarking_surfaces">Landmarking of 3D Facial Surfaces</a></h3>
+                <h5>The Landmarking Process</h5>
+
+                <p>Each cleaned and re-oriented 3D facial model was loaded into the 3dMDvultus software program, and
+                    using a custom template, a series of 24 facial landmarks were located manually on each surface (see
+                    list below). The landmarks were selected in a specific and strict order, with midline points
+                    collected
+                    first followed by bilateral points, moving in a superior to inferior direction. Any missing
+                    landmarks
+                    - typically due to a lack of adequate surface coverage or interference by scalp hair - were simply
+                    skipped
+                    . All landmarking was performed on 3D models with color and texture mapping active.</p>
+
+                <p>After the order and placement of the landmarks were double-checked for accuracy, each 3D model was
+                    saved again along with the associated landmarks. The x,y,z coordinate positions for all 24 landmarks
+                    were then saved to a simple text file.</p>
+
+                <p>All landmarking was completed at the University of Pittsburgh by a limited set of highly trained
+                    personnel
+                    (see training below).</p>
+                <h5>3D Surface Landmarks and Definitions</h5>
+
+                <p>The 24 facial surface landmarks included in the 3D Facial Norms Database are listed below, along with
+                    their definitions and description of the method used to identify them on the 3D facial surface. All
+                    of the included landmarks are derived from the traditional anthropometric canon. However, there are
+                    some inescapable and fundamental differences between traditional anthropometry and 3D surface
+                    anthropometry
+                    that must be considered. Most importantly, in traditional anthropometry, several facial landmarks
+                    (e.g., nasion) are identified through direct palpation of the soft tissues. Since there is no
+                    equivalent
+                    procedure in 3D surface anthropometry for identifying such points, one must rely solely on visual
+                    cues
+                    . </p>
+
+                <p>This fact imposes limitations on the number and kinds of landmarks that can be located reliably on
+                    a 3D facial surface. Some common landmarks, such as gonion, simply cannot be localized on a 3D
+                    facial
+                    surface with any consistency, because good visual cues are lacking. Compared to a skull, the human
+                    face has remarkably few anatomically relevant and useful landmarks. For a landmark to be both
+                    anatomically
+                    relevant and useful, it should ideally: (1) be related to some important or fundamental aspect of
+                    the
+                    morphological feature being described ;(2) be anatomically homologous across all subjects in the
+                    sample
+                    ;(3) be defined and identified in a manner that is not solely contingent on the location of other
+                    landmarks
+                    ; and (4) be capable of reliable identification by human observers.</p>
+
+                <p>The 24 landmarks included here were carefully chosen based on the criteria outlined above, with the
+                    additional consideration of maximizing coverage of the facial surface while, at the same time,
+                    minimizing
+                    the presence of redundant points.</p>
+
+                <p>The landmarks listed below are presented in the order collected:</p>
+                <h5>NASION</h5>
+
+                <p><img src=" images/landmark-n.jpg" width="700" height="175"/></p
+                        >
+
+                <p>Nasion (n) can be a challenging landmark to identify reliably using 3D surface anthropometry. Soft
+                    tissue nasion is defined as the point immediately overlying the nasofrontal suture in the midline.
+                    In traditional direct anthropometry, nasion is typically identified through palpation. On 3D facial
+                    surfaces, alternative methods must be used. The landmark should be placed in the midline between the
+                    orbits, vertically at the level of the uppermost sulci created by the eyelids. To facilitate
+                    identification
+                    , the operator can imagine a line connecting the right and left superior palpebral sulci. Nasion is
+                    often mistaken for sellion, which is defined as the deepest midline point of the angle formed
+                    between
+                    the nose and forehead. When the face is viewed in profile, nasion should be slightly superior and
+                    anterior
+                    to sellion. In individuals with very shallow nasofrontal angles, however, the two points can
+                    approximate
+                    each other.</p>
+                <h5>PRONASALE</h5>
+
+                <p><img src=" images/landmark-prn.jpg" width="700" height="175"/>
+                </p>
+
+                <p>Pronasale (prn) is defined as the most protrusive point on the nasal tip in the midline. Care must
+                    be taken when locating pronasale because it can be influenced by orientation. The point is easiest
+                    to place on the 3D facial model in the frontal view, but its position must be verified in the
+                    lateral
+                    (profile) view.</p>
+                <h5>SUBNASALE</h5>
+
+                <p><img src=" images/landmark-sn.jpg" width="700" height="175"/><
+                    /p>
+
+                <p>Subnasale (sn) is located at the apex of the nasolabial angle in the midline, where the inferior
+                    border
+                    of the nasal septum meets the skin of the upper lip. After placing the point on the 3D facial model
+                    , the position of subnasale must be verified with face in lateral (profile) view. Subnasale can
+                    sometimes
+                    be difficult to locate when the nasolabial angle takes the form of a sloping curve. In these cases
+                    , it is typical to place the point at the most concave position along the curve.</p>
+                <h5>LABIALE SUPERIUS</h5>
+
+                <p><img src=" images/landmark-ls.jpg" width="700" height="175"/><
+                    /p>
+
+                <p>Labiale superius (ls) is located in the midline - between the philtral ridges - along the vermillion
+                    border of the upper lip. The point is typically identified on the 3D facial model in frontal view.
+                    Labiale superius is highly susceptible to distortion due to non-neutral facial expressions; care
+                    must
+                    be taken to inspect the 3D model prior to landmarking.</p>
+                <h5>STOMION</h5>
+
+                <p><img src=" images/landmark-sto.jpg" width="700" height="175"/>
+                </p>
+
+                <p>Stomion (sto) is located along the labial fissure in the midline. When the lips are closed, locating
+                    stomion is relatively straightforward. The point can still be identified when the lips are apart by
+                    placing the landmark along the inferior free margin of the upper lip. According to Kolar and Salter
+                    (1997), in cases where the lips exhibit significant asymmetry, “…stomion will not be precisely in
+                    the
+                    midline, but can be located below the philtrum.” The point is typically identified on the 3D facial
+                    model in frontal view.</p>
+                <h5>LABIALE INFERIUS</h5>
+
+                <p><img src=" images/landmark-li.jpg" width="700" height="175"/><
+                    /p>
+
+                <p>Labiale inferius (li) is located in the midline along the inferior vermillion border of the lower
+                    lip. The point is typically identified on the 3D facial model in frontal view. Since labiale
+                    inferius
+                    is located below the labial fissure, caution must be taken when the 3D model exhibits an open-mouth
+                    posture. Depending on the degree of mouth openness, the landmark may be invalid and should not be
+                    collected
+                    . Labiale superius is also highly susceptible to distortion due to non-neutral facial expressions;
+                    care
+                    must be taken to inspect the 3D model prior to landmarking.</p>
+                <h5>SUBLABIALE</h5>
+
+                <p><img src=" images/landmark-sl.jpg" width="700" height="175"/><
+                    /p>
+
+                <p>Sublabiale (sl) is located at the midpoint of the labiomental groove or sulcus. As such, sublabiale
+                    demarcates the inferior extent of the cutaneous lower lip. The landmark is typically identified on
+                    the 3D facial model in frontal view, but its placement should be verified with the face in lateral
+                    (profile) view. In situations where the mandible deviates to one side or the other, sublabiale may
+                    not
+                    be in the same exact midline plane as defined by points on the upper portions of the face. Since
+                    sublabiale
+                    is located below the labial fissure, caution must be taken when the 3D model exhibits an open-mouth
+                    posture. Depending on the degree of mouth openness, the landmark may be invalid and should not be
+                    collected
+                    .</p>
+                <h5>GNATHION</h5>
+
+                <p><img src=" images/landmark-g.jpg" width="700" height="175"/></p
+                        >
+
+                <p>Gnathion (gn) is a midline point located on the inferior surface of the chin (mandible). It is
+                    located
+                    immediately adjacent to the corresponding boney landmark on the underlying mandible. Correct
+                    placement
+                    of the gnathion on the 3D facial model can only be effectively determined with the face in lateral
+                    (profile) view. Gnathion should be placed along the contour of the chin, just at the point where it
+                    turns to the underside. The most common mistake is placement of the landmark either too far anterior
+                    or too far posterior. In situations where the mandible deviates to one side or the other, gnathion
+                    may not be in the same exact midline plane as defined by points on the upper portions of the face.
+                    Like other landmarks located below the labial fissure, caution must be taken when the 3D model
+                    exhibits
+                    an open-mouth posture. Depending on the degree of mouth openness, the landmark may be invalid and
+                    should
+                    not be collected.</p>
+                <h5>ENDOCANTHION (Right and Left)</h5>
+
+                <p><img src=" images/landmark-en.jpg" width="700" height="175"/><
+                    /p>
+
+                <p>Endocanthion (en) is a bilateral landmark located at the medial corner of the eye where the upper
+                    and lower eyelids meet. The landmark is sometimes mistakenly identified as the medial termination
+                    point
+                    of the white portion of the eye; the true endocanthion is located more medially. Endocanthion is
+                    fairly
+                    straightforward to locate on 3D facial models, and can be reliably identified with the eyes in an
+                    open
+                    or closed state. The presence of epicanthal folds, however, can interfere with the identification of
+                    endocanthion. In this situation, Kolar and Salter (1997) recommend using the point where the fold
+                    crosses
+                    the eye fissure.</p>
+                <h5>EXOCANTHION (Right and Left)</h5>
+
+                <p><img src=" images/landmark-ex.jpg" width="700" height="175"/><
+                    /p>
+
+                <p>Exocanthion (ex) is a bilateral point located at the lateral corner of the eye where the upper and
+                    lower eyelids meet. It is effectively the lateral termination point of the white portion of the eye
+                    . Exocanthion can by challenging to identify on 3D facial models. Unlike endocanthion, exocanthion
+                    cannot be reliably identified if the subject's eyes are closed. Even partial eye closure can
+                    significantly
+                    obscure its location. Other hindering factors can include advanced age (as the skin folds begin to
+                    droop) and the presence of excessive eye makeup or eyelash enhancements. Exocanthion is also highly
+                    susceptible to distortion due to non-neutral facial expressions; care must be taken to inspect the
+                    3D
+                    model prior to landmarking. Due to all of these factors, exocanthion may be difficult or impossible
+                    to landmark. Having the subject fully open their eyes and direct their pupils upward during 3D image
+                    capture can greatly improve the ability identify this landmark.</p>
+                <h5>ALARE (Right and Left)</h5>
+
+                <p><img src=" images/landmark-al.jpg" width="700" height="175"/><
+                    /p>
+
+                <p>Alare (al) is a bilateral point defined as the lateral-most projection of the nasal ala. Alare is
+                    probably the most difficult and time-consuming landmark to reliably identify on 3D facial models.
+                    Because
+                    the ala has a 3D convex shape, finding the lateral-most point (local maxima) requires a fair amount
+                    of trial and error with placement. Typically, the landmark must be initially placed on the 3D model
+                    through estimation. Its placement on the ala must then be verified in the anterior-posterior
+                    direction
+                    (by inspecting the model in subnasal view) and the superior-inferior direction by inspecting the
+                    model
+                    in frontal view) and adjusted in an iterative process. Due to the ala's propensity to flare out with
+                    certain facial expressions, extra care must be taken to inspect the 3D model prior to landmarking.<
+                    /p>
+                <h5>ALAR CURVATURE POINT (Right and Left)</h5>
+
+                <p><img src=" images/landmark-ac.jpg" width="700" height="175"/><
+                    /p>
+
+                <p>The alar curvature point (ac) is a bilateral landmark located along the crescent-shaped crease or
+                    fold formed where the alar cartilage meets the skin of the cheek. Traditional anthropometric
+                    descriptions
+                    locate this landmark at the most posterolateral position along the crease (Kolar and Salter, 1997).
+                    However, without a standard head orientation, we have found that the alar curvature point is
+                    difficult
+                    to reliably identify on 3D facial surface models. An alternative approach to locating the alar
+                    curvature
+                    point is to imagine a line connecting pronasale (on the nasal tip) with the superior-most extent of
+                    the alar crease. Then sweep along the crease in a superior to inferior direction until the longest
+                    linear distance is achieved and place the landmark at this level. On infants, the alar curvature
+                    point
+                    and alare may be located very close to one another and difficult to distinguish. The alar curvature
+                    point is highly susceptible to distortion due to non-neutral facial expressions; care must be taken
+                    to inspect the 3D model prior to landmarking.</p>
+                <h5>SUBALARE (Right and Left)</h5>
+
+                <p><img src=" images/landmark-sbal.jpg" width="700" height="175" /
+                    ></p>
+
+                <p>Subalare (sbal) is a bilateral landmark located below the nostril opening at the point where the
+                    infero-medial
+                    continuation of the alar cartilage inserts into the skin of the upper lip. Subalare is located at
+                    the
+                    lower bound of this insertion. In some individuals, there is no clear insertion point because the
+                    ala
+                    is continuous with the base of the columella, forming a slight ridge along the entire inferior
+                    margin
+                    of the nostril. In these cases, the most inferior point along the ridge can be substituted for
+                    subalare
+                    . Typically, subalare is easiest to identify with the 3D model in frontal view or tilted slightly
+                    upward
+                    to reveal the subnasal region. Subalare is highly susceptible to distortion due to non-neutral
+                    facial
+                    expressions; care must be taken to inspect the 3D model prior to landmarking.</p>
+                <h5>CRISTA PHILTRI (Right and Left)</h5>
+
+                <p><img src=" images/landmark-cph.jpg" width="700" height="175"/>
+                </p>
+
+                <p>Christa philtri (cph) is a bilateral landmark located where the philtral ridges or crests meet the
+                    vermillion border of the upper lip. It is easiest to identify with the 3D facial model in frontal
+                    view
+                    or tilted slightly upward to reveal the contours of the upper lip. This landmark can be difficult to
+                    visualize in individuals with a poorly defined philtrum. In individuals with clefts of the lip,
+                    surgical
+                    reconstruction often obscures the landmark. The presence of excessive lipstick and lip liners can
+                    also
+                    be problematic. Christa philtri is highly susceptible to distortion due to non-neutral facial
+                    expressions
+                    ; care must be taken to inspect the 3D model prior to landmarking.</p>
+                <h5>CHELION (Right and Left)</h5>
+
+                <p><img src=" images/landmark-ch.jpg" width="700" height="175"/><
+                    /p>
+
+                <p>Chelion (ch) is a bilateral landmark located at the outermost corner (commissure) of the mouth where
+                    the upper and lower lips meet. As such, it demarcates the lateral extent of the labial fissure. The
+                    landmark is typically placed with the 3D facial model in standard frontal view. In individuals of
+                    advanced
+                    age, chelion may be difficult to locate due to a loss of structural integrity in the skin at the
+                    edge
+                    of the mouth. Chelion is highly susceptible to distortion due to non-neutral facial expressions;
+                    care
+                    must be taken to inspect the 3D model prior to landmarking.</p>
+                <h5>TRAGION (Right and Left)</h5>
+
+                <p><img src=" images/landmark-t.jpg" width="700" height="175"/></p
+                        >
+
+                <p>Tragion (t) is a bilateral landmark located within the small notch at the superior extent of the
+                    tragus
+                    (cartilaginous projection just anterior to the auditory meatus), where the cartilage meets the face
+                    . The landmark must be placed with the 3D facial model in lateral (profile) view. The presence of
+                    even
+                    small amounts of hair from the scalp or sideburns can obscure tragion on the 3D model. This is why
+                    management of the subject's hair prior to image capture is essential, even though at times the
+                    problem
+                    is unavoidable. Tragion can sometimes be difficult to visualize on 3D facial models even when the
+                    anatomy
+                    is not obscured. With certain 3D system configurations, for example, distortion of the ears can
+                    occur
+                    due to the camera's limited field of view. For this reason, we always recommend pre-marking tragion
+                    directly on the subject's face with a water-based skin pen prior to imaging.</p>
+                <h5>Landmark Collection Training</h5>
+
+                <p>Individuals responsible for landmarking 3D facial surfaces undergo a two-phase training regimen.
+                    In the first phase, the uninitiated trainee is instructed to landmark a standard training set of 10
+                    3D facial models with all 24 landmarks. The landmark placement on each 3D model is then reviewed by
+                    the PI (Weinberg) and feedback is provided through a one-on-one instruction session. Armed with this
+                    feedback, the trainee then begins the second phase. Here they collect the same 24 points twice on a
+                    second independent training set of 20 3D facial models, in order to allow for the quantification of
+                    the intraobserver error associated with their landmark localization. They are instructed to allow a
+                    minimum of 48 hours to pass between the first and second landmarking sessions to minimize recall
+                    bias
+                    . Once they have completed the landmarking, the associated 3D coordinates are error checked for
+                    gross
+                    errors (e.g., right-left reversals) and compared across the two sessions. Intraclass correlation
+                    coefficients
+                    are calculated for each landmark, separately for each of the three principal coordinate axes (x,y,z
+                    ). This approach makes it possible to identify any deficiencies in landmark placement in a highly
+                    detailed
+                    manner, allowing for targeted remediation. Every coefficient must be 0.90 or greater for a trainee
+                    to proceed with landmark collection on real data. Additional instruction is provided for trainees
+                    who
+                    fail any portion of the second phase of training. They may proceed only once they have adequately
+                    addressed
+                    the deficiency.</p>
+
+                <p>In order to keep landmarking personnel on track, biweekly group meetings are held with the PI
+                    (Weinberg
+                    ) to review any difficult or confusing cases. These meetings are designed to be informal and
+                    educational
+                    in nature and are attended by a number of staff and students who are engaged in similar facial
+                    landmarking
+                    projects. All meeting participants are encouraged keep a running list of any difficulties or
+                    uncertainties
+                    they encounter during landmarking. Typically, the 3D facial model in question will be called up and
+                    the landmark placement openly discussed among the group until the issue is resolved. If corrective
+                    action is required, the landmarker is instructed to make the necessary changes and re-save the data
+                    . By reviewing everyone's work periodically in this manner, the landmarkers eventually learn how to
+                    avoid common problems and make correct judgments in uncertain situations.</p>
+                <hr/>
+                <h3><a id="landmark_distances">Inter-Landmark Distances Derived from 3D Facial Surfaces</a></h3>
+
+                <p>A pre-defined set of 29 linear distances was calculated from each subject's 3D facial landmark
+                    coordinates
+                    through simple Euclidean geometry. These distances correspond to traditional facial anthropometric
+                    measurements as defined by Farkas and others, and were chosen for their clinical relevance and
+                    because
+                    they comprise a core set of variables for describing general facial form. Of course users are
+                    capable
+                    of generating any number of alternative inter-landmark distances directly from the raw coordinate
+                    data
+                    available through the 3D Facial Norms Database.</p>
+                <ul>
+                    <li><a href="/facial_norms/summary/measures/1/cranbasewidth">Cranial base width</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/upfacedepth_r">Upper facial depth (Right)</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/upfacedepth_l">Upper facial depth (Left)</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/midfacedepth_r">Middle facial depth (Right)</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/midfacedepth_l">Middle facial depth (Left)</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/lowfacedepth_r">Lower facial depth (Right)</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/lowfacedepth_l">Lower facial depth (Left)</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/morphfaceheight">Morphological facial height</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/upfaceheight">Upper facial height</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/lowfaceheight">Lower facial height</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/incanthwidth">Intercanthal width</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/outcanthwidth">Outercanthal width</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/palpfislength_r">Palpebral fissure length (Right)</a><
+                        /li>
+                    <li><a href="/facial_norms/summary/measures/1/palpfislength_l">Palpebral fissure length (Left)</a>
+                    </li
+                            >
+                    <li><a href="/facial_norms/summary/measures/1/nasalwidth">Nasal width</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/subnasalwidth">Subnasal width</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/nasalpro">Nasal protrusion</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/nasalalalength_r">Nasal ala length (Right)</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/nasalalalength_l">Nasal ala length (Left)</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/nasalheight">Nasal Height</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/nasalbdglength">Nasal Bridge Length</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/labfiswidth">Labial fissure width</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/philwidth">Philtrum width</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/phillength">Philtrum length</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/uplipheight">Upper lip height</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/lowlipheight">Lower lip height</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/upvermheight">Upper vermilion height</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/lowvermheight">Lower vermilion height</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/cutlowlipheight">Cutaneous lower lip height</a></li>
+                </ul>
+                <p>Because these 29 measurements are all derived from 3D facial surfaces, caution should be taken before
+                    comparing or combining these measurements with those collected using traditional direct
+                    anthropometry
+                    (i.e., with calipers, rulers and cloth tape). In addition to subtle differences in landmark
+                    identification
+                    between these two methods, many measurements obtained through direct anthropometry require some
+                    degree
+                    of deformation - however slight - of the pliable soft tissues of the face with the caliper tips.
+                    Obviously
+                    , measurements computed from 3D surface models do not involve such deformation. One must be
+                    cognizant
+                    of these method differences to avoid potential data stratification effects, which could lead to
+                    spurious
+                    findings. </p>
+
+                <p>All measurements are in millimeters.</p>
+                <hr/>
+                <h3><a id="availability_of_surfaces">Availability of 3D Facial Surfaces</a></h3>
+
+                <p>The original 3D facial surface files for each individual in the study are available to users through
+                    the 3D Facial Norms Database. The surface files are provided in object wavefront (.obj) format,
+                    without
+                    the associated color/texture mapping files. This means that users will be able to display the
+                    underlying
+                    geometry, but not the surface color and texture associated with subjects' faces. Most 3D
+                    visualization
+                    programs - including free programs like MeshLab - are able to open and manipulate files in .obj
+                    format
+                    . To gain access to these files, the user must specify their intent on the Data Access Request form
+                    and must have the appropriate IRB designation. The user should carefully review the <a href="https
+				://www.facebase.org/odocs/data-use-certification">Data Use Certification (DUC) document</a> to ensure
+                    that they understand the ways that FaceBase human data may and may not be used.</p>
+                <hr/>
+                <h3><a id="averaged_facial_surfaces">Averaged Facial Surfaces</a></h3>
+
+                <p>Coming soon...</p>
+                <hr/>
+                <h3><a id="anthropometric_measurements">Additional Anthropometric Measurements</a></h3>
+
+                <p>A handful of additional linear distance measurements obtained through traditional direct
+                    anthropometry
+                    are also available through the 3D Facial Norms Database. These are generally large measurements of
+                    the head and face, which are either difficult or impossible to capture through indirect 3D surface
+                    anthropometry
+                    .</p>
+                <ul>
+                    <li><a href="/facial_norms/summary/measures/1/maxcranwidth">Maximum cranial width</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/minfrntwidth">Minimum frontal width</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/maxfacewidth">Maximum facial width</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/mandwidth">Mandibular width</a></li>
+                    <li><a href="/facial_norms/summary/measures/1/maxcranlength">Maximum cranial length</a></li>
+                </ul>
+                <p>Trained personnel at each recruitment site obtained these measurements with spreading calipers, in
+                    accordance with the methods described in Kolar and Salter (1997).</p>
+
+                <p>All measurements are presented in millimeters.</p>
+                <hr/>
+
+
+                <h3><a id="dna_collection_protocol">DNA Collection Protocol</a></h3>
+
+                <p>Oragene collection kits (DNA Genotek) were used to obtain saliva samples on all study participants
+                    . Adults and children six years and older provided a single kit. Children under the age of six were
+                    asked to provide two kits each to account for the low yield that sometimes occurs with these
+                    individuals
+                    . Cheek swaps were used for children too young to provide adequate spit samples. Sugar packets were
+                    available for participants who had difficulty producing enough saliva. All kits were sent to the
+                    University
+                    of Pittsburgh for extraction.</p>
+                <hr/>
+                <h3><a id="genotyping">Genotyping</a></h3>
+
+                <p>Coming Soon...</p>
+
+                <hr/>
+                <h3><a id="data_cleaning">Data Cleaning Procedures</a></h3>
+
+                <p>Prior to uploading data into the 3D Facial Norms Database, several data cleaning actions were
+                    performed
+                    .</p>
+                <h5>3D Facial Landmark Coordinates</h5>
+
+                <p>The identification of misplaced landmarks (e.g., order errors or right/left reversals) is
+                    accomplished
+                    by importing each individual's set of x,y,x coordinates into a custom program designed to visually
+                    inspect
+                    the relative spatial arrangement of landmarks. Each individual's 3D landmarks are projected onto a
+                    two dimensional plane and connected with a series of predefined lines creating a wireframe model.
+                    The
+                    wireframe is designed such that a correctly landmarked face will have no overlapping lines. Inverted
+                    or misplaced landmarks are revealed visually when the normal arrangement of line segments is
+                    distorted
+                    by overlapping lines or abnormal arrangements. </p>
+
+                <p>Additional logic rules are defined that highlight erroneously placed landmarks based on a coordinate
+                    component relative to another landmark in the configuration. For example, if midline landmark points
+                    are placed on a face in the incorrect order, their relative Y-axis positions can reveal the
+                    erroneous
+                    landmark. Or consider the inversion of left and right points, the relative X-axis positions will
+                    reveal
+                    the errors, since the X-value of the left point should always be greater than the right. </p>
+
+                <p>After a landmarking error is discovered, the 3D facial model is re-landmarked and the updated
+                    coordinates
+                    are re-saved. Another program was developed to automatically collect and assemble every subject's
+                    coordinates
+                    into a centrally located database. Every time this program is run, it automatically updates the
+                    local
+                    database with the most recent landmark information.</p>
+                <h5>3D Linear Distance and Caliper Measurements</h5>
+
+                <p>To expose potentially erroneous measurements and outliers, Z-scores were calculated for each
+                    measurement
+                    variable for each individual in the dataset. These scores were calculated relative to other
+                    individuals
+                    in the dataset with the same sex, ancestry and age. For individuals under 20 years old, measurements
+                    were compared within their whole number age group. For individuals 20 years old and older,
+                    measurements
+                    were compared with individuals +/- 2 years. A filter is applied to select and highlight any
+                    measurements
+                    with an absolute value Z-score greater than 3. If the measurement was obtained through traditional
+                    direct
+                    anthropometry, the value was confirmed on the original collection form taken at the time of
+                    measurement
+                    . If the measurement was derived from 3D landmarks, the landmark positions were verified through
+                    visual
+                    inspection of the 3D surface model. Any and all incorrect values were fixed and logged.</p>
+                <h5>Demographic Data</h5>
+
+                <p>Outlier detection routines were run to identify any potentially erroneous data points. If a
+                    problematic
+                    value is detected, the data is then verified by cross-checking the original source documents. Any
+                    and
+                    all incorrect values were fixed and logged.</p>
+                <hr/>
+                <h3><a id="naming_conventions">Variable Naming Conventions and Coding</a></h3>
+                <h5>Unique Subject Identifiers</h5>
+
+                <p>Each subject in the 3D Facial Norms Database is provided with a unique random 10-digit numeric
+                    identifier
+                    .</p>
+                <h5>Demographics</h5>
+                <ul>
+                    <li>Sex: 1 = Male; 2 = Female</li>
+                    <li>Age (years)</li>
+                    <li>Height (cm)</li>
+                    <li>Weight (kg)</li>
+                    <li>Hispanic: 0 = No; 1 = Yes</li>
+                    <li>Ancestry: 1 = European Caucasian</li>
+                </ul>
+                <h5>3D Landmark Coordinates</h5>
+                <table>
+                    <tr>
+                        <th>Landmark id</th>
+                        <th>3D Facial Norms Variable id</th>
+                    </tr>
+                    <tr>
+                        <td>Nasion</td>
+                        <td>n_x; n_y; n_z</td>
+                    </tr>
+                    <tr>
+                        <td>Pronasale</td>
+                        <td>prn_x; prn_y; prn_z</td>
+                    </tr>
+                    <tr>
+                        <td>Subnasale</td>
+                        <td>sn_x; sn_y; sn_z</td>
+                    </tr>
+                    <tr>
+                        <td>Labiale Superius</td>
+                        <td>ls_x; ls_y; ls_z</td>
+                    </tr>
+                    <tr>
+                        <td>Stomion</td>
+                        <td>sto_x; sto_y; sto_z</td>
+                    </tr>
+                    <tr>
+                        <td>Labiale Inferius</td>
+                        <td>li_x; li_y; li_z</td>
+                    </tr>
+                    <tr>
+                        <td>Sublabiale</td>
+                        <td>sl_x; sl_y; sl_z</td>
+                    </tr>
+                    <tr>
+                        <td>Gnathion</td>
+                        <td>gn_x; gn_y; gn_z</td>
+                    </tr>
+                    <tr>
+                        <td>Endocanthion (Right):</td>
+                        <td>en_r_x; en_r_y; en_r_z</td>
+                    </tr>
+                    <tr>
+                        <td>Endocanthion (Left)</td>
+                        <td>en_l_x; en_l_y; en_l_z</td>
+                    </tr>
+                    <tr>
+                        <td>Exocanthion (Right)</td>
+                        <td>ex_r_x; ex_r_y; ex_r_z</td>
+                    </tr>
+                    <tr>
+                        <td>Exocanthion (Left)</td>
+                        <td>ex_l_x; ex_l_y; ex_l_z</td>
+                    </tr>
+                    <tr>
+                        <td>Alare (Right)</td>
+                        <td>al_r_x; al_r_y; al_r_z</td>
+                    </tr>
+                    <tr>
+                        <td>Alare (Left)</td>
+                        <td>al_l_x; al_l_y; al_l_z</td>
+                    </tr>
+                    <tr>
+                        <td>Alar Curvature Point (Right)</td>
+                        <td>ac_r_x; ac_r_y; ac_r_z</td>
+                    </tr>
+                    <tr>
+                        <td>Alar Curvature Point (Left)</td>
+                        <td>ac_l_x; ac_l_y; ac_l_z</td>
+                    </tr>
+                    <tr>
+                        <td>Subalare (Right)</td>
+                        <td>sbal_r_x; sbal_r_y; sbal_r_z</td>
+                    </tr>
+                    <tr>
+                        <td>Subalare (Left)</td>
+                        <td>sbal_l_x; sbal_l_y; sbal_l_z</td>
+                    </tr>
+                    <tr>
+                        <td>Crista Philtri (Right)</td>
+                        <td>cph_r_x; cph_r_y; cph_r_z</td>
+                    </tr>
+                    <tr>
+                        <td>Crista Philtri (Left)</td>
+                        <td>cph_l_x; cph_l_y; cph_l_z</td>
+                    </tr>
+                    <tr>
+                        <td>Chelion (Right)</td>
+                        <td>ch_r_x; ch_r_y; ch_r_z</td>
+                    </tr>
+                    <tr>
+                        <td>Chelion (Left)</td>
+                        <td>ch_l_x; ch_l_y; ch_l_z</td>
+                    </tr>
+                    <tr>
+                        <td>Tragion (Right)</td>
+                        <td>t_r_x; t_r_y; t_r_z</td>
+                    </tr>
+                    <tr>
+                        <td>Tragion (Left)</td>
+                        <td>t_l_x; t_l_y; t_l_z</td>
+                    </tr>
+                </table>
+                <h5>3D Inter-Landmark Distances</h5>
+                <table>
+                    <tr>
+                        <th>Measurement id</th>
+                        <th>3D Facial Norms Variable id</th>
+                    </tr>
+                    <tr>
+                        <td>Cranial Base Width</td>
+                        <td>CranBaseWidth</td>
+                    </tr>
+                    <tr>
+                        <td>Upper Facial Depth (Right)</td>
+                        <td>UpFaceDepth_R</td>
+                    </tr>
+                    <tr>
+                        <td>Upper Facial Depth (Left)</td>
+                        <td>UpFaceDepth_L</td>
+                    </tr>
+                    <tr>
+                        <td>Middle Facial Depth (Right)</td>
+                        <td>MidFaceDepth_R</td>
+                    </tr>
+                    <tr>
+                        <td>Middle Facial Depth (Left)</td>
+                        <td>MidFaceDepth_L</td>
+                    </tr>
+                    <tr>
+                        <td>Lower Facial Depth (Right)</td>
+                        <td>LowFaceDepth_R</td>
+                    </tr>
+                    <tr>
+                        <td>Lower Facial Depth (Left)</td>
+                        <td>LowFaceDepth_L</td>
+                    </tr>
+                    <tr>
+                        <td>Morphological Facial Height</td>
+                        <td>MorphFaceHeight</td>
+                    </tr>
+                    <tr>
+                        <td>Upper Facial Height</td>
+                        <td>UpFaceHeight</td>
+                    </tr>
+                    <tr>
+                        <td>Lower Facial Height</td>
+                        <td>LowFaceHeight</td>
+                    </tr>
+                    <tr>
+                        <td>Intercanthal Width</td>
+                        <td>InCanthWidth</td>
+                    </tr>
+                    <tr>
+                        <td>Outercanthal Width</td>
+                        <td>OutCanthWidth</td>
+                    </tr>
+                    <tr>
+                        <td>Palpebral Fissure Length (Right)</td>
+                        <td>PalpFisLength_R</td>
+                    </tr>
+                    <tr>
+                        <td>Palpebral Fissure Length (Left)</td>
+                        <td>PalpFisLength_L</td>
+                    </tr>
+                    <tr>
+                        <td>Nasal Width</td>
+                        <td>NasalWidth</td>
+                    </tr>
+                    <tr>
+                        <td>Subnasal Width</td>
+                        <td>SubNasalWidth</td>
+                    </tr>
+                    <tr>
+                        <td>Nasal Protrusion</td>
+                        <td>NasalPro</td>
+                    </tr>
+                    <tr>
+                        <td>Nasal Ala Length (Right)</td>
+                        <td>NasalAlaLength_R</td>
+                    </tr>
+                    <tr>
+                        <td>Nasal Ala Length (Left)</td>
+                        <td>NasalAlaLength_L</td>
+                    </tr>
+                    <tr>
+                        <td>Nasal Height</td>
+                        <td>NasalHeight</td>
+                    </tr>
+                    <tr>
+                        <td>Nasal Bridge Length</td>
+                        <td>NasalBdgLength</td>
+                    </tr>
+                    <tr>
+                        <td>Labial Fissure Width</td>
+                        <td>LabFisWidth</td>
+                    </tr>
+                    <tr>
+                        <td>Philtrum Width</td>
+                        <td>PhilWidth</td>
+                    </tr>
+                    <tr>
+                        <td>Philtrum Length</td>
+                        <td>PhilLength</td>
+                    </tr>
+                    <tr>
+                        <td>Upper Lip Height</td>
+                        <td>UpLipHeight</td>
+                    </tr>
+                    <tr>
+                        <td>Lower Lip Height</td>
+                        <td>LowLipHeight</td>
+                    </tr>
+                    <tr>
+                        <td>Upper Vermilion Height</td>
+                        <td>UpVermHeight</td>
+                    </tr>
+                    <tr>
+                        <td>Lower Vermilion Height</td>
+                        <td>LowVermHeight</td>
+                    </tr>
+                    <tr>
+                        <td>Cutaneous Lower Lip Height</td>
+                        <td>CutLowLipHeight</td>
+                    </tr>
+                </table>
+                <h5>Caliper-Based Anthropometric Measurements</h5>
+                <table>
+                    <tr>
+                        <th>Measurement id</th>
+                        <th>3D Facial Norms Variable id</th>
+                    </tr>
+                    <tr>
+                        <td>Maximum Cranial Width</td>
+                        <td>MaxCranWidth</td>
+                    </tr>
+                    <tr>
+                        <td>Minimum Frontal Width</td>
+                        <td>MinFrntWidth</td>
+                    </tr>
+                    <tr>
+                        <td>Maximum Facial Width</td>
+                        <td>MaxFaceWidth</td>
+                    </tr>
+                    <tr>
+                        <td>Mandibular Width</td>
+                        <td>MandWidth</td>
+                    </tr>
+                    <tr>
+                        <td>Maximum Cranial Length</td>
+                        <td>MaxCranLength</td>
+                    </tr>
+                </table>
+                <h5>3D Facial Surface Models</h5>
+
+                <p>The .obj file for each subject is idd with their unique 10-digit numeric identifier.</p>
+                <h5>Genotypes</h5>
+
+                <p>Coming soon...</p>
+                <hr/>
+                <h3><a id="file_structure">Structure of Data Output Files</a></h3>
+
+                <p>Users with the proper permissions are able to download individual-level data elements. Demographic
+                    data, 3D landmark coordinates and all measurements are provided as comma separated values (.csv)
+                    files
+                    , which can be opened in any spreadsheet program. The variable ids at the top of each column
+                    conform
+                    to the scheme described above. </p>
+
+
+                <hr/>
+                <h3><a id="using_zscore_tool">Using the Z-Score Tool</a></h3>
+
+                <p>Z-scores are commonly used by clinicians to assess where a given individual sits in relation to the
+                    general population on some measured aspect of the phenotype. When population-based normative data is
+                    available, one is able to determine how many standard deviations an individual is from others of the
+                    same age, sex and ancestry. In the craniofacial context, Z-scores can be useful for pre-surgical
+                    planning
+                    , post-surgical outcome assessment, syndrome delineation, and in some cases, genetic counseling. Now
+                    that 3D stereophotogrammetry is becoming quite common in clinical settings, it is essential to be
+                    able
+                    to produce Z-scores based on measurements obtained with the same technology.</p>
+
+                <p>The simple interactive Z-score tool provided through the 3D Facial Norms Database allows a user to
+                    automatically generate Z-scores based on 3D surface measurements. First the user selects the sex,
+                    age
+                    and ancestry of the individual they are seeking to compare. Then the user selects the measurement of
+                    interest. Finally, the user enters the individual's measurement value. The resulting Z-score
+                    indicates
+                    in standard deviations how this individual compares to his/her peers. The process can then be
+                    repeated
+                    for additional measurements and/or individuals.</p>
+
+                <p>Like any comparison of this nature, it is essential that the measurement be taken correctly on the
+                    individual to be compared in order for the results to be accurate. It is also critical that
+                    equivalent
+                    methods be used (3D surface anthropometry or traditional direct anthropometry) when conducting such
+                    a comparison. Please see the preceding sections describing which methods were used to collect which
+                    measurement variables.</p>
+                <hr/>
+                <h3><a id="citation">Citing the 3D Facial Norms Database in Reports and Presentations</a></h3>
+
+                <p>Citation instructions pending. Check back soon for an update.</p>
+                <hr/>
+                <h3><a id="future_plans">Future Plans for Repository Expansion</a></h3>
+
+                <p>Immediate plans for the future include expanding both the age range and ethnic categories contained
+                    within the normative database. The 3D Facial Norms database was designed from the outset to be
+                    flexible
+                    , so that it can be easily scaled to accomplish these goals.</p>
+                <hr/>
+                <h3><a id="contribution">Contributing to the Database</a></h3>
+
+                <p>For this resource to reach its full potential, we will need as much high-quality data as possible
+                    . If you are an investigator interested in contributing data to this resource, please contact the
+                    Principal
+                    Investigator, Seth M. Weinberg, PhD.</p>
+                <hr/>
+                <h3><a id="acknowledgments">Acknowledgments</a></h3>
+                <h5>University of Pittsburgh</h5>
+                <ul>
+                    <li>Seth M. Weinberg, PhD, Principal Investigator</li>
+                    <li>Mary L. Marazita, PhD, Co-Principal Investigator</li>
+                    <li>Pooja M. Gandhi, MS, Study Coordinator</li>
+                    <li>Zach D. Raffensperger, BS, Principal Programmer and Web-Developer</li>
+                    <li>Rebecca S. DeSensi, BS, Database Manager</li>
+                </ul>
+                <h5>Seattle Children's Research Institute</h5>
+                <ul>
+                    <li>Carrie L. Heike, MD, Co-Investigator</li>
+                    <li>Michael L. Cunningham, MD, PhD, Co-Investigator</li>
+                    <li>Laura Stueckle, MPH, Study Coordinator</li>
+                    <li>Linda Peters, BA, Research Associate</li>
+                    <li>Erik Stuhaug, AAS, Medical Photographer</li>
+                    <li>Eden Palmer, BS, Medical Photographer</li>
+                    <li>Trylla Tuttle, BA, Research Assistant</li>
+                </ul>
+                <h5>University of Texas Health Science Center (Houston)</h5>
+                <ul>
+                    <li>Jacqueline T. Hecht, PhD, Co-Investigator</li>
+                    <li>Chung How Kau, BDS, PhD, Consultant (currently at UA Birmingham)</li>
+                    <li>Lidia Leonard, BS, Clinical Research Coordinator</li>
+                    <li>Maria Elena Serna, BS, Database Specialist</li>
+                    <li>Rosa N. Martinez, Clinical Research Coordinator</li>
+                </ul>
+                <hr/>
+                <h3><a id="funding">Funding<a></h3>
+
+                <p>The project is funded by the following grants from the NIDCR: 1-U01-DE020078</p>
+                <hr/>
+                <h3><a id="disclaimer">Disclaimer</a></h3>
+
+                <p>The PIs or Co-Is on this project have no financial disclosures or conflicts of interest to report
+                    .</p>
+                <hr/>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="push"></div>
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <img class="pull-left img-responsive" src="images/logo.png">
+            </div>
+            <div class="col-md-4">
+                <p><a href="/contact/">Contact</a> | <a href="http://policy.usc.edu/info-privacy/">Privacy</a></p>
+
+                <p>&copy; University of Southern California</p>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- javascript -->
+
+<script>
+    $(document).ready(function () {
+
+        $('ul.nav li.toplevel a[href^="/' + location.pathid.split("/")[1] + '"]').parent(".toplevel").addClass('active');
+        //getSession();
+    });
+</script>
+</body>
+</html>

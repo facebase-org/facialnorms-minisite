@@ -1,0 +1,378 @@
+{
+  "facial-measures": [
+    {
+      "name": "Maximum Cranial Width",
+      "landmarks": [
+        "eu_r",
+        "eu_l"
+      ],
+      "shortname": "maxcranwidth",
+      "measurement_description": "This measurement attempts to capture the widest transverse dimension of the skull vault, which is typically located between the left and right parietal bones. Other common names for this measurement include: maximum head width/breadth and biparietal width/breadth.",
+      "measurement_method": "Traditional anthropometry with a spreading caliper. Using moderate pressure, the tips of the caliper are applied to the scalp in the region of the skull vault just above the ears. Maintaining constant pressure, the operator moves the tips of the caliper inferior/superior and anterior/posterior in an alternating manner, exploring the entire parietal region until the highest reading is observed on the caliper's scale.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Minimum Frontal Width",
+      "landmarks": [
+        "ft_r",
+        "ft_l"
+      ],
+      "shortname": "minfrntwidth",
+      "measurement_description": "Minimum frontal width is a transversely-oriented measurement of forehead width, taken at the most medial point along the curves created by left and right temporal crests of the frontal bone. Other common names for this measurement include: forehead width/breadth and bifrontal width/breadth.",
+      "measurement_method": "Traditional anthropometry with a spreading caliper. Using the index fingers, the forehead is palpated until the temporal crests are located. Using moderate pressure, the tips of the caliper are then applied to the forehead along the most medial aspect of each crest, taking care to not allow the tips of the caliper to slip posterior into the temporal fossae.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Maximum Facial Width",
+      "landmarks": [
+        "zy_r",
+        "zy_l"
+      ],
+      "shortname": "maxfacewidth",
+      "measurement_description": "This measurement attempts to capture the widest transverse dimension of the upper face. Other common names for this measurement include: facial width/breadth; upper facial width/breadth; and bizygomatic width/breadth.",
+      "measurement_method": "Traditional anthropometry with a spreading caliper. Facing directly in front of the subject, the operator first palpates the extent of the zygomatic arch. Using moderate pressure, the tips of the calipers are applied to the skin at roughly the mid-point of the arch. The operator then moves the tips of the caliper in an alternating fashion, back and forth and up and down, exploring the entire arch until the highest reading is observed on the caliper's scale.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Mandibular Width",
+      "landmarks": [
+        "go_r",
+        "go_l"
+      ],
+      "shortname": "mandwidth",
+      "measurement_description": "Transversely-oriented measurement designed to capture the width of the mandible at the level of the gonial angles. Other common names for this measurement include: mandible width/breadth and bigonial width/breadth.",
+      "measurement_method": "Traditional anthropometry with a spreading caliper. With the subject's head tilted slightly back, the gonial angles of the mandible are first located through palpation. Using moderate to heavy pressure, the tips if the caliper are then applied through the dense soft tissue overlying the gonial angles until they sit on the bone. It is often helpful to start with the caliper's tips situated just behind/below the angle and then move the tips slowly forward/upward until they slip laterally onto the surface of the angle. The tips of the caliper are then moved back and forth slightly until the highest reading is observed on the caliper's scale.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Maximum Cranial Length",
+      "landmarks": [
+        "g",
+        "op"
+      ],
+      "shortname": "maxcranlength",
+      "measurement_description": "This measurement attempts to capture the longest dimension of the skull vault along the anterior-posterior axis. Other common names for this measurement include: maximum head length; head length; cranial length; and glabello-occipital length.",
+      "measurement_method": "Traditional anthropometry with a spreading caliper. This measurement is best taken with the subject looking forward and the operator standing to one side, such that the head is viewed in profile. Using moderate pressure, one tip of the caliper is held firmly against the glabella while the other tip is slip along the occiput in the midline until the highest reading is observed on the caliper's scale.",
+      "view_orientation": "lateral-left"
+    },
+    {
+      "name": "Cranial Base Width",
+      "landmarks": [
+        "t_r",
+        "t_l"
+      ],
+      "shortname": "cranbasewidth",
+      "measurement_description": "A transverse measurement designed to approximate the width of the cranial base at the level of the middle cranial fossa. Other common names for this measurement include: basicranial width/breadth; skull base width/breadth; biauricular distance; and bitragion diameter.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Upper Facial Depth Right",
+      "landmarks": [
+        "n",
+        "t_r"
+      ],
+      "shortname": "upfacedepth_r",
+      "measurement_description": "A measurement designed to capture the depth or projection of the upper third of the face. Other common names for this measurement include: upper third facial depth and tragio-nasal distance.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "oblique-right"
+    },
+    {
+      "name": "Upper Facial Depth Left",
+      "landmarks": [
+        "n",
+        "t_l"
+      ],
+      "shortname": "upfacedepth_l",
+      "measurement_description": "A measurement designed to capture the depth or projection of the upper third of the face. Other common names for this measurement include: upper third facial depth and tragio-nasal distance.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "oblique-left"
+    },
+    {
+      "name": "Middle Facial Depth Right",
+      "landmarks": [
+        "sn",
+        "t_r"
+      ],
+      "shortname": "midfacedepth_r",
+      "measurement_description": "A measurement designed to capture the depth or projection of the middle third of the face (midface). Other common names for this measurement include: midfacial/midface depth; middle third facial depth; and tragio-subnasal distance.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "oblique-right"
+    },
+    {
+      "name": "Middle Facial Depth Left",
+      "landmarks": [
+        "sn",
+        "t_l"
+      ],
+      "shortname": "midfacedepth_l",
+      "measurement_description": "A measurement designed to capture the depth or projection of the middle third of the face (midface). Other common names for this measurement include: midfacial/midface depth; middle third facial depth; and tragio-subnasal distance.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "oblique-left"
+    },
+    {
+      "name": "Lower Facial Depth Right",
+      "landmarks": [
+        "gn",
+        "t_r"
+      ],
+      "shortname": "lowfacedepth_r",
+      "measurement_description": "A measurement designed to capture the depth or projection of the lower third of the face (relating to the mandible). Other common names for this measurement include: lower third facial depth and tragio-gnathion distance.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "oblique-right"
+    },
+    {
+      "name": "Lower Facial Depth Left",
+      "landmarks": [
+        "gn",
+        "t_l"
+      ],
+      "shortname": "lowfacedepth_l",
+      "measurement_description": "A measurement designed to capture the depth or projection of the lower third of the face (relating to the mandible). Other common names for this measurement include: lower third facial depth and tragio-gnathion distance.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "oblique-left"
+    },
+    {
+      "name": "Morphological Facial Height",
+      "landmarks": [
+        "n",
+        "gn"
+      ],
+      "shortname": "morphfaceheight",
+      "measurement_description": "A common facial measurement designed to capture the entire vertical length/height of the face or viscerocranium. Other common names for this measurement include: anatomical facial length; facial height; and total facial length.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Upper Facial Height",
+      "landmarks": [
+        "n",
+        "sto"
+      ],
+      "shortname": "upfaceheight",
+      "measurement_description": "This measurement is designed to principally capture the vertical length/height of the upper portion of the face or viscerocranium. Despite its name, this measurement contains segments of the classically defined middle and lower facial thirds. Other common names for this measurement include: naso-buccal height.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Lower Facial Height",
+      "landmarks": [
+        "sn",
+        "gn"
+      ],
+      "shortname": "lowfaceheight",
+      "measurement_description": "This measurement is designed to principally capture the vertical length/height of the lower portion of the face or viscerocranium. Despite its name, this measurement contains segments of both the middle and lower facial thirds.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Intercanthal Width",
+      "landmarks": [
+        "en_l",
+        "en_r"
+      ],
+      "shortname": "incanthwidth",
+      "measurement_description": "Horizontal measurement designed to quantify the inner distance between the eyes. Other common names for this measurement include: innercanthal width/breadth/distance; endocanthal width/breadth/distance; internal bipalpebral width/breadth/distance; internal interorbital width/breadth/distance; and interocular width/breadth/distance.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Outercanthal Width",
+      "landmarks": [
+        "ex_r",
+        "ex_l"
+      ],
+      "shortname": "outcanthwidth",
+      "measurement_description": "izontal measurement designed to quantify the outer distance between the eyes. Other common names for this measurement include: biocular width/breadth/distance; exocanthal width/breadth/distance; external biocular width/breadth/distance; external interorbital width/breadth/distance; and external bipalpebral width/breadth/distance.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Palpebral Fissure Length Right",
+      "landmarks": [
+        "en_r",
+        "ex_r"
+      ],
+      "shortname": "palpfislength_r",
+      "measurement_description": "The horizontal length of the eye fissure, from corner to corner. Other common names for this measurement include: eye fissure length.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Palpebral Fissure Length Left",
+      "landmarks": [
+        "en_l",
+        "ex_l"
+      ],
+      "shortname": "palpfislength_l",
+      "measurement_description": "The horizontal length of the eye fissure, from corner to corner. Other common names for this measurement include: eye fissure length.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Nasal Width",
+      "landmarks": [
+        "al_r",
+        "al_l"
+      ],
+      "shortname": "nasalwidth",
+      "measurement_description": "Horizontal measurement that captures the maximum soft-tissue width of the nose at the level of the alae. Other common names for this measurement include: nose width/breadth; bialar width/breadth; and soft nose width/breadth.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Subnasal Width",
+      "landmarks": [
+        "sbal_r",
+        "sbal_l"
+      ],
+      "shortname": "subnasalwidth",
+      "measurement_description": "Horizontal measurement of the nasal floor, at the interface between the nose and upper lip. Other common names for this measurement include: nasal floor width/breadth.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Nasal Protrusion",
+      "landmarks": [
+        "sn",
+        "prn"
+      ],
+      "shortname": "nasalpro",
+      "measurement_description": "Projective measurement of the nose spanning the subnasal surface, from the nasal floor to the nasal tip. Other common names for this measurement include: nose protrusion and nasal depth.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "oblique-right"
+    },
+    {
+      "name": "Nasal Ala Length Right",
+      "landmarks": [
+        "ac_r",
+        "prn"
+      ],
+      "shortname": "nasalalalength_r",
+      "measurement_description": "Projective measurement of the lateral aspect of the nose, spanning from the posterior extent of the nasal ala to the nasal tip. Other common names for this measurement include: ala length.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "oblique-right"
+    },
+    {
+      "name": "Nasal Ala Length Left",
+      "landmarks": [
+        "ac_l",
+        "prn"
+      ],
+      "shortname": "nasalalalength_l",
+      "measurement_description": "Projective measurement of the lateral aspect of the nose, spanning from the posterior extent of the nasal ala to the nasal tip. Other common names for this measurement include: ala length.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "oblique-left"
+    },
+    {
+      "name": "Nasal Height",
+      "landmarks": [
+        "n",
+        "sn"
+      ],
+      "shortname": "nasalheight",
+      "measurement_description": "This measurement is designed to principally capture the vertical length/height of the nose. Other common names for this measurement include: nose height/length.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Nasal Bridge Length",
+      "landmarks": [
+        "n",
+        "prn"
+      ],
+      "shortname": "nasalbdglength",
+      "measurement_description": "Vertical measurement designed to capture the length of the bridge of the nose.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Labial Fissure Width",
+      "landmarks": [
+        "ch_r",
+        "ch_l"
+      ],
+      "shortname": "labfiswidth",
+      "measurement_description": "Horizontal measurement designed to capture the total width of the closed mouth. Other common names for this measurement include: labial width/breadth and mouth width/breadth.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Philtrum Width",
+      "landmarks": [
+        "cph_r",
+        "cph_l"
+      ],
+      "shortname": "philwidth",
+      "measurement_description": "Horizontal measurement designed to capture the width of the philtrum at the vermillion border of the upper lip.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Philtrum Length",
+      "landmarks": [
+        "sn",
+        "ls"
+      ],
+      "shortname": "phillength",
+      "measurement_description": "Vertical measurement designed to capture the length/height of the philtrum from the apex of the philtrum to the vermillion border of the upper lip.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Upper Lip Height",
+      "landmarks": [
+        "sn",
+        "sto"
+      ],
+      "shortname": "uplipheight",
+      "measurement_description": "Vertical measurement designed to capture the length/height of the entire upper lip including the skin and vermillion segments. Other common names for this measurement include: total upper lip height/length.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Lower Lip Height",
+      "landmarks": [
+        "sto",
+        "sl"
+      ],
+      "shortname": "lowlipheight",
+      "measurement_description": "Vertical measurement designed to capture the length/height of the entire lower lip including the skin and vermillion segments. Other common names for this measurement include: total lower lip height/length.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Upper Vermilion Height",
+      "landmarks": [
+        "ls",
+        "sto"
+      ],
+      "shortname": "upvermheight",
+      "measurement_description": "Vertical measurement designed to capture the length/height of just the vermillion segment of the upper lip.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Lower Vermilion Height",
+      "landmarks": [
+        "sto",
+        "li"
+      ],
+      "shortname": "lowvermheight",
+      "measurement_description": "Vertical measurement designed to capture the length/height of just the vermillion segment of the lower lip.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    },
+    {
+      "name": "Cutaneous Lower Lip Height",
+      "landmarks": [
+        "li",
+        "sl"
+      ],
+      "shortname": "cutlowlipheight",
+      "measurement_description": "Vertical measurement designed to capture the length/height of just the skin (non-vermillion) segment of the lower lip.",
+      "measurement_method": "Inter-landmark distance calculated from 3D stereophotogrammetry.",
+      "view_orientation": "frontal"
+    }
+  ]
+}
