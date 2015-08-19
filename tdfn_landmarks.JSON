@@ -1,0 +1,818 @@
+[
+    {
+        "id": "n",
+        "name": "Nasion (n)",
+        "view": "frontal",
+        "frontal": {
+            "x": 280,
+            "y": 424
+        },
+        "oblique-left": {
+            "x": 70,
+            "y": 424
+        },
+        "oblique-right": {
+            "x": 530,
+            "y": 424
+        },
+        "lateral-left": {
+            "x": 51,
+            "y": 398
+        },
+        "lateral-right": null,
+        "description": "Midline point where the frontal and nasal bones contact (nasofrontal suture).  Soft tissue nasion corresponds to the underlying bony landmark.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "prn",
+        "name": "Pronasion (prn)",
+        "view": "frontal",
+        "frontal": {
+            "x": 282,
+            "y": 272
+        },
+        "oblique-left": {
+            "x": 24,
+            "y": 292
+        },
+        "oblique-right": {
+            "x": 576,
+            "y": 292
+        },
+        "lateral-left": {
+            "x": 3,
+            "y": 270
+        },
+        "lateral-right": null,
+        "description": "Midline point marking the maximum protrusion of the nasal tip.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "sn",
+        "name": "Subnasale (sn)",
+        "view": "frontal",
+        "frontal": {
+            "x": 282,
+            "y": 232
+        },
+        "oblique-left": {
+            "x": 70,
+            "y": 240
+        },
+        "oblique-right": {
+            "x": 530,
+            "y": 240
+        },
+        "lateral-left": {
+            "x": 55,
+            "y": 229
+        },
+        "lateral-right": null,
+        "description": "Midline point marking the junction between the inferior border of the nasal septum and the cutaneous upper lip.  It is the apex of the nasolabial angle.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "ls",
+        "name": "Labiale Superior (ls)",
+        "view": "frontal",
+        "frontal": {
+            "x": 280,
+            "y": 188
+        },
+        "oblique-left": {
+            "x": 71,
+            "y": 207
+        },
+        "oblique-right": {
+            "x": 529,
+            "y": 207
+        },
+        "lateral-left": {
+            "x": 56,
+            "y": 200
+        },
+        "lateral-right": null,
+        "description": "Midline point of the vermilion border of the upper lip, at the base of the philtrum.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "sto",
+        "name": "Stomion (sto)",
+        "view": "frontal",
+        "frontal": {
+            "x": 280,
+            "y": 160
+        },
+        "oblique-left": {
+            "x": 75,
+            "y": 186
+        },
+        "oblique-right": {
+            "x": 524,
+            "y": 186
+        },
+        "lateral-left": {
+            "x": 76,
+            "y": 181
+        },
+        "lateral-right": null,
+        "description": "Midpoint of the labial fissure.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "li",
+        "name": "Labiale Inferius (li)",
+        "view": "frontal",
+        "frontal": {
+            "x": 280,
+            "y": 133
+        },
+        "oblique-left": {
+            "x": 80,
+            "y": 156
+        },
+        "oblique-right": {
+            "x": 520,
+            "y": 156
+        },
+        "lateral-left": {
+            "x": 71,
+            "y": 152
+        },
+        "lateral-right": null,
+        "description": "Midline point of the vermilion border of the lower lip.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "sl",
+        "name": "Sublabiale (sl)",
+        "view": "frontal",
+        "frontal": {
+            "x": 280,
+            "y": 117
+        },
+        "oblique-left": {
+            "x": 86,
+            "y": 135
+        },
+        "oblique-right": {
+            "x": 514,
+            "y": 135
+        },
+        "lateral-left": {
+            "x": 88,
+            "y": 126
+        },
+        "lateral-right": null,
+        "description": "Midpoint along the inferior margin of the cutaneous lower lip (labiomental sulcus).",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "gn",
+        "name": "Gnathion (gn)",
+        "view": "frontal",
+        "frontal": {
+            "x": 280,
+            "y": 40
+        },
+        "oblique-left": {
+            "x": 142,
+            "y": 52
+        },
+        "oblique-right": {
+            "x": 458,
+            "y": 52
+        },
+        "lateral-left": {
+            "x": 128,
+            "y": 53
+        },
+        "lateral-right": null,
+        "description": "Midline point on the inferior border of the mandible.  Corresponds to the underlying bony landmark.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "en_r",
+        "name": "Right Endocanthion (en_r)",
+        "view": "oblique-right",
+        "frontal": {
+            "x": 218,
+            "y": 385
+        },
+        "oblique-left": {
+            "x": null,
+            "y": null
+        },
+        "oblique-right": {
+            "x": 448,
+            "y": 389
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Apex of the angle formed at the inner corner of the palpebral fissure where the upper and lower eyelids meet.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "en_l",
+        "name": "Left Endocanthion (en_l)",
+        "view": "oblique-left",
+        "frontal": {
+            "x": 348,
+            "y": 385
+        },
+        "oblique-left": {
+            "x": 152,
+            "y": 389
+        },
+        "oblique-right": {
+            "x": null,
+            "y": null
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Apex of the angle formed at the inner corner of the palpebral fissure where the upper and lower eyelids meet.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "ex_r",
+        "name": "Right Exocanthion (ex_r)",
+        "view": "oblique-right",
+        "frontal": {
+            "x": 130,
+            "y": 380
+        },
+        "oblique-left": {
+            "x": null,
+            "y": null
+        },
+        "oblique-right": {
+            "x": 386,
+            "y": 388
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Apex of the angle formed at the outer corner of the palpebral fissure where the upper and lower eyelids meet.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "ex_l",
+        "name": "Left Exocanthion (ex_l)",
+        "view": "oblique-left",
+        "frontal": {
+            "x": 434,
+            "y": 380
+        },
+        "oblique-left": {
+            "x": 214,
+            "y": 388
+        },
+        "oblique-right": {
+            "x": null,
+            "y": null
+        },
+        "lateral-left": {
+            "x": 114,
+            "y": 371
+        },
+        "lateral-right": null,
+        "description": "Apex of the angle formed at the outer corner of the palpebral fissure where the upper and lower eyelids meet.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "al_r",
+        "name": "Right Alare (al_r)",
+        "view": "oblique-right",
+        "frontal": {
+            "x": 229,
+            "y": 255
+        },
+        "oblique-left": {
+            "x": null,
+            "y": null
+        },
+        "oblique-right": {
+            "x": 481,
+            "y": 281
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Most lateral point on the nasal ala.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "al_l",
+        "name": "Left Alare (al_l)",
+        "view": "oblique-left",
+        "frontal": {
+            "x": 335,
+            "y": 255
+        },
+        "oblique-left": {
+            "x": 119,
+            "y": 281
+        },
+        "oblique-right": {
+            "x": null,
+            "y": null
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Same as above.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "ac_r",
+        "name": "Right Alar Curvature Point (ac_r)",
+        "view": "oblique-right",
+        "frontal": {
+            "x": 226,
+            "y": 256
+        },
+        "oblique-left": {
+            "x": null,
+            "y": null
+        },
+        "oblique-right": {
+            "x": 473,
+            "y": 270
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Most posterolateral point on the alar cartilage, located within the crease formed by the union of the alar cartilage and the skin of the cheek.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "ac_l",
+        "name": "Left Alar Curvature Point (ac_l)",
+        "view": "oblique-left",
+        "frontal": {
+            "x": 338,
+            "y": 256
+        },
+        "oblique-left": {
+            "x": 127,
+            "y": 270
+        },
+        "oblique-right": {
+            "x": null,
+            "y": null
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Most posterolateral point on the alar cartilage, located within the crease formed by the union of the alar cartilage and the skin of the cheek.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "sbal_r",
+        "name": "Right Subalare  (sbal_r)",
+        "view": "oblique-right",
+        "frontal": {
+            "x": 259,
+            "y": 233
+        },
+        "oblique-left": {
+            "x": null,
+            "y": null
+        },
+        "oblique-right": {
+            "x": 509,
+            "y": 243
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Point located at the lower margin of the nasal ala, where the cartilage insterts in the cutaneous upper lip.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "sbal_l",
+        "name": "Left Subalare (sbal_l)",
+        "view": "oblique-left",
+        "frontal": {
+            "x": 306,
+            "y": 233
+        },
+        "oblique-left": {
+            "x": 91,
+            "y": 243
+        },
+        "oblique-right": {
+            "x": null,
+            "y": null
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Same as above.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "cph_r",
+        "name": "Right Christa Philtri (cph_r)",
+        "view": "frontal",
+        "frontal": {
+            "x": 263,
+            "y": 193
+        },
+        "oblique-left": {
+            "x": 49,
+            "y": 209
+        },
+        "oblique-right": {
+            "x": 49,
+            "y": 209
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Point marking the lateral crest of the philtrum at the vermilion border of the upper lip.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "cph_l",
+        "name": "Left Christa Philtri (cph_l)",
+        "view": "frontal",
+        "frontal": {
+            "x": 298,
+            "y": 193
+        },
+        "oblique-left": {
+            "x": 85,
+            "y": 210
+        },
+        "oblique-right": {
+            "x": 85,
+            "y": 210
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Same as above.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "ch_r",
+        "name": "Right Chelion (ch_r)",
+        "view": "frontal",
+        "frontal": {
+            "x": 190,
+            "y": 163
+        },
+        "oblique-left": {
+            "x": null,
+            "y": null
+        },
+        "oblique-right": {
+            "x": 432,
+            "y": 190
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Point marking the lateral extent of the labial fissure.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "ch_l",
+        "name": "Left Chelion (ch_l)",
+        "view": "frontal",
+        "frontal": {
+            "x": 376,
+            "y": 163
+        },
+        "oblique-left": {
+            "x": 168,
+            "y": 190
+        },
+        "oblique-right": {
+            "x": null,
+            "y": null
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Same as above.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "t_r",
+        "name": "Right Tragion (t_r)",
+        "view": "oblique-right",
+        "frontal": {
+            "x": 40,
+            "y": 330
+        },
+        "oblique-left": {
+            "x": null,
+            "y": null
+        },
+        "oblique-right": {
+            "x": 162,
+            "y": 366
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Point marking the notch at the superior margin of the tragus, where the cartilage meets the skin of the face.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "t_l",
+        "name": "Left Tragion (t_l)",
+        "view": "oblique-left",
+        "frontal": {
+            "x": 519,
+            "y": 330
+        },
+        "oblique-left": {
+            "x": 438,
+            "y": 366
+        },
+        "oblique-right": {
+            "x": null,
+            "y": null
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Point marking the notch at the superior margin of the tragus, where the cartilage meets the skin of the face.",
+        "measurement_device": "digital"
+    },
+    {
+        "id": "g",
+        "name": "Glabella (g)",
+        "view": "frontal",
+        "frontal": {
+            "x": 280,
+            "y": 464
+        },
+        "oblique-left": {
+            "x": 65,
+            "y": 458
+        },
+        "oblique-right": {
+            "x": 65,
+            "y": 458
+        },
+        "lateral-left": {
+            "x": 36,
+            "y": 454
+        },
+        "lateral-right": null,
+        "description": "The most anterior midline point on the frontal bone situated between the supraorbital ridges.",
+        "measurement_device": "caliper"
+    },
+    {
+        "id": "eu_r",
+        "name": "Right Euryon (eu_r)",
+        "view": "oblique-right",
+        "frontal": {
+            "x": 38,
+            "y": 515
+        },
+        "oblique-left": {
+            "x": null,
+            "y": null
+        },
+        "oblique-right": {
+            "x": 132,
+            "y": 486
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "The most lateral point on the parietal region of the head.",
+        "measurement_device": "caliper"
+    },
+    {
+        "id": "eu_l",
+        "name": "Left Euryon (eu_l)",
+        "view": "oblique-left",
+        "frontal": {
+            "x": 522,
+            "y": 515
+        },
+        "oblique-left": {
+            "x": 468,
+            "y": 486
+        },
+        "oblique-right": {
+            "x": 162,
+            "y": 366
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Same as above.",
+        "measurement_device": "caliper"
+    },
+    {
+        "id": "ft_r",
+        "name": "Right Frontotemporale (ft_r)",
+        "view": "oblique-right",
+        "frontal": {
+            "x": 111,
+            "y": 482
+        },
+        "oblique-left": {
+            "x": null,
+            "y": null
+        },
+        "oblique-right": {
+            "x": 353,
+            "y": 480
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "The most medial projecting point situated along the temporal crest of the frontal bone.",
+        "measurement_device": "caliper"
+    },
+    {
+        "id": "ft_l",
+        "name": "Left Frontotemporale (ft_l)",
+        "view": "oblique-left",
+        "frontal": {
+            "x": 462,
+            "y": 482
+        },
+        "oblique-left": {
+            "x": 247,
+            "y": 480
+        },
+        "oblique-right": {
+            "x": null,
+            "y": null
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Same as above.",
+        "measurement_device": "caliper"
+    },
+    {
+        "id": "zy_r",
+        "name": "Right Zygion (zy_r)",
+        "view": "oblique-right",
+        "frontal": {
+            "x": 65,
+            "y": 355
+        },
+        "oblique-left": {
+            "x": null,
+            "y": null
+        },
+        "oblique-right": {
+            "x": 350,
+            "y": 355
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "The most lateral point on the zygomatic arch. As such, this landmark may be located on the zygomatic process of the temporal bone.",
+        "measurement_device": "caliper"
+    },
+    {
+        "id": "zy_l",
+        "name": "Left Zygion (zy_l)",
+        "view": "oblique-left",
+        "frontal": {
+            "x": 500,
+            "y": 355
+        },
+        "oblique-left": {
+            "x": 250,
+            "y": 355
+        },
+        "oblique-right": {
+            "x": null,
+            "y": null
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Same as above.",
+        "measurement_device": "caliper"
+    },
+    {
+        "id": "go_r",
+        "name": "Right Gonion (go_r)",
+        "view": "oblique-right",
+        "frontal": {
+            "x": 100,
+            "y": 146
+        },
+        "oblique-left": {
+            "x": null,
+            "y": null
+        },
+        "oblique-right": {
+            "x": 224,
+            "y": 172
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "The most lateral point at the gonial/mandibular angle.",
+        "measurement_device": "caliper"
+    },
+    {
+        "id": "go_l",
+        "name": "Left Gonion (go_l)",
+        "view": "oblique-right",
+        "frontal": {
+            "x": 461,
+            "y": 146
+        },
+        "oblique-left": {
+            "x": 376,
+            "y": 172
+        },
+        "oblique-right": {
+            "x": null,
+            "y": null
+        },
+        "lateral-left": {
+            "x": null,
+            "y": null
+        },
+        "lateral-right": null,
+        "description": "Same as above.",
+        "measurement_device": "caliper"
+    },
+    {
+        "id": "op",
+        "name": "Opisthocranion (op)",
+        "view": "lateral-left",
+        "frontal": {
+            "x": null,
+            "y": null
+        },
+        "oblique-left": {
+            "x": null,
+            "y": null
+        },
+        "oblique-right": {
+            "x": 535,
+            "y": null
+        },
+        "lateral-left": {
+            "x": 647,
+            "y": 481
+        },
+        "lateral-right": null,
+        "description": "The most posterior midline point on the occipital bone, as defined in relation to the glabella.",
+        "measurement_device": "caliper"
+    }
+]

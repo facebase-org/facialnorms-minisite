@@ -1,0 +1,467 @@
+/* this is a custom css stylesheet */
+
+* {
+margin: 0;
+}
+
+html,body { 
+	height: 100%;
+}
+
+ body { padding-top: 50px; } 
+
+ h1, h2, h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h4 {
+	font-size: 20px;
+}
+
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 14px;
+}
+
+h4, h5, h6 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+figure {
+	padding-bottom: 10px;
+}
+
+figure img {
+	border: 1px solid #333;
+}
+
+
+.bg-info, .bg-success, .bg-warning, .bg-danger {
+	padding: 6px;
+}
+
+/*
+#content p {
+	font-size: 1.2em;
+}
+
+#content li {
+	font-size: 1.1em;
+}
+*/
+#wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin-bottom: -70px; 
+}
+
+.container {
+	max-width: 920px;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #ccc;
+    color: #ccc;
+}
+
+.navbar-inverse .navbar-toggle:hover {
+    border-color: #ccc;
+    color: #333;
+}
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+    background-color: #CCC;
+}
+
+#navhome.navbar {
+	min-height: 63px;
+}
+
+#navhome .navbar-brand {
+	height: 63px;
+	padding: 0 15px 0 0;
+}
+
+#navhome .navbar-form, #navhome .navbar-nav {
+	padding-top: 6px;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #6DD0FF;
+}
+
+.navbar-inverse {
+    background-color: #000;
+    border-color: #000;
+    font-size: 1.2em;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #CCC; /* was 999 */
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+	background-color: #000;
+}
+
+#headerSearch {
+	/* width: 300px; */
+}
+
+.login, .user {
+  margin-left: 16px;
+ margin-right: -16px; 
+}
+
+/* If you want to change the login/signup colors
+
+.navbar-inverse .navbar-nav > li.login > a {
+	color: #e66415;
+}
+*/
+.navbar-inverse .navbar-nav > li.login > a, .navbar-inverse .navbar-nav > li.signup > a, .navbar-inverse .navbar-nav > li.user > a, .navbar-inverse .navbar-nav > li.logout > a {
+	color: #6DD0FF;
+}
+
+.dropdown-divider {
+    clear: both;
+    color: #333;
+    display: block;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.42857;
+    padding: 9px 20px 3px;
+    white-space: nowrap;
+}
+
+#content {
+	padding-bottom: 90px;
+}
+
+.masthead {
+	margin-top: 10px;
+}
+
+.banner {
+    padding: 10px;
+    text-align: center;
+}
+
+.banner-left {
+	padding: 10px;
+	text-align: left;
+}
+
+.banner-right {
+	padding: 10px;
+	text-align: right;
+}
+
+.banner-right .nobullets {
+  list-style-type: none;
+}
+
+.site-title h2 {
+	margin-top: 0;
+	text-align: center;
+}
+
+.innercontent {
+	padding: 20px 10%;
+}
+
+.facebase-intro {
+	margin-bottom: 20px;
+}
+
+.facebase-intro h3 {
+	margin-top: 0px;
+}
+
+h3.sidebarheader {
+	font-size: 1.2em;
+	margin-top: 0;
+}
+
+.container .jumbotron {
+	padding: 15px;
+}
+
+
+#content .jumbotron p {
+	font-size: 1.15em;
+	margin-bottom: 0;
+}
+
+#data-summary.row, #species-summary.row {
+   margin:0;
+}
+
+#data-summary div.col-md-4, #species-summary div.col-md-4 {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.jumbotron .thumbnail {
+	border:0px;
+  border-radius:0px;
+  margin:0 0 10px 0;
+  padding:0px;
+}
+
+.container .jumbotron .thumbnail.species {
+	margin-bottom: 0;
+}
+
+/* Customization of Mail Chimp CSS - subscription form */
+
+#mc_embed_signup form {
+	padding: 0 0 10px 3%;
+}
+
+#mc_embed_signup .button {
+    background-color: #428bca;
+}
+
+#mc_embed_signup input.email {
+    min-width: 225px;
+}
+
+.newslist, .sidelist {
+	font-size: 1em;
+	font-weight: bold;
+	list-style-type: none;
+	  margin: 0;
+  	padding: 0;
+}
+
+.newslist li {
+	margin-bottom: 10px;
+}
+
+.newslist li a {
+	font-size: .9em;
+	font-weight: normal;
+}
+
+.panel-primary > .panel-heading {
+	/* background-color: #36687F; */
+	background-color: #1C517D;
+	/* border-color: #264959; */
+	border-color: #163E61;
+}
+
+.news .panel {
+	margin-bottom: 3px;
+}
+
+.metadata.dl-horizontal dt {
+	width: 180px;
+}
+
+.metadata.dl-horizontal dd {
+	margin-left: 200px;
+}
+
+.project-features dt {
+	width: 80px;
+}
+
+.project-features dd {
+	margin-left: 100px;
+}
+
+#dashboard-link {
+  padding-top: 20px;
+}
+/* take out the following when we put dashboard-link back in */
+#search-within {
+	padding-top: 20px;
+}
+
+#footer, .push {
+	height: 70px; /* .push must be the same height as #footer */
+	clear: both;
+}
+
+#footer {
+	/* height: 70px; */
+	background-color: #000;
+	color: #FFF;
+	padding: 10px;
+	text-align: center;
+	margin-top: -70px;
+}
+
+#footer a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+#footer img {
+	vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+	.login {
+		margin-left: 0px;
+	}
+}
+
+.personnel {
+	padding-right: 10px;
+}
+
+/* Custom styles for Data Browser */
+
+.search-collections .filter-item-field, .search-collections .collections-toggle {
+     display: none;
+}
+
+/* Individual page styles */
+
+.sitesearch-results {
+	
+}
+
+table.presentations th.presentation {
+	width: 600px;
+}
+
+table.presentations th.presenter {
+	width: 200px;
+}
+
+.pub-entry a {
+	font-weight: bold;
+	font-size: 1.1em;
+}
+
+/* Mini-sites */
+
+#facial_norms .row {
+	padding-top: 20px;
+}
+
+#facial_norms img {
+  padding-right: 10px;
+}
+
+#edit-c-measurements .table > thead > tr > th, #edit-c-measurements .table > tbody > tr > th, #edit-c-measurements .table > tfoot > tr > th, #edit-c-measurements .table > thead > tr > td, #edit-c-measurements .table > tbody > tr > td, #edit-c-measurements .table > tfoot > tr > td {
+	vertical-align: middle;
+}
+
+#tdfn-notes-content h3 {
+	margin-top: 0;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
+}
+
+/* missing bootstrap styles */
+
+.mininav {
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    list-style: outside none none;
+    margin-bottom: 20px;
+    padding: 8px 15px;
+}
+
+.mininav > li {
+    display: inline-block;
+}
+
+.mininav > li + li::before {
+    color: #ccc;
+    content: "| ";
+    padding: 0 5px;
+}
+
+.mininav > .active {
+    color: #777;
+}
+
+#sidebar-wrapper {
+    background: #fff none repeat scroll 0 0;
+    height: 100%;
+    left: 295px;
+    margin-left: -295px;
+    position: relative;
+    width: 295px;
+    /* z-index: 10000; */
+    border-right: 1px solid #eee;
+}
+
+.sidebar-nav {
+    display: block;
+    float: left;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+    width: 295px;
+}
+
+.sidebar-nav .current {
+	font-weight: bold;
+}
+
+p.sidebar-nav {
+	margin-top: 10px;
+	border-top: 2px solid #eee;
+	color: #999;
+	font-size: 14px;
+}
+
+.sidebar-nav li {
+    line-height: 24px;
+    font-size: 12px;
+    text-indent: 5px;
+}
+
+p.sidebar-nav:first-child {
+	border-top: none;
+}
+
+.sidebar-nav li a, p.sidebar-nav a {
+    color: #333;
+    display: block;
+    text-decoration: none;
+}
+
+.sidebar-nav a:hover, p.sidebar-nav a:hover {
+	background-color: #eee;
+}
+/* if you want a Menu button that toggles sidebar - 
+http://bootsnipp.com/snippets/featured/navigation-sidebar-with-toggle
+#sidebar_menu li a, .sidebar-nav li a {
+    background: #252525 none repeat scroll 0 0;
+    border-bottom: 1px solid #1a1a1a;
+    border-top: 1px solid #373737;
+    color: #999;
+    display: block;
+    float: left;
+    text-decoration: none;
+    transition: background 0.5s ease 0s;
+    width: 150px;
+}
+*/
+.media-body, .media-left, .media-right {
+    display: table-cell;
+    vertical-align: top;
+}
+.media-left, .media > .pull-left {
+    padding-right: 10px;
+}
+
+.form-group.required label:after {
+  content:" *";
+  color:red;
+}
+
+/* Facial Norms minisite */
+
