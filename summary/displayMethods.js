@@ -351,20 +351,14 @@ downloadData = function(){
             });
 
             table = '';
-            table += ('');
             for (line in data) {
                 if ($.urlParam('shortname') == data[line][1]) {
                     table += ('' + data[line][2] +', '+ data[line][5] +', '+ data[line][6] +', '+ data[line][7].trim() +',\n');
                 }
             }
-            table += '';
 
-
-            var element = document.createElement('a');
-
-            element.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURI(table));
-            element.setAttribute('download', "tdfn_summary_statistics.json");
-            element.click();
+            var blob = new Blob([table], {type: "text/plain;charset=utf-8"});
+            saveAs(blob, "facial_normative_data.txt");
 
         }
     });

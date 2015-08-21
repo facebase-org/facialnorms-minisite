@@ -10,7 +10,8 @@
     <link rel="stylesheet" type="text/css" href="../css/custom.css">
 	  <script src="../js/jquery-latest.min.js"></script>
 	  <script src="../js/bootstrap.min.js"></script>
-	  <script src="../js/jquery.flot.js" type="text/javascript" language="javascript"></script>		
+	  <script src="../js/jquery.flot.js" type="text/javascript" language="javascript"></script>
+      <script src="../js/FileSaver.min.js" type="text/javascript"></script>
 		<!-- javascript -->
 		<script>
 		$(document).ready(function(){ 
@@ -182,9 +183,8 @@
 		                                download_text += field + "\t\t" + measure + "\t\t" + zscore + "\n";
 					}
                                 });
-
-				//alert("download");
-				window.open("data:text/plain;charset=UTF-8,"+ encodeURIComponent(download_text));
+                var blob = new Blob([download_text], {type: "text/plain;charset=utf-8"});
+                saveAs(blob, "Z-Score_data.txt");
 			});
 		});
 		</script>
