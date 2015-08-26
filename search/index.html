@@ -25,9 +25,10 @@ $(document).ready(function(){
         var tdfn_summary = [];
         var caliper_measures = {"maxcranwidth":"Maximum Cranial Width","minfrntwidth":"Minimum Frontal Width","maxfacewidth":"Maximum Facial Width","mandwidth":"Mandibular Width", "maxcranlength":"Maximum Cranial Length"};
         var measures = {"cranbasewidth":"Cranial Base Width","upfacedepth_r":"Upper Facial Depth Right","upfacedepth_l":"Upper Facial Depth Left", "midfacedepth_r":"Middle Facial Depth Right", "midfacedepth_l":"Middle Facial Depth Left", "lowfacedepth_r":"Lower Facial Depth Right", "lowfacedepth_l":"Lower Facial Depth Left", "morphfaceheight":"Morphological Facial Height", "upfaceheight":"Upper Facial Height", "lowfaceheight":"Lower Facial Height", "incanthwidth":"Intercanthal Width", "outcanthwidth":"Outercanthal Width", "palpfislength_r":"Palpebral Fissure Length Right", "palpfislength_l":"Palpebral Fissure Length Left", "nasalwidth":"Nasal Width", "subnasalwidth":"Subnasal Width", "nasalpro":"Nasal Protrusion", "nasalalalength_r":"Nasal Ala Length Right", "nasalalalength_l":"Nasal Ala Length Left", "nasalheight":"Nasal Height", "nasalbdglength":"Nasal Bridge Length", "labfiswidth":"Labial Fissure Width", "philwidth":"Philtrum Width", "phillength":"Philtrum Length", "uplipheight":"Upper Lip Height", "lowlipheight":"Lower Lip Height", "upvermheight":"Upper Vermilion Height", "lowvermheight":"Lower Vermilion Height","cutlowlipheight":"Cutaneous Lower Lip Height"};
+
         var ages= {3: "3",3.5: "3.5",4: "4",4.5: "4.5",5: "5",6: "6",7: "7",8: "8",9:"9",10:"10",11:"11",12:"12",13:"13",14:"14",15:"15",16:"16",17:"17",18:"18",19:"19",20:"20",21:"21",22:"22",23:"23",24:"24",25:"25",26:"26",27:"27",28:"28",29:"29",30:"30",31: "31-32",33:"33-34",35:"35-36",37:"37-38", 39:"39-40"};
         var ancestries ={"european": "European Caucasian"};
-        var landmarks = {"n" : "Nasion (n)","prn" : "Pronasion (prn)","sn" : "Subnasale (sn)","ls" : "Labiale Superior (ls)","sto" : "Stomion (sto)","li" : "Labiale Inferius (li)","sl" : "Sublabiale (sl)","gn" : "Gnathion (gn)","en_r" : "Right Endocanthion (en_r)","en_l" : "Left Endocanthion (en_l)","ex_r" : "Right Exocanthion (ex_r)","ex_l" : "Left Exocanthion (ex_l)","al_r" : "Right Alare (al_r)","al_l" : "Left Alare (al_l)","ac_r" : "Right Alar Curvature Point (ac_r)","ac_l" : "Left Alar Curvature Point (ac_l)","sbal_r" : "Right Subalare (sbal_r)","sbal_l" : "Left Subalare (sbal_l)","cph_r" : "Right Christa Philtri (cph_r)","cph_l" : "Left Christa Philtri (cph_l)","ch_r" : "Right Chelion (ch_r)","ch_l" : "Left Chelion (ch_l)","t_r" : "Right Tragion (t_r)","t_l" : "Left Tragion (t_l)"};
+        var landmarks = {"n" : "Nasion (n)","prn" : "Pronasale (prn)","sn" : "Subnasale (sn)","ls" : "Labiale Superius (ls)","sto" : "Stomion (sto)","li" : "Labiale Inferius (li)","sl" : "Sublabiale (sl)","gn" : "Gnathion (gn)","en_r" : "Right Endocanthion (en_r)","en_l" : "Left Endocanthion (en_l)","ex_r" : "Right Exocanthion (ex_r)","ex_l" : "Left Exocanthion (ex_l)","al_r" : "Right Alare (al_r)","al_l" : "Left Alare (al_l)","ac_r" : "Right Alar Curvature Point (ac_r)","ac_l" : "Left Alar Curvature Point (ac_l)","sbal_r" : "Right Subalare (sbal_r)","sbal_l" : "Left Subalare (sbal_l)","cph_r" : "Right Crista Philtri (cph_r)","cph_l" : "Left Crista Philtri (cph_l)","ch_r" : "Right Chelion (ch_r)","ch_l" : "Left Chelion (ch_l)","t_r" : "Right Tragion (t_r)","t_l" : "Left Tragion (t_l)"};
         var additional_variables = {"heightcm" : "Height (cm)", "weightkg" : "Weight (kg)"};
         var age_map = [31,33,35,37,39];
         var half_ages = [3, 3.5, 4, 4.5]
@@ -52,29 +53,47 @@ $(document).ready(function(){
             }
         });
 
+    function create_checkbox_div(txt, val){
+        var div = $("<div>", {class: "checkbox-item"});
+        var label = $("<label>", {class: "option", text: val});
+        var input = $("<input>", {class: "form-checkbox", type: "checkbox", value: txt});
+        if (txt == "european"){ div.addClass("selected"); input.prop("checked", true)};
+        div.append(input).append(label);
+        return div;
+
+    }
     function create_checkboxes(checkboxes, input_list, all){
         if (all){
-            var div = $("<div>", {class: "checkbox-item"});
-            var label = $("<label>", {class: "option", text: "All"});
-            var input = $("<input>", {class: "form-checkbox", type: "checkbox", value: "all"});
-            div.append(input).append(label);
-            checkboxes.append(div)
+            checkboxes.append(create_checkbox_div("all", "All"));
         }
     
         $.each(input_list, function(k,v){
-            var div = $("<div>", {class: "checkbox-item"});
-            var label = $("<label>", {class: "option", text: v});
-            var input = $("<input>", {class: "form-checkbox", type: "checkbox", value: k});
-            if (k == "european"){ div.addClass("selected"); input.prop("checked", true)};
-
-            div.append(input).append(label);
-            checkboxes.append(div)
+            checkboxes.append(create_checkbox_div(k,v));
         });
     }
 
-    create_checkboxes($("#male-age-checkboxes"),ages, true);
+    function create_age_checkboxes(checkboxes, input_list, all){
+        if (all){
+            checkboxes.append(create_checkbox_div("all", "All"));
+        }
+
+        // order list by float 
+        var items = Object.keys(input_list).map(function(key) {
+                return [key, input_list[key]];
+        });
+
+        items.sort(function(first, second) {
+                return first[0] - second[0];
+        });
+
+        $.each(items, function(k,v){
+                checkboxes.append(create_checkbox_div(v[0], v[1]));
+        });
+    }
+
+    create_age_checkboxes($("#male-age-checkboxes"),ages, true);
     create_checkboxes($("#male-ancestries-checkboxes"),ancestries, false);
-    create_checkboxes($("#female-age-checkboxes"),ages, true);
+    create_age_checkboxes($("#female-age-checkboxes"),ages, true);
     create_checkboxes($("#female-ancestries-checkboxes"),ancestries, false);
     create_checkboxes($("#caliper-checkboxes"),caliper_measures, true);
     create_checkboxes($("#measures-checkboxes"),measures, true);
