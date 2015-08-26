@@ -1,400 +1,928 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>3D Facial Norms Database | FaceBase</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FaceBase | A resource for craniofacial researchers">
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-    <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../css/custom.css">
-	  <script src="../js/jquery-latest.min.js"></script>
-	  <script src="../js/bootstrap.min.js"></script>
-    <!-- need the following for the Tour button when it's clicked outside of the 'Data' area -->
+<head>
+<meta charset="utf-8">
+<title>3D Facial Norms Database | FaceBase</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="FaceBase | A resource for craniofacial researchers">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+<link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/custom.css">
+<script src="../js/jquery-latest.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+  <![endif]-->
 <noscript>
- <p class="bg-warning">For full functionality of this site it is necessary to enable JavaScript.
- Here are the <a href="http://www.enable-javascript.com/" target="_blank">
- instructions how to enable JavaScript in your web browser</a>.</p>
+    <p class="bg-warning">For full functionality of this site it is necessary to enable JavaScript.
+    Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+        instructions how to enable JavaScript in your web browser</a>.</p>
 </noscript>
+
+<script>
+$(document).ready(function(){ 
+        var tdfn_summary = [];
+        var caliper_measures = {"maxcranwidth":"Maximum Cranial Width","minfrntwidth":"Minimum Frontal Width","maxfacewidth":"Maximum Facial Width","mandwidth":"Mandibular Width", "maxcranlength":"Maximum Cranial Length"};
+        var measures = {"cranbasewidth":"Cranial Base Width","upfacedepth_r":"Upper Facial Depth Right","upfacedepth_l":"Upper Facial Depth Left", "midfacedepth_r":"Middle Facial Depth Right", "midfacedepth_l":"Middle Facial Depth Left", "lowfacedepth_r":"Lower Facial Depth Right", "lowfacedepth_l":"Lower Facial Depth Left", "morphfaceheight":"Morphological Facial Height", "upfaceheight":"Upper Facial Height", "lowfaceheight":"Lower Facial Height", "incanthwidth":"Intercanthal Width", "outcanthwidth":"Outercanthal Width", "palpfislength_r":"Palpebral Fissure Length Right", "palpfislength_l":"Palpebral Fissure Length Left", "nasalwidth":"Nasal Width", "subnasalwidth":"Subnasal Width", "nasalpro":"Nasal Protrusion", "nasalalalength_r":"Nasal Ala Length Right", "nasalalalength_l":"Nasal Ala Length Left", "nasalheight":"Nasal Height", "nasalbdglength":"Nasal Bridge Length", "labfiswidth":"Labial Fissure Width", "philwidth":"Philtrum Width", "phillength":"Philtrum Length", "uplipheight":"Upper Lip Height", "lowlipheight":"Lower Lip Height", "upvermheight":"Upper Vermilion Height", "lowvermheight":"Lower Vermilion Height","cutlowlipheight":"Cutaneous Lower Lip Height"};
+        var ages= {3: "3",3.5: "3.5",4: "4",4.5: "4.5",5: "5",6: "6",7: "7",8: "8",9:"9",10:"10",11:"11",12:"12",13:"13",14:"14",15:"15",16:"16",17:"17",18:"18",19:"19",20:"20",21:"21",22:"22",23:"23",24:"24",25:"25",26:"26",27:"27",28:"28",29:"29",30:"30",31: "31-32",33:"33-34",35:"35-36",37:"37-38", 39:"39-40"};
+        var ancestries ={"european": "European Caucasian"};
+        var landmarks = {"n" : "Nasion (n)","prn" : "Pronasion (prn)","sn" : "Subnasale (sn)","ls" : "Labiale Superior (ls)","sto" : "Stomion (sto)","li" : "Labiale Inferius (li)","sl" : "Sublabiale (sl)","gn" : "Gnathion (gn)","en_r" : "Right Endocanthion (en_r)","en_l" : "Left Endocanthion (en_l)","ex_r" : "Right Exocanthion (ex_r)","ex_l" : "Left Exocanthion (ex_l)","al_r" : "Right Alare (al_r)","al_l" : "Left Alare (al_l)","ac_r" : "Right Alar Curvature Point (ac_r)","ac_l" : "Left Alar Curvature Point (ac_l)","sbal_r" : "Right Subalare (sbal_r)","sbal_l" : "Left Subalare (sbal_l)","cph_r" : "Right Christa Philtri (cph_r)","cph_l" : "Left Christa Philtri (cph_l)","ch_r" : "Right Chelion (ch_r)","ch_l" : "Left Chelion (ch_l)","t_r" : "Right Tragion (t_r)","t_l" : "Left Tragion (t_l)"};
+        var additional_variables = {"heightcm" : "Height (cm)", "weightkg" : "Weight (kg)"};
+        var age_map = [31,33,35,37,39];
+        var half_ages = [3, 3.5, 4, 4.5]
+        
+        request = $.ajax({
+            type: "GET",
+            url: "../data/tdfn_all_summary.csv"
+         });
+
+        request.done(function(data) {
+            var lines = data.split(/\r\n|\n/);
+            var headers = lines[0].split(',');
+            for (var i = 1; i < lines.length; i++) {
+                var cols = lines[i].split(',');
+                if (cols.length == headers.length) {
+                    var tarr = {};
+                    for (var j = 0; j < headers.length; j++) {
+                        tarr[headers[j].trim()] = cols[j];
+                    }
+                    tdfn_summary.push(tarr);
+                }
+            }
+        });
+
+    function create_checkboxes(checkboxes, input_list, all){
+        if (all){
+            var div = $("<div>", {class: "checkbox-item"});
+            var label = $("<label>", {class: "option", text: "All"});
+            var input = $("<input>", {class: "form-checkbox", type: "checkbox", value: "all"});
+            div.append(input).append(label);
+            checkboxes.append(div)
+        }
+    
+        $.each(input_list, function(k,v){
+            var div = $("<div>", {class: "checkbox-item"});
+            var label = $("<label>", {class: "option", text: v});
+            var input = $("<input>", {class: "form-checkbox", type: "checkbox", value: k});
+            if (k == "european"){ div.addClass("selected"); input.prop("checked", true)};
+
+            div.append(input).append(label);
+            checkboxes.append(div)
+        });
+    }
+
+    create_checkboxes($("#male-age-checkboxes"),ages, true);
+    create_checkboxes($("#male-ancestries-checkboxes"),ancestries, false);
+    create_checkboxes($("#female-age-checkboxes"),ages, true);
+    create_checkboxes($("#female-ancestries-checkboxes"),ancestries, false);
+    create_checkboxes($("#caliper-checkboxes"),caliper_measures, true);
+    create_checkboxes($("#measures-checkboxes"),measures, true);
+    create_checkboxes($("#landmarks-checkboxes"),landmarks, true);
+    create_checkboxes($("#additional-checkboxes"),additional_variables, true);
+
+
+    $(".checkbox-item").on("click", function(){
+        var checkbox = $(this).find(".form-checkbox");
+        if (checkbox.val() == "all"){
+            if ($(this).hasClass("selected")){
+                $.each($(this).closest(".checked-select"), function(){
+                    $(this).find(".checkbox-item").removeClass("selected");
+                    $(this).find(".form-checkbox").prop("checked", false); 
+                });
+            } else {
+                $.each($(this).closest(".checked-select"), function(){
+                    $(this).find(".checkbox-item").addClass("selected");
+                    $(this).find(".form-checkbox").prop("checked", true); 
+                });
+            }
+        } else {
+            if ($(this).hasClass("selected")){
+                $(this).removeClass("selected");
+                checkbox.prop("checked", false);
+            } else {
+                $(this).addClass("selected");
+                checkbox.prop("checked", true);
+            }
+        }
+    });
+
+    function change_dropdown(checkbox){
+        if (checkbox.is(":checked")){
+            checkbox.parent().parent().parent().find(".toggle-dropdown").show();
+        } else {
+            checkbox.parent().parent().parent().find(".toggle-dropdown").hide();
+        }
+    }
+
+    $("#male-checkbox").click(function(){ 
+        change_dropdown($(this));
+    });
+    $("#female-checkbox").click(function(){
+        change_dropdown($(this));
+    });
+    $("#phenotype-checkbox").click(function(){
+        change_dropdown($(this));
+    });
+    $("#mesh-checkbox").click(function(){
+        change_dropdown($(this));
+    });
+
+    function check_age(age, age_range){
+        var float_age = parseFloat(age);
+        if ($.inArray(float_age,age_range) > -1){
+            return true;
+        }
+        
+        // some of the ages are not exact matches
+        // not very efficient to do it this way
+        var found = false;
+        $.each(age_range, function(k,v){
+            var diff = 1;
+            if($.inArray(v,half_ages)){
+                diff = 0.5
+            } 
+            var max = v +diff;
+            if (float_age >= v && float_age < max){
+                found = true;
+                return false;
+            }         
+        });
+
+        return found;
+    }
+    
+    function search(males, male_age, females, female_age){
+        var results = [];
+        if (males && females && male_age == null && female_age == null){
+            return tdfn_summary;
+        }
+        
+        $.each(tdfn_summary,function(i,v){
+            if(males && v['sex'] == 1 && (male_age == null || check_age(v['age'], male_age))){
+                results.push(v); 
+            }
+            if(females && v['sex'] == 2 && (female_age == null || check_age(v['age'], female_age))){
+                results.push(v); 
+            }
+
+        });
+        return results;
+    }
+
+
+    function get_filter_list(elem){
+        var filters = [];
+        $.each(elem.find(".form-checkbox:checked"), function(){
+            if ($(this).val() != "all"){
+                if ($(this).val() in landmarks){
+                    filters.push($(this).val() + "_x");
+                    filters.push($(this).val() + "_y");
+                    filters.push($(this).val() + "_z");
+                } else {
+                    filters.push($(this).val());
+                }
+            }
+        });
+        return filters;
+    }
+    
+    function get_filters(){
+        var filters = []; //["id", "age","sex","ancestry"];
+        
+        if ($("#mesh-checkbox").is(":checked")){
+            filters.push("mesh");
+        }
+        $.merge(filters, get_filter_list($("#caliper-checkboxes")));
+        $.merge(filters, get_filter_list($("#measures-checkboxes")));
+        $.merge(filters, get_filter_list($("#landmarks-checkboxes")));
+        $.merge(filters, get_filter_list($("#additional-checkboxes")));
+  
+        
+        return filters;
+    }
+
+    function map_missing_name(name){
+        if (name.substr(-2) == "_x" || name.substr(-2) == "_y" || name.substr(-2) == "_z"){
+            var short_name = name.substring(0, name.length-2);
+            if (short_name in landmarks){ 
+                return short_name;
+            }
+        }
+        return name;
+    }
+    function check_filters(results, filters){
+        var res = {"partial" : 0, "total_missing": 0, "missing" : {}};
+        var all_matched = true;
+        $.each(results,function(i,v){
+                all_matched = true;
+                $.each(filters,function(fi,fv){
+                    if (v[fv] != 1){
+                        all_matched = false;
+                        res["total_missing"] ++;
+                        if (map_missing_name(fv) in res["missing"]){
+                            res["missing"][map_missing_name(fv)] ++;
+                        } else {
+                            res["missing"][map_missing_name(fv)] = 1;
+                        }
+                    }
+                });
+                if (!all_matched){
+                    res["partial"] ++;
+                }
+        });
+        return res;
+    }
+
+    function map_name(name){
+        if (name in caliper_measures){ return caliper_measures[name];}
+        if (name in measures){ return measures[name];}
+        if (name in landmarks){ return landmarks[name];}
+        if (name in additional_variables){ return additional_variables[name];}
+        return name;
+    }
+
+    function create_missing_graph(missing, total_individuals){
+        var list = $("<ul>", {class: "missing-graph", style: "width: 585px;"});
+      
+        // order list by frequency 
+        var items = Object.keys(missing).map(function(key) {
+            return [key, missing[key]];
+        });
+
+        items.sort(function(first, second) {
+            return second[1] - first[1];
+        });
+
+        $("#missing-values").children().remove();
+        $.each(items, function(k,v){
+                var div = $("<div>", {class: "missing-graph-div"});
+                var span = $("<div>", {class: "missing-graph-bar", style: "width: " + Math.ceil((v[1]/total_individuals) * 585)+ "px;"});
+                var text = $("<span>", {class: "missing-graph-name", text: map_name(v[0])});     
+                var count = $("<span>", {class: "missing-graph-count", text: v[1]});
+                div.append(text).append(count).append(span);
+                $("#missing-values").append(div);
+
+        });
+    }
+
+
+    function generate_search_text(sex, included, search, ancestry){
+        if (!included) { return ""};
+        var range_text = "3 to 40";
+        if (search != null){
+            if (search.length == 0){
+                return "";
+            }
+            range_text = search.join(", ");
+        }
+
+        return sex + " age " + range_text  + " with " + ancestry + " ancestry.";
+    }
+
+    function get_selected_ages(sex_age){
+        var selected = [];
+        $.each($("#" + sex_age + "-age-checkboxes").find(".form-checkbox:checked"), function(){
+            if ($(this).val() == "all"){
+                selected = null;
+                return false;
+            } else {
+                selected.push(parseFloat($(this).val()));
+                if ($.inArray($(this).val(), age_map) > -1){
+                    selected.push(parseFloat($(this).val()) +1);
+                }
+            }
+        });
+        return selected;
+    }
+    
+    $("#search-button").click(function(){
+        var male_selected = get_selected_ages("male");
+        var female_selected = get_selected_ages("female");
+        var search_male = $("#male-checkbox").is(":checked");
+        var search_female = $("#female-checkbox").is(":checked")
+        var results = search(search_male, male_selected, search_female, female_selected);
+        var total = results.length;
+        var fixed_filters = ["id", "age", "sex", "ancestry"];
+        var filters = get_filters();
+        var filter_results = check_filters(results, filters);
+        $.merge(fixed_filters, filters);
+        $("#results-search").text(generate_search_text("Males", search_male, male_selected, "European Caucasian") + " " + generate_search_text("Females", search_female, female_selected, "European Caucasian") );
+        $("#results-variables").text(fixed_filters.join(", "));
+        $("#results-variables-counts").text(fixed_filters.length);
+        $("#results-total").text(results.length);
+        $("#results-date").text( new Date().toString());
+        $("#results-complete").text(results.length - filter_results["partial"]);
+        $("#results-partial").text(filter_results["partial"]); 
+        $("#results-values").text(fixed_filters.length * results.length );
+        $("#results-missing").text(filter_results["total_missing"]);
+
+        create_missing_graph(filter_results["missing"], results.length); 
+        $("#query-div").hide();
+        $("#results-div").show();
+        if (filter_results["total_missing"] >0){
+            $("#missing-measurements-div").show();
+        }
+    });
+
+    $("#edit-button").click(function(){
+        $("#query-div").show();
+        $("#results-div").hide();         
+        $("#missing-measurements-div").hide();         
+    });
+     
+    $("#new-button").click(function(){
+            $.each($(".checkbox-item"), function(){
+                var checkbox = $(this).find(".form-checkbox");
+                $.each($(this).closest(".checked-select"), function(){
+                    $(this).find(".checkbox-item").removeClass("selected");
+                    $(this).find(".form-checkbox").prop("checked", false); 
+                 });
+            });
+            $("#male-checkbox").prop("checked", false);
+            $("#female-checkbox").prop("checked", false);
+            $("#phenotype-checkbox").prop("checked", false);
+            $("#mesh-checkbox").prop("checked", false);
+            $("#male-ancestries-checkboxes").find(".checkbox-item").addClass("selected");
+            $("#male-ancestries-checkboxes").find(".form-checkbox").prop("checked", true);
+            $("#female-ancestries-checkboxes").find(".checkbox-item").addClass("selected");
+            $("#female-ancestries-checkboxes").find(".form-checkbox").prop("checked", true);
+            $("#missing-measurements-div").hide();
+
+            $(".toggle-dropdown").hide();
+            $("#query-div").show();
+            $("#results-div").hide();   
+    });
+});
+
+</script>
+
+<style>
+.checked-select{
+    border: solid 1px;
+    height: 200px;
+    overflow: scroll;
+}
+.checked-select label{
+    font-size: 0.929em;
+    font-weight: 400;
+}
+.checkbox-item{
+    border-bottom: 1px solid #eeeeee;
+    display: block;
+    font-size: 11px;
+    margin: 0px;
+    padding: 2px 3px;
+}    
+
+#facial-norms .checked-select .form-checkbox {
+         font-size: 9px ! important;
+              height: 10px;
+}
+
+#facial-norms .checked-select label {
+      font-size: .929em;
+}
+
+.checkbox-item:hover{
+    background-color: #eee;
+}
+.checked-select .selected{
+    background-color: grey;
+}
+.missing-graph-div {
+    margin-left:20px;
+    width: 585px;
+    border: 1px solid black;
+    position: relative;
+    padding: 3px;
+    margin-bottom: 5px;
+}
+
+.missing-graph-name {
+    position: absolute;
+    left: 5%;
+}
+.missing-graph-count{
+    position: absolute;
+    left: 95%;
+}
+
+.missing-graph-bar {
+    height: 20px;
+    background-color: #AAA;
+}
+.missing-graph-container{
+    margin-bottom: 20px;
+}
+
+</style>
+
 </head>	
 <body>
-	<div id="wrap">
-		<nav id="navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		  <div class="container-fluid">
-		    <div class="navbar-header">
-		    	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#fb-navbar-main-collapse">
-			        <span class="sr-only">Toggle navigation</span>
-			        <span class="glyphicon glyphicon-arrow-down"></span>
-                  	MENU
-			    </button>
-		      	<a class="navbar-brand" href="/">FaceBase</a>
-		    </div> <!-- end navbar-header -->
+<div id="wrap">
+    <nav id="navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#fb-navbar-main-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="glyphicon glyphicon-arrow-down"></span>
+                    MENU
+                </button>
+                <a class="navbar-brand" href="/">FaceBase</a>
+            </div>  <!--end navbar-header -->
 
-			<div class="navbar-collapse collapse" id="fb-navbar-main-collapse">
-			<ul class="nav navbar-nav">
-			  	
-			  	
-			  	<li class="dropdown toplevel">
-					<a href="/data/" class="dropdown-toggle" data-toggle="dropdown">Data<span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-					
-					
-       				<li><a href="/data/" target="">Data Browser</a></li>
-       					
-  					
-					
-       				<li><a href="https://genome.ucsc.edu/cgi-bin/hgGateway?hubUrl=http%3A%2F%2Ftrackhub.facebase.org%2Fhub.txt&db=mm9&hgHubConnect.remakeTrackHub=on" target="_blank">Genome Browser</a></li>
-       					
-  					
-					
-       				<li><a href="http://facebasetest.usc.edu/expression/expressionDataSets.jsp" target="_blank">Gene Expression Omnibus</a></li>
-       					
-  					
-					
-       				<li><a href="https://legacy.facebase.org/facial_norms" target="_blank">3D Facial Norms Database</a></li>
-       					
-  					
-  					</ul>
-  					
-            		</li>
-  					
-			  	
-			  	<li class="dropdown toplevel">
-					<a href="/methods/data-standards/" class="dropdown-toggle" data-toggle="dropdown">Methods<span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-					
-					
-       				<li><a href="/methods/data-standards/" target="">Data Model and Standards</a></li>
-       					
-  					
-					
-       				<li><a href="/methods/metadata/" target="">Metadata Annotation</a></li>
-       					
-  					
-					
-       				<li><a href="/methods/policies/" target="">Data Access Policies</a></li>
-       					
-  					
-  					</ul>
-  					
-            		</li>
-  					
-			  	
-			  	<li class="dropdown toplevel">
-					<a href="/about/" class="dropdown-toggle" data-toggle="dropdown">About<span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-					
-					
-       				<li><a href="/about/" target="">About FaceBase</a></li>
-       					
-  					
-					
-       				<li><a href="/about/citing/" target="">How to Cite Us</a></li>
-       					
-  					
-					
-       				<li><a href="/about/publications/" target="">Publications</a></li>
-       					
-  					
-					
-       				<li><a href="/about/presentations/" target="">Presentations</a></li>
-       					
-  					
-					
-       				<li><a href="/about/news-events/" target="">News &amp; Events</a></li>
-       					
-  					
-  					</ul>
-  					
-            		</li>
-  					
-			  	
-			  	<li class="dropdown toplevel">
-					<a href="/projects/" class="dropdown-toggle" data-toggle="dropdown">Projects<span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-					
-					
-       				<li><a href="/projects/" target="">All FaceBase Projects</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/facebase2-cc/" target="">FaceBase 2 Coordinating Center</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/anatomical-atlas-transgenic-toolkit-zebrafish/" target="">Anatomical Atlas and Transgenic Toolkit for Late Skull Formation in Zebrafish</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/3d-craniofacial-morph-transform-dysmorphology/" target="">Developing 3D Craniofacial Morphometry Data and Tools to Transform Dysmorphology</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/epigenetic-landscapes-divergence-human-craniofacial-traits/" target="">Epigenetic Landscapes and Regulatory Divergence of Human Craniofacial Traits</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/craniofacial-enhancer-studies/" target="">Genomic and Transgenic Resources for Craniofacial Enhancer Studies</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/human-genomics-analysis-interface/" target="">Human Genomics Analysis Interface for FaceBase 2</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/functional-genomics-craniofacial-morphogenesis/" target="">Integrated Research of Functional Genomics and Craniofacial Morphogenesis</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/ontology-integration-visualization-exploration/" target="">Ontology-based Integration, Visualization and Exploration of Craniofacial Data</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/rapid-id-validation-human-craniofacial-dev-genes/" target="">Rapid Identification and Validation of Human Craniofacial Development Genes</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/rna-dynamics-in-developing-mouse-face/" target="">RNA Dynamics in the Developing Mouse Face</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/transcriptome-atlases-craniofacial-sutures/" target="">Transcriptome Atlases of the Craniofacial Sutures</a></li>
-       					
-  					
-					
-  						<li class="dropdown-divider">The following are completed FaceBase projects:</li>
-						
-  					
-					
-       				<li><a href="/projects/3d-facial-norms-database/" target="">3D Facial Norms Database</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/algum" target="">Algum</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/functional-analysis-neural-crest-and-palate" target="">Functional Analysis of Neural Crest and Palate: Imaging Craniofacial Development</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/genetic-determinants-orofacial-shape-and-relationship-cleft-lippalate/" target="">Genetic Determinants of Orofacial Shape and Relationship to Cleft Lip/Palate</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/genetic-tools-and-resources-orofacial-clefting-research/" target="">Genetic Tools and Resources for Orofacial Clefting Research</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/genome-wide-atlas-craniofacial-transcriptional-enhancers/" target="">Genome-Wide Atlas of Craniofacial Transcriptional Enhancers</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/global-gene-expression-atlas-craniofacial-development/" target="">Global Gene Expression Atlas of Craniofacial Development</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/identification-mirnas-involved-midfacial-development-and-clefting/" target="">Identification of miRNAs Involved in Midfacial Development and Clefting</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/oral-clefts-moving-genome-wide-studies-toward-functional-genomics/" target="">Oral Clefts: Moving from Genome-Wide Studies Toward Functional Genomics</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/research-functional-genomics-image-analysis-and-rescue-cleft-palate/" target="">Research on Functional Genomics, Image Analysis and Rescue of Cleft Palate</a></li>
-       					
-  					
-					
-       				<li><a href="/projects/shape-based-retrieval-3d-craniofacial-data/" target="">Shape-Based Retrieval of 3D Craniofacial Data</a></li>
-       					
-  					
-  					</ul>
-  					
-            		</li>
-  					
-			  	
-			  	<li class="dropdown toplevel">
-					<a href="/help/" class="dropdown-toggle" data-toggle="dropdown">Help<span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-					
-					
-       				<li><a href="/help/" target="">Getting Help</a></li>
-       					
-  					
-					
-       				<li><a href="/help/faqs/" target="">FAQs</a></li>
-       					
-  					
-					
-       				<li><a href="/help/using-the-data-browser/" target="">Using the Data Browser</a></li>
-       					
-  					
-					
-       				<li><a href="/help/using-3D-viewers/" target="">Using the 3D Viewers</a></li>
-       					
-  					
-					
-       				<li><a href="/help/viewing-nifti/" target="">Viewing NiFTI Files</a></li>
-       					
-  					
-  					</ul>
-  					
-            		</li>
-  					
-			  	            		
-            		<li class="toplevel">
-            		<a href="/contact/">Contact</a>
-            		
-            		</li>
-  					
-			</ul>
-
-			<ul class="nav navbar-nav navbar-right"> 
-				<li class="login"><a id="fblogin_link" href="javascript:void(0)" onclick="loginURL();">Log in</a></li>
-				<li class="signup"><a id="fbsignup_link" href="https://accounts.facebase.org/SignIn#step=signup">Sign up</a></li>
-				<li class="user"><a id="fblogin_user" href="https://accounts.facebase.org"></a></li>
-                <li class="logout"><a id="fblogout_user" href="javascript:void(0)" onclick="logoutURL();">Logout</a></li>
-		    </ul>
-		    <!-- Disabled for now
- 			<form class="navbar-form navbar-right" role="search" method="get" action="/search/" data-search-form>
-        		<div class="form-group has-feedback">
-        			<label class="control-label sr-only" for="q">Search FaceBase</label>
-          			<input type="text" name="headerSearch" id="headerSearch" class="form-control" placeholder="Search" data-search-input disabled />
-          			<span class="glyphicon glyphicon-search form-control-feedback"></span>
-        		</div>
-      		</form>
-      		-->
-			</div> <!-- end #fb-navbar-main-collapse -->
-		  </div> <!-- end .container-fluid -->
-		</nav> 		
-	<div id="content" class="container-fluid">
+            <div class="navbar-collapse collapse" id="fb-navbar-main-collapse">
+                <ul class="nav navbar-nav">
 
 
-<div class="col-md-12">
-	<h2>3D Facial Norms Database</h2>
-	
-		<ol class="mininav">
-		  <li><a href="../index.html">Overview</a></li>
-		  <li class="active">Database Search</li>
-		  <li><a href="../summary/index.html">Summary Statistics</a></li>
-		  <li><a href="../tools/index.html">Tools</a></li>
-		  <li><a href="../notes/index.html">Technical Notes</a></li>
-		  <li><a href="https://www.facebase.org/projects/3d-facial-norms-database/">Abstract</a></li>
-		</ol>
+                    <li class="dropdown toplevel">
+                    <a href="/data/" class="dropdown-toggle" data-toggle="dropdown">Data<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
 
-<div id="facial_norms">
-	<!--<div class="row">-->
-		<!--<div class="col-md-8">-->
-			<!--<div class="panel panel-default">-->
-			  <!--<div class="panel-heading">-->
-			    <!--<h3 class="panel-title">What groups are you interested in?</h3>-->
-			  <!--</div>-->
-			  <!--<div class="panel-body">-->
-			  	<!--<p>(Each choice reveals expanded lists of checkboxes for ages.)</p>-->
-			    <!--<div class="checkbox">-->
-			    	<!--<label>-->
-			      		<!--<input type="checkbox"> Males-->
-			    	<!--</label>-->
-			  	<!--</div>-->
-			  	<!--<div class="checkbox">-->
-			    	<!--<label>-->
-			      		<!--<input type="checkbox"> Females-->
-			    	<!--</label>-->
-			  	<!--</div>-->
-			  <!--</div>-->
-			<!--</div>-->
-			<!--<div class="panel panel-default">-->
-			  <!--<div class="panel-heading">-->
-			    <!--<h3 class="panel-title">What data are you interested in?</h3>-->
-			  <!--</div>-->
-			  <!--<div class="panel-body">-->
-			  	<!--<p>(Each choice reveals expanded lists of checkboxes for more options.)</p>-->
-			    <!--<div class="checkbox">-->
-			    	<!--<label>-->
-			      		<!--<input type="checkbox"> Phenotypic Measurements -->
-			    	<!--</label>-->
-			  	<!--</div>-->
-			  	<!--<div class="checkbox">-->
-			    	<!--<label>-->
-			      		<!--<input type="checkbox"> 3D Meshes-->
-			    	<!--</label>-->
-			  	<!--</div>-->
-			  	<!--<div class="checkbox">-->
-			    	<!--<label>-->
-			      		<!--<input type="checkbox"> Genotype SNP Markers -->
-			    	<!--</label>-->
-			  	<!--</div>-->
-			  <!--</div>-->
-			<!--</div>-->
 
-			<!--<button class="btn btn-lg">Search</button>-->
-		<!--</div>-->
-		<!--<div class="col-md-4">-->
-			<!--<div class="panel panel-default">-->
-			  <!--<div class="panel-heading">-->
-			    <!--<h3 class="panel-title">Definitions</h3>-->
-			  <!--</div>-->
-			  <!--<div class="panel-body">-->
-			  	<!---->
-				<!--<p><strong>Caliper Measurements</strong><br/>-->
-				<!--Standard anthropometric measurements obtained with a spreading caliper.</p>-->
-				<!---->
-				<!--<p><strong>3D Measures</strong><br/>-->
-				<!--Inter-landmark distance calculated from 3D stereophotogrammetry.</p>-->
-				<!---->
-				<!--<p><strong>3D Landmarks</strong><br/>-->
-				<!--Three dimensional coordinate values (x, y, z) of soft tissue landmarks obtained from 3D stereophotogrammetry.</p>-->
+                        <li><a href="/data/" target="">Data Browser</a></li>
 
-			  <!--</div>-->
-			<!--</div>-->
-		<!--</div>-->
-	<!--</div>-->
 
-    <div class="panel-heading">
-        <h3 class="panel-title"><strong>This is restricted-access human data.</strong></h3>
-    </div>
-    <div class="panel-body">
-        <p>The FaceBase data access policies have recently changed. To gain access to this data, you must first go through the process outlined <a href="https://www.facebase.org/odocs/data-guidelines/">here.</a> You can then request access to the “3D Facial Norms” dataset.</p>
-    </div>
+
+                        <li><a href="https://genome.ucsc.edu/cgi-bin/hgGateway?hubUrl=http%3A%2F%2Ftrackhub.facebase.org%2Fhub.txt&db=mm9&hgHubConnect.remakeTrackHub=on" target="_blank">Genome Browser</a></li>
+
+
+
+                        <li><a href="http://facebasetest.usc.edu/expression/expressionDataSets.jsp" target="_blank">Gene Expression Omnibus</a></li>
+
+
+
+                        <li><a href="https://legacy.facebase.org/facial_norms" target="_blank">3D Facial Norms Database</a></li>
+
+
+                    </ul>
+
+                    </li>
+
+
+                    <li class="dropdown toplevel">
+                    <a href="/methods/data-standards/" class="dropdown-toggle" data-toggle="dropdown">Methods<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+
+
+                        <li><a href="/methods/data-standards/" target="">Data Model and Standards</a></li>
+
+
+
+                        <li><a href="/methods/metadata/" target="">Metadata Annotation</a></li>
+
+
+
+                        <li><a href="/methods/policies/" target="">Data Access Policies</a></li>
+
+
+                    </ul>
+
+                    </li>
+
+
+                    <li class="dropdown toplevel">
+                    <a href="/about/" class="dropdown-toggle" data-toggle="dropdown">About<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+
+
+                        <li><a href="/about/" target="">About FaceBase</a></li>
+
+
+
+                        <li><a href="/about/citing/" target="">How to Cite Us</a></li>
+
+
+
+                        <li><a href="/about/publications/" target="">Publications</a></li>
+
+
+
+                        <li><a href="/about/presentations/" target="">Presentations</a></li>
+
+
+
+                        <li><a href="/about/news-events/" target="">News &amp; Events</a></li>
+
+
+                    </ul>
+
+                    </li>
+
+
+                    <li class="dropdown toplevel">
+                    <a href="/projects/" class="dropdown-toggle" data-toggle="dropdown">Projects<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+
+
+                        <li><a href="/projects/" target="">All FaceBase Projects</a></li>
+
+
+
+                        <li><a href="/projects/facebase2-cc/" target="">FaceBase 2 Coordinating Center</a></li>
+
+
+
+                        <li><a href="/projects/anatomical-atlas-transgenic-toolkit-zebrafish/" target="">Anatomical Atlas and Transgenic Toolkit for Late Skull Formation in Zebrafish</a></li>
+
+
+
+                        <li><a href="/projects/3d-craniofacial-morph-transform-dysmorphology/" target="">Developing 3D Craniofacial Morphometry Data and Tools to Transform Dysmorphology</a></li>
+
+
+
+                        <li><a href="/projects/epigenetic-landscapes-divergence-human-craniofacial-traits/" target="">Epigenetic Landscapes and Regulatory Divergence of Human Craniofacial Traits</a></li>
+
+
+
+                        <li><a href="/projects/craniofacial-enhancer-studies/" target="">Genomic and Transgenic Resources for Craniofacial Enhancer Studies</a></li>
+
+
+
+                        <li><a href="/projects/human-genomics-analysis-interface/" target="">Human Genomics Analysis Interface for FaceBase 2</a></li>
+
+
+
+                        <li><a href="/projects/functional-genomics-craniofacial-morphogenesis/" target="">Integrated Research of Functional Genomics and Craniofacial Morphogenesis</a></li>
+
+
+
+                        <li><a href="/projects/ontology-integration-visualization-exploration/" target="">Ontology-based Integration, Visualization and Exploration of Craniofacial Data</a></li>
+
+
+
+                        <li><a href="/projects/rapid-id-validation-human-craniofacial-dev-genes/" target="">Rapid Identification and Validation of Human Craniofacial Development Genes</a></li>
+
+
+
+                        <li><a href="/projects/rna-dynamics-in-developing-mouse-face/" target="">RNA Dynamics in the Developing Mouse Face</a></li>
+
+
+
+                        <li><a href="/projects/transcriptome-atlases-craniofacial-sutures/" target="">Transcriptome Atlases of the Craniofacial Sutures</a></li>
+
+
+
+                        <li class="dropdown-divider">The following are completed FaceBase projects:</li>
+
+
+
+                        <li><a href="/projects/3d-facial-norms-database/" target="">3D Facial Norms Database</a></li>
+
+
+
+                        <li><a href="/projects/algum" target="">Algum</a></li>
+
+
+
+                        <li><a href="/projects/functional-analysis-neural-crest-and-palate" target="">Functional Analysis of Neural Crest and Palate: Imaging Craniofacial Development</a></li>
+
+
+
+                        <li><a href="/projects/genetic-determinants-orofacial-shape-and-relationship-cleft-lippalate/" target="">Genetic Determinants of Orofacial Shape and Relationship to Cleft Lip/Palate</a></li>
+
+
+
+                        <li><a href="/projects/genetic-tools-and-resources-orofacial-clefting-research/" target="">Genetic Tools and Resources for Orofacial Clefting Research</a></li>
+
+
+
+                        <li><a href="/projects/genome-wide-atlas-craniofacial-transcriptional-enhancers/" target="">Genome-Wide Atlas of Craniofacial Transcriptional Enhancers</a></li>
+
+
+
+                        <li><a href="/projects/global-gene-expression-atlas-craniofacial-development/" target="">Global Gene Expression Atlas of Craniofacial Development</a></li>
+
+
+
+                        <li><a href="/projects/identification-mirnas-involved-midfacial-development-and-clefting/" target="">Identification of miRNAs Involved in Midfacial Development and Clefting</a></li>
+
+
+
+                        <li><a href="/projects/oral-clefts-moving-genome-wide-studies-toward-functional-genomics/" target="">Oral Clefts: Moving from Genome-Wide Studies Toward Functional Genomics</a></li>
+
+
+
+                        <li><a href="/projects/research-functional-genomics-image-analysis-and-rescue-cleft-palate/" target="">Research on Functional Genomics, Image Analysis and Rescue of Cleft Palate</a></li>
+
+
+
+                        <li><a href="/projects/shape-based-retrieval-3d-craniofacial-data/" target="">Shape-Based Retrieval of 3D Craniofacial Data</a></li>
+
+
+                    </ul>
+
+                    </li>
+
+
+                    <li class="dropdown toplevel">
+                    <a href="/help/" class="dropdown-toggle" data-toggle="dropdown">Help<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+
+
+                        <li><a href="/help/" target="">Getting Help</a></li>
+
+
+
+                        <li><a href="/help/faqs/" target="">FAQs</a></li>
+
+
+
+                        <li><a href="/help/using-the-data-browser/" target="">Using the Data Browser</a></li>
+
+
+
+                        <li><a href="/help/using-3D-viewers/" target="">Using the 3D Viewers</a></li>
+
+
+
+                        <li><a href="/help/viewing-nifti/" target="">Viewing NiFTI Files</a></li>
+
+
+                    </ul>
+
+                    </li>
+
+
+                    <li class="toplevel">
+                    <a href="/contact/">Contact</a>
+
+                    </li>
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right"> 
+                    <li class="login"><a id="fblogin_link" href="javascript:void(0)" onclick="loginURL();">Log in</a></li>
+                    <li class="signup"><a id="fbsignup_link" href="https://accounts.facebase.org/SignIn#step=signup">Sign up</a></li>
+                    <li class="user"><a id="fblogin_user" href="https://accounts.facebase.org"></a></li>
+                    <li class="logout"><a id="fblogout_user" href="javascript:void(0)" onclick="logoutURL();">Logout</a></li>
+                </ul>
+                <!--Disabled for now
+                        <form class="navbar-form navbar-right" role="search" method="get" action="/search/" data-search-form>
+                        <div class="form-group has-feedback">
+                                <label class="control-label sr-only" for="q">Search FaceBase</label>
+                                <input type="text" name="headerSearch" id="headerSearch" class="form-control" placeholder="Search" data-search-input disabled />
+                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        </div>
+                </form>
+                -->
+            </div>  <!--end #fb-navbar-main-collapse -->
+        </div>  <!--end .container-fluid -->
+    </nav> 		
+    <div id="content" class="container-fluid">
+
+
+        <div class="col-md-12">
+            <h2>3D Facial Norms Database</h2>
+
+            <ol class="mininav">
+                <li><a href="../index.html">Overview</a></li>
+                <li class="active">Database Search</li>
+                <li><a href="../summary/index.html">Summary Statistics</a></li>
+                <li><a href="../tools/index.html">Tools</a></li>
+                <li><a href="../notes/index.html">Technical Notes</a></li>
+                <li><a href="https://www.facebase.org/projects/3d-facial-norms-database/">Abstract</a></li>
+            </ol>
+
+            <div id="facial-norms">
+                <div id="query-div" class="row">
+                    <div class="col-md-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">What groups are you interested in?</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p>(Each choice reveals expanded lists of checkboxes for ages.)</p>
+                                <div>
+                                    <div class="checkbox">
+                                    <label>
+                                        <input id="male-checkbox" type="checkbox"> Males
+                                    </label>
+                                </div>
+                                <div class="toggle-dropdown" id="male-dropdown" style="display: none;">
+                                    <div class="row" style="padding-top: 0px">
+                                        <div class="col-md-6">
+                                            <label>Age</label>
+                                            <div id="male-age-checkboxes" class="checked-select">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-6">
+                                            <label>Ancestries</label>
+                                            <div id="male-ancestries-checkboxes" class="checked-select">
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div></div>
+                                <div> 
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="female-checkbox" type="checkbox"> Females
+                                    </label>
+                                </div>
+                                <div class="toggle-dropdown" id="female-dropdown" style="display: none;">
+                                 <div class="row" style="padding-top: 0px">
+                                     <div class="col-md-6">
+                                         <label>Age</label>
+                                         <div id="female-age-checkboxes" class="checked-select">
+                                         </div>
+                                     </div>
+                                     <div class="col-md-1"></div>
+                                     <div class="col-md-6">
+                                         <label>Ancestries</label>
+                                         <div id="female-ancestries-checkboxes" class="checked-select">
+                                         </div>
+                                     </div>
+                             </div></div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">What data are you interested in?</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p>(Each choice reveals expanded lists of checkboxes for more options.)</p>
+                                <div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="phenotype-checkbox" type="checkbox"> Phenotypic Measurements 
+                                        </label>
+                                    </div>
+                                    <div class="toggle-dropdown" id="phenotype-dropdown" style="display: none;">
+                                        <div class="row" style="padding-top: 0px">
+                                            <div class="col-md-3">
+                                                <label>Caliper Measures</label>
+                                                <div id="caliper-checkboxes" class="checked-select">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>3D Measures</label>
+                                                <div id="measures-checkboxes" class="checked-select">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>3D Landmarks</label>
+                                                <div id="landmarks-checkboxes" class="checked-select">
+                                                    </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>Additional Variables</label>
+                                                <div id="additional-checkboxes" class="checked-select">
+                                                </div>
+                                            </div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="mesh-checkbox" type="checkbox"> 3D Meshes
+                                        </label>
+                                    </div>
+                                    <div class="toggle-dropdown" id="meshes-dropdown" style="display: none;">
+                                        <div class="row mesh-info">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-3">
+                                                <label for="edit-example">Mesh Example </label>
+                                                <p><img src="../images/mesh-example.jpg" alt="Facial mesh example" height="85" width="135"></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="edit-description">What is a Mesh? </label>
+                                                <p>A mesh is a three dimensional point cloud that captures the geometry of the human face. Meshes do not contain color or texture data, only polygons representing the surface of the face. Meshes are obtained via 3D stereophotogrammetry and available in Object Wavefront (.obj) format.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" disabled readonly> Genotype SNP Markers 
+                                        </label>
+                                    </div>
+                            </div></div>
+                        </div>
+                    <button class="btn btn-lg" id="search-button">Search</button>
+            </div></div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Definitions</h3>
+                        </div>
+                        <div class="panel-body">
+
+                            <p><strong>Caliper Measurements</strong><br/>
+                            Standard anthropometric measurements obtained with a spreading caliper.</p>
+
+                            <p><strong>3D Measures</strong><br/>
+                            Inter-landmark distance calculated from 3D stereophotogrammetry.</p>
+
+                            <p><strong>3D Landmarks</strong><br/>
+                            Three dimensional coordinate values (x, y, z) of soft tissue landmarks obtained from 3D stereophotogrammetry.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="results-div" style="display:none;"> 
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Results</h3>
+                    </div>
+                    <div class="panel-body results-summary">
+                        <div >
+                            <label>Search Terms </label>
+                            <p id="results-search"></p>
+                        </div>
+                        <div>
+                            <label>Variables </label>
+                            <p id="results-variables"></p>
+                        </div>
+                        <div>
+                            <label for="edit-variable-count">Variable Count </label>
+                            <p id="results-variables-counts"></p>
+                        </div>
+                        <div>
+                            <label for="edit-date">Date </label>
+                            <p id="results-date"></p>
+                        </div>
+                        <div>
+                            <label for="edit-data-count">Total Individuals </label>
+                            <p id="results-total"></p>
+                        </div>
+                        <div>
+                            <label for="edit-data-count-complete">Complete Individuals </label>
+                            <p id="results-complete"></p>
+                        </div>
+                        <div>
+                            <label for="edit-data-count-partial">Partial Individuals </label>
+                            <p id="results-partial"></p>
+                        </div>
+                        <div>
+                            <label for="edit-data-count-values">Total Values </label>
+                            <p id="results-values"></p>
+                        </div>
+                        <div>
+                            <label for="edit-missing-count">Number of Missing Values </label>
+                            <p id="results-missing"></p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">  
+                    <div class="panel-heading">                                                        
+                        <h3 class="panel-title">Restricted-access human data</h3>
+                    </div>              
+                    <div class="panel-body">
+                        <p>The FaceBase data access policies have recently changed. To gain access to this data, you must first go through the process outlined <a href="https://www.facebase.org/odocs/data-guidelines/">here.</a> You can then request access to the “3D Facial Norms” dataset.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="panel panel-default" id="missing-measurements-div" style="display: none;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Missing measurements</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>The following variables are missing (in order of frequency).</p>
+                    <div id="missing-values" class="missing-graph-container item-list"></div> 
+                </div>
+            </div>
+             
+           <button class="btn btn-lg" id="new-button">New</button>
+                <button class="btn btn-lg" id="edit-button">Edit</button>
 </div>
 
-
-
-	
-</div>
-
-	</div>
+        </div>
 </div>
 <div class="push"></div>
 <div id="footer">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-4">
-				<img class="pull-left img-responsive" src="images/logo.png">
-			</div>
-			<div class="col-md-4">
-				<p><a href="/contact/">Contact</a> | <a href="http://policy.usc.edu/info-privacy/">Privacy</a></p>
-				<p>&copy; University of Southern California</p>
-			</div>
-			<div class="col-md-4">
-			
-			</div>
-		</div>
-	</div>
+        <div class="container">
+<div class="row">
+    <div class="col-md-4">
+        <img class="pull-left img-responsive" src="images/logo.png">
+    </div>
+    <div class="col-md-4">
+        <p><a href="/contact/">Contact</a> | <a href="http://policy.usc.edu/info-privacy/">Privacy</a></p>
+        <p>&copy; University of Southern California</p>
+    </div>
+    <div class="col-md-4">
+
+    </div>
 </div>
-	<!-- javascript -->
+        </div>
+</div>
 
-	<script>
-	$(document).ready(function(){ 
+        <script>
+$(document).ready(function(){ 
 
-  			$('ul.nav li.toplevel a[href^="/' + location.pathname.split("/")[1] + '"]').parent(".toplevel").addClass('active');
-  			getSession();
-		});
-	</script>
+        $('ul.nav li.toplevel a[href^="/' + location.pathname.split("/")[1] + '"]').parent(".toplevel").addClass('active');
+        //getSession();
+        });
+        </script>
 </body>
 </html>
