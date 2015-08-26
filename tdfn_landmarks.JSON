@@ -25,7 +25,7 @@
     },
     {
         "id": "prn",
-        "name": "Pronasion (prn)",
+        "name": "Pronasale (prn)",
         "view": "frontal",
         "frontal": {
             "x": 282,
@@ -73,7 +73,7 @@
     },
     {
         "id": "ls",
-        "name": "Labiale Superior (ls)",
+        "name": "Labiale Superius (ls)",
         "view": "frontal",
         "frontal": {
             "x": 280,
@@ -433,7 +433,7 @@
     },
     {
         "id": "cph_r",
-        "name": "Right Christa Philtri (cph_r)",
+        "name": "Right Crista Philtri (cph_r)",
         "view": "frontal",
         "frontal": {
             "x": 263,
@@ -457,7 +457,7 @@
     },
     {
         "id": "cph_l",
-        "name": "Left Christa Philtri (cph_l)",
+        "name": "Left Crista Philtri (cph_l)",
         "view": "frontal",
         "frontal": {
             "x": 298,

@@ -329,7 +329,7 @@ drawTables = function(data){
     var female_data = generateData(2);
     $('#female_table').html(female_data);
 
-    var combined_data = generateData(2);
+    var combined_data = generateData(3);
     $('#combined_table').html(combined_data);
 
     //$.each(measures, function (object) {
@@ -337,7 +337,14 @@ drawTables = function(data){
     //});
     //<tr><td>3</td><td>11</td><td style="text-align: right;">9.41</td><td style="text-align: right;">1.04</td> </tr>
 };
-
+function get_sex_string(sex){
+    if (sex == 1) {
+        return "male";
+    } else if (sex == 2){
+        return "female";
+    }
+    return "both";
+}
 downloadData = function(){
     $.ajax({
         type: "GET",
@@ -349,16 +356,17 @@ downloadData = function(){
             data.sort(function (a, b) {
                 return [a][0][2] - [b][0][2]
             });
+            
 
-            table = '';
+            table = 'sex, age, n, mean, s.d.\n';
             for (line in data) {
                 if ($.urlParam('shortname') == data[line][1]) {
-                    table += ('' + data[line][2] +', '+ data[line][5] +', '+ data[line][6] +', '+ data[line][7].trim() +',\n');
+                    table += (get_sex_string(data[line][4]) + ',' + data[line][2] +', '+ data[line][5] +', '+ data[line][6] +', '+ data[line][7].trim() +'\n');
                 }
             }
 
             var blob = new Blob([table], {type: "text/plain;charset=utf-8"});
-            saveAs(blob, "facial_normative_data.txt");
+            saveAs(blob, "facial_normative_data.csv");
 
         }
     });
