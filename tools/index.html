@@ -58,12 +58,19 @@
 				create_facial_measures();
 			});
 
+                        var age_map = {31: "31-32", 33: "33-34", 35: "35-36", 37: "37-38", 39: "39-40"}
+
+                        function map_age(age){
+                            if (age in age_map){ return age_map[age]}
+                            return age;
+                        }
+
 			function populate_search(){
 				$.each(options_sex, function(i, val){
 					$("#edit-sex").append($("<option>", {value: val, text: val}));	
 				}); 
 				$.each(options_age, function(i,val){
-                                        $("#edit-age").append($("<option>", {value: val, text: val + "-" + options_age_ceiling[i]}));        
+                                        $("#edit-age").append($("<option>", {value: val, text: map_age(val)}));        
                                 });
 				 $.each(options_ancestry, function(i,val){
                                         $("#edit-ancestry").append($("<option>", {value: val, text: val}));        
