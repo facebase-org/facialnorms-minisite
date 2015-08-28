@@ -309,6 +309,12 @@ proccessCSV = function (text) {
 };
 
 drawTables = function(data){
+    var age_map = {31: "31-32", 33: "33-34", 35: "35-36", 37: "37-38", 39: "39-40"}
+
+    function map_age(age){
+        if (age in age_map){ return age_map[age]}
+        return age;
+    }
 
     function generateData(gender) {
         table = [];
@@ -318,7 +324,7 @@ drawTables = function(data){
 
         for (line in data) {
             if (data[line][4] == gender && $.urlParam('shortname') == data[line][1]) {
-                table.push('<tr><td>'+ data[line][2] +'</td><td>'+ data[line][5] +'</td><td style="text-align: right;">'+ data[line][6] +'</td><td style="text-align: right;">'+ data[line][7] +'</td> </tr>');
+                table.push('<tr><td>'+ map_age(data[line][2]) +'</td><td>'+ data[line][5] +'</td><td style="text-align: right;">'+ data[line][6] +'</td><td style="text-align: right;">'+ data[line][7] +'</td> </tr>');
             }
         }
         return table
